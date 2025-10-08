@@ -12,6 +12,7 @@ on:
         - eslint-config-ossy
         - router
         - router-react
+        - sdk
 
 env:
   REGISTRY: https://registry.npmjs.org
