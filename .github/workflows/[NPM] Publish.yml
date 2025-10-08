@@ -10,6 +10,7 @@ on:
         options:
         - app
         - design-system
+        - design-system-extras
         - eslint-config-ossy
         - router
         - router-react
