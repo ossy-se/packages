@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks'
+ 
+<Meta title="Getting Started" />
+
+# @ossy/design-system
+React components used for Apps within the **Ossy Ecosystem**
+
+- Themable
+- Supports multiple themes with theme switching using the `useTheme` hook
+- Supports server side rendering
+- Support React 19
+
+## Getting Started
+
+- Install the design system
+  ```bash
+  npm install @ossy/design-system
+  ```
+- Add the theme provider high up in you App tree
+  ```jsx
+  // Inside app.jsx
+  import React from 'react'
+  import { Theme } from '@ossy/design-system'
+
+  export default () => {
+    return (
+      <html>
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>My App</title>
+        </head>
+        <body>
+          <Theme>
+            // Your components goes here
+          </Theme>
+        </body>
+      </html>
+    )
+  }
+  ```
+- Next, create or choose a theme from `@ossy/themes`
+
+
+```
+
+```
