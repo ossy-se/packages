@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useCallback } from 'react'
-import { MultiLanguagePage, Router as OssyRouter, RouterOptions, SingleLanguagePage, Page as _Page } from '@ossy/router'
+import { MultiLanguagePage, Router as BaseRouter, RouterOptions, SingleLanguagePage, Page as _Page } from '@ossy/router'
 
 export const RouterContext = createContext({
   pages: [] as RouterPage[],
@@ -48,7 +48,7 @@ export const Router = <T extends RouterPage>({
   const isMultiLanguage = supportedLanguages.length > 1 && !!defaultLanguage
   const potentialLanguage = pathname.split('/')[1] || ''
   const language = supportedLanguages.includes(potentialLanguage) ? potentialLanguage : defaultLanguage
-  const router = OssyRouter.of<T>({ pages, defaultLanguage, supportedLanguages })
+  const router = BaseRouter.of<T>({ pages, defaultLanguage, supportedLanguages })
   const params = router.getParamsFromUrl(href)
   const searchParams = new URLSearchParams(search)
 
