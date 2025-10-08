@@ -9,6 +9,7 @@ on:
         type: choice
         options:
         - app
+        - eslint-config-ossy
         - router
         - router-react
 

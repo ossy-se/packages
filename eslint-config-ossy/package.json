@@ -1,0 +1,21 @@
+{
+  "name": "@ossy/eslint-config-ossy",
+  "version": "1.0.3",
+  "description": "ESLint config used by Ossy",
+  "main": "index.js",
+  "url": "git://github.com/ossy-se/ossy.git",
+  "scripts": {
+    "test": "echo \"[Info]: No test specified\"",
+    "build": "echo \"[Info]: Nothing to build\""
+  },
+  "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
+  "license": "MIT License",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "ossy"
+  ],
+  "peerDependencies": {
+    "eslint": "^7.32.0"
+  }
+}
