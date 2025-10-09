@@ -1,0 +1,71 @@
+{
+  "name": "@ossy/connected-components",
+  "repository": "github:ossy-se/ossy",
+  "description": "Ossy's CMS Connected React component library",
+  "version": "0.0.1-beta",
+  "type": "module",
+  "source": "src/index.js",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "test": "",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.14.5",
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.24.1",
+    "@rollup/plugin-babel": "6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.5",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "@storybook/test": "^8.6.12",
+    "@types/react": "18.2.79",
+    "babel-loader": "^9.1.3",
+    "prop-types": "^15.8.1",
+    "rollup": "^4.24.3",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss-modules": "^2.1.1",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "storybook": "^8.6.12",
+    "tslib": "^2.6.2"
+  },
+  "dependencies": {
+    "@ossy/themes": "^0.0.12-alpha",
+    "moment": "^2.29.4"
+  },
+  "peerDependencies": {
+    "@ossy/design-system-extras": "^0.0.1-beta",
+    "@ossy/sdk-react": "^0.0.1-beta.3",
+    "@ossy/design-system": "^0",
+    "@ossy/router": "^0.0.1-beta.3",
+    "@ossy/router-react": "^0.0.1-beta.4",
+    "@ossy/sdk": "^0.0.16-alpha",
+    "react": "^19"
+  }
+}
