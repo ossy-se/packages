@@ -9,6 +9,7 @@ on:
         type: choice
         options:
         - app
+        - cli
         - connected-components
         - design-system
         - design-system-extras
