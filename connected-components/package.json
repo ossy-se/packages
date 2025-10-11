@@ -1,6 +1,6 @@
 {
   "name": "@ossy/connected-components",
-  "repository": "github:ossy-se/ossy",
+  "repository": "github:ossy-se/packages",
   "description": "Ossy's CMS Connected React component library",
   "version": "0.0.1-beta",
   "type": "module",

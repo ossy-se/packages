@@ -1,6 +1,6 @@
 {
   "name": "@ossy/themes",
-  "repository": "github:ossy-se/ossy",
+  "repository": "github:ossy-se/packages",
   "description": "Ossy's design system themes",
   "version": "0.0.12-alpha",
   "source": "src/index.js",

@@ -7,7 +7,7 @@
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
-  "repository": "github:ossy-se/packages/router",
+  "repository": "github:ossy-se/packages",
   "license": "MIT License",
   "scripts": {
     "start": "storybook dev -p 6006",
