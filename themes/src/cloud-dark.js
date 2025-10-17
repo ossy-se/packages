@@ -1,7 +1,7 @@
 import { Standard } from './standard.js'
 import { topography } from './patterns/index.js'
 
-export const Tepit = {
+export const CloudDark = {
 
   space: Standard.space,
   'max-width': Standard['max-width'],

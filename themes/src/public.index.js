@@ -1,2 +1,2 @@
-export * from './ossy.js'
+export * from './cloud-light.js'
 export * from './minimal.js'

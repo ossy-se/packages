@@ -4,7 +4,7 @@ import { topography } from './patterns/index.js'
 // hsl(198, 96%, 10%) accent from old site
 
 
-export const Ossy = {
+export const CloudLight = {
   ...Standard,
 
   surface: {
