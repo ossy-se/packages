@@ -60,12 +60,12 @@
     "moment": "^2.29.4"
   },
   "peerDependencies": {
-    "@ossy/design-system-extras": "^0.0.1",
-    "@ossy/sdk-react": "^0.0.1",
-    "@ossy/design-system": "^0",
-    "@ossy/router": "^0.0.1",
-    "@ossy/router-react": "^0.0.1",
-    "@ossy/sdk": "^0.0.1",
-    "react": "^19"
+    "@ossy/design-system-extras": ">=0.0.1 <1.0.0",
+    "@ossy/sdk-react": ">=0.0.1 <1.0.0",
+    "@ossy/design-system": ">=0.0.1 <1.0.0",
+    "@ossy/router": ">=0.0.1 <1.0.0",
+    "@ossy/router-react": ">=0.0.1 <1.0.0",
+    "@ossy/sdk": ">=0.0.1 <1.0.0",
+    "react": ">=19.0.0 <20.0.0"
   }
 }
