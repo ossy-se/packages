@@ -1,8 +1,8 @@
 {
   "name": "@ossy/connected-components",
+  "version": "0.0.1",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's CMS Connected React component library",
-  "version": "0.0.1-beta",
   "type": "module",
   "source": "src/index.js",
   "main": "build/cjs/index.js",
@@ -56,16 +56,16 @@
     "tslib": "^2.6.2"
   },
   "dependencies": {
-    "@ossy/themes": "^0.0.12-alpha",
+    "@ossy/themes": "^0.0.1",
     "moment": "^2.29.4"
   },
   "peerDependencies": {
-    "@ossy/design-system-extras": "^0.0.1-beta",
-    "@ossy/sdk-react": "^0.0.1-beta.3",
+    "@ossy/design-system-extras": "^0.0.1",
+    "@ossy/sdk-react": "^0.0.1",
     "@ossy/design-system": "^0",
-    "@ossy/router": "^0.0.1-beta.3",
-    "@ossy/router-react": "^0.0.1-beta.4",
-    "@ossy/sdk": "^0.0.16-alpha",
+    "@ossy/router": "^0.0.1",
+    "@ossy/router-react": "^0.0.1",
+    "@ossy/sdk": "^0.0.1",
     "react": "^19"
   }
 }

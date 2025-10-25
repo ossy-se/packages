@@ -2,7 +2,7 @@
   "name": "@ossy/resource-templates",
   "repository": "github:ossy-se/packages",
   "description": "Resource Templates",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "type": "module",
   "source": "src/index.js",
   "main": "build/cjs/index.js",
