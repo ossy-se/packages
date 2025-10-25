@@ -1,6 +1,6 @@
 {
   "name": "@ossy/connected-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's CMS Connected React component library",
   "type": "module",
@@ -56,16 +56,16 @@
     "tslib": "^2.6.2"
   },
   "dependencies": {
-    "@ossy/themes": "^0.0.1",
+    "@ossy/themes": "^0.0.2",
     "moment": "^2.29.4"
   },
   "peerDependencies": {
-    "@ossy/design-system-extras": ">=0.0.1 <1.0.0",
-    "@ossy/sdk-react": ">=0.0.1 <1.0.0",
     "@ossy/design-system": ">=0.0.1 <1.0.0",
+    "@ossy/design-system-extras": ">=0.0.1 <1.0.0",
     "@ossy/router": ">=0.0.1 <1.0.0",
     "@ossy/router-react": ">=0.0.1 <1.0.0",
     "@ossy/sdk": ">=0.0.1 <1.0.0",
+    "@ossy/sdk-react": ">=0.0.1 <1.0.0",
     "react": ">=19.0.0 <20.0.0"
   }
 }

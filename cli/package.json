@@ -1,6 +1,6 @@
 {
   "name": "@ossy/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": "github:ossy-se/packages",
   "description": "Command line tool that makes it easier to interact with our APIs",
   "source": "./src/index.js",
