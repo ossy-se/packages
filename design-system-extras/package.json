@@ -2,7 +2,7 @@
   "name": "@ossy/design-system-extras",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's React Design System Extra Components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "source": "src/index.js",
   "type": "module",
   "main": "build/cjs/index.js",
@@ -62,7 +62,7 @@
     "tslib": "^2.6.2"
   },
   "dependencies": {
-    "@ossy/themes": "^0.0.5",
+    "@ossy/themes": "^0.0.6",
     "moment": "^2.29.4"
   },
   "peerDependencies": {
