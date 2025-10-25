@@ -9,14 +9,12 @@ on:
 
 permissions:
   contents: write
-  packages: write
 
 concurrency:
   group: "publish-packages"
   cancel-in-progress: false
 
 env:
-  REGISTRY: https://registry.npmjs.org
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -29,7 +27,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          registry-url: ${{ env.REGISTRY }}
           token: ${{ secrets.NPM_TOKEN }}
       - run: |
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
@@ -37,3 +34,5 @@ jobs:
       - run: |
           npm install
           npx lerna publish --yes --conventional-commits
+        env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
