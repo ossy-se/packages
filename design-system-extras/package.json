@@ -2,7 +2,7 @@
   "name": "@ossy/design-system-extras",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's React Design System Extra Components",
-  "version": "0.0.1-beta",
+  "version": "0.0.1",
   "source": "src/index.js",
   "type": "module",
   "main": "build/cjs/index.js",
