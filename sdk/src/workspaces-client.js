@@ -31,33 +31,33 @@ export class WorkspacesClient {
 
   importResourceTempaltes(workspaceId, templates) {
     return this.http.post(
-      `/workspaces/${workspaceId}/resource-templates`,
+      `/resource-templates`,
       templates
     )
   }
 
   getResourceTemplates(workspaceId) {
     return this.http.get(
-      `/workspaces/${workspaceId}/resource-templates`
+      `/resource-templates`
     )
   }
 
   createApiToken(workspaceId, description) {
     return this.http.post(
-      `/workspaces/${workspaceId}/tokens`,
+      `/tokens`,
       { workspaceId, description }
     )
   }
 
   getApiTokens(workspaceId) {
     return this.http.get(
-      `/workspaces/${workspaceId}/tokens`
+      `/tokens`
     )
   }
 
   inviteUser(workspaceId, email) {
     return this.http.post(
-      `/workspaces/${workspaceId}/invitations`,
+      `/invitations`,
       email
     )
   }
@@ -78,7 +78,7 @@ export class WorkspacesClient {
 
   getUsers() {
     return this.http.get(
-      `/workspaces/${this.workspaceId}/users`
+      `/users`
     )
   }
 
