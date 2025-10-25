@@ -11,6 +11,7 @@ const TypeOfMessage = {
   Debug: 'DEBUG'
 }
 
+
 export const log = (...params) => { console.log(...params) }
 const prefixTo = (prefix, message) => `[${prefix}]${message.startsWith('[') ? '' : ': '}`
 

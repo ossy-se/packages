@@ -17,8 +17,7 @@
   ],
   "command": {
     "publish": {
-      "conventionalCommits": true,
-      "createRelease": "github"
+      "conventionalCommits": true
     }
   }
 }

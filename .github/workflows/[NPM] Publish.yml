@@ -32,7 +32,7 @@ jobs:
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
           git config --global user.name "$(git log -1 --pretty=format:'%an')"
       - run: |
-          npm install
-          npx lerna publish --yes --conventional-commits
+          npm ci
+          npx lerna publish --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
