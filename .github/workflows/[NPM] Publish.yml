@@ -33,7 +33,7 @@ jobs:
           git config --global user.name "$(git log -1 --pretty=format:'%an')"
       - run: |
           npm ci
-          npm run build
+          npx lerna run build
           npx lerna publish --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
