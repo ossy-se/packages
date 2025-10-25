@@ -34,6 +34,6 @@ jobs:
       - run: |
           npm ci
           npx lerna run build
-          npx lerna publish --yes
+          npx lerna publish --yes --loglevel verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
