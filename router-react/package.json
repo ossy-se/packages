@@ -1,5 +1,6 @@
 {
   "name": "@ossy/router-react",
+  "version": "0.0.1",
   "repository": "github:ossy-se/packages",
   "description": "React router built for server side rendering and multi-language support with localized paths",
   "keywords": [
@@ -16,7 +17,6 @@
     "server",
     "pages"
   ],
-  "version": "0.0.1-beta.4",
   "source": "src/index.js",
   "type": "module",
   "main": "build/cjs/index.js",
@@ -60,7 +60,7 @@
     "tslib": "^2.8.1"
   },
   "peerDependencies": {
-    "@ossy/router": "0.0.1",
+    "@ossy/router": "^0.0.1",
     "react": "^19.0.0"
   }
 }
