@@ -43,5 +43,8 @@
     "rollup-plugin-postcss-modules": "^2.1.1",
     "rollup-plugin-preserve-directives": "^0.4.0",
     "tslib": "^2.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
