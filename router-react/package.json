@@ -1,6 +1,6 @@
 {
   "name": "@ossy/router-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "github:ossy-se/packages",
   "description": "React router built for server side rendering and multi-language support with localized paths",
   "keywords": [
