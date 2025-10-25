@@ -1,0 +1,18 @@
+{
+  "name": "@ossy/packages",
+  "version": "0.0.1",
+  "description": "Monorepo for packages",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "!**/.github",
+    "*"
+  ],
+  "author": "yourfriends@ossy.se",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^9.0.0"
+  }
+}
