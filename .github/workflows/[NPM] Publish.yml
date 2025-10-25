@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  NPM_SCOPE: '@ossy'
   REGISTRY: https://registry.npmjs.org
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,6 +31,7 @@ jobs:
           node-version: '22.21.x'
           registry-url: ${{ env.REGISTRY }}
           token: ${{ secrets.NPM_TOKEN }}
+          scope: ${{ env.NPM_SCOPE }}
       - run: |
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
           git config --global user.name "$(git log -1 --pretty=format:'%an')"
