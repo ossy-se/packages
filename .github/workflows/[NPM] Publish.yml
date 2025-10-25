@@ -35,4 +35,4 @@ jobs:
           npm install
           npx lerna publish --yes --conventional-commits
         env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
