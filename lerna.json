@@ -16,7 +16,7 @@
     "themes"
   ],
   "command": {
-    "version": {
+    "publish": {
       "conventionalCommits": true,
       "createRelease": "github"
     }
