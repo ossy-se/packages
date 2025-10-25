@@ -1,0 +1,58 @@
+name: "[NPM] Publish manually"
+
+on:
+  workflow_dispatch:
+    inputs:
+      package-name:
+        description: 'Name of package to be published'
+        required: true
+        type: choice
+        options:
+        - app
+        - cli
+        - connected-components
+        - design-system
+        - design-system-extras
+        - eslint-config-ossy
+        - resource-templates
+        - router
+        - router-react
+        - sdk
+        - sdk-react
+        - themes
+
+env:
+  REGISTRY: https://registry.npmjs.org
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+
+  test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install deps and run tests
+        run: |
+          cd ./${{ github.event.inputs.package-name }}
+          npm install
+          npm run test
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '22.x'
+          registry-url: ${{ env.REGISTRY }}
+          token: ${{ secrets.NPM_TOKEN }}
+      - run: |
+          cd ./${{ github.event.inputs.package-name }}
+          npm install
+          npm run build
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
