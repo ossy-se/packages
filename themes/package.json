@@ -2,7 +2,7 @@
   "name": "@ossy/themes",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's design system themes",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "source": "src/index.js",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
