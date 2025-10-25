@@ -1,6 +1,6 @@
 {
   "name": "@ossy/router",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "github:ossy-se/packages",
   "description": "Base router built for multi-language support with localized paths",
   "keywords": [
