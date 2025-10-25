@@ -11,7 +11,7 @@
   "license": "MIT License",
   "scripts": {
     "start": "",
-    "build": "rm -rf && rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js",
     "test": ""
   },
   "dependencies": {
