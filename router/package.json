@@ -16,8 +16,7 @@
   ],
   "type": "module",
   "source": "src/public.index.ts",
-  "module": "build/esm/public.index.js",
-  "main": "build/cjs/public.index.js",
+  "module": "build/public.index.js",
   "types": "build/public.index.d.ts",
   "files": [
     "/build",
@@ -30,27 +29,12 @@
     "test:watch": "jest --watch"
   },
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
-  "license": "MIT License",
+  "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@rollup/plugin-commonjs": "^25.0.5",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@types/react": "18.2.79",
-    "@types/react-dom": "18.2.18",
-    "autoprefixer": "^10.4.16",
     "casual": "^1.6.2",
     "jest": "^29.7.0",
-    "rollup": "^4.6.0",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss-modules": "^2.1.1",
-    "rollup-plugin-preserve-directives": "^0.4.0",
-    "ts-jest": "^29.1.1",
-    "tslib": "^2.6.2"
-  },
-  "peerDependencies": {
-    "typescript": ">=5.0.0 <6.0.0"
+    "ts-jest": "^29.1.1"
   },
   "publishConfig": {
     "access": "public"

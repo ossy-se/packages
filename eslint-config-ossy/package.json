@@ -9,7 +9,7 @@
     "build": "echo \"[Info]: Nothing to build\""
   },
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
-  "license": "MIT License",
+  "license": "MIT",
   "keywords": [
     "eslint",
     "eslintconfig",

@@ -11,11 +11,7 @@ export default [
     input: 'src/router-react.tsx',
     output: [
       {
-        file: 'build/cjs/index.js',
-        format: 'cjs'
-      },
-      {
-        file: 'build/esm/index.js',
+        file: 'build/index.js',
         format: 'esm'
       }
     ],
@@ -29,7 +25,10 @@ export default [
       }),
       minifyJS(),
       preserveDirectives(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        outDir: 'build',
+      }),
     ]
   },
 ]

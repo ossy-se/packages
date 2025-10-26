@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0"
   },
-  "author": "Ossy",
-  "license": "MIT License",
+  "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
+  "license": "MIT",
   "bin": "./src/index.js",
   "dependencies": {
     "arg": "^5.0.2",

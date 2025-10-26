@@ -19,9 +19,8 @@
   ],
   "source": "src/index.js",
   "type": "module",
-  "main": "build/cjs/index.js",
-  "module": "build/esm/index.js",
-  "license": "MIT License",
+  "module": "build/index.js",
+  "license": "MIT",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "scripts": {
     "build": "rollup -c rollup.config.js",
@@ -46,18 +45,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.26.0",
-    "@rollup/plugin-babel": "6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.5",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-terser": "0.4.4",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@types/react": "^18.2.79",
-    "rollup": "^4.24.3",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss-modules": "^2.1.1",
-    "rollup-plugin-preserve-directives": "^0.4.0",
-    "tslib": "^2.8.1"
+    "@rollup/plugin-babel": "6.0.4"
   },
   "peerDependencies": {
     "@ossy/router": ">=0.0.1 <1.0.0",

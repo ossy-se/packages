@@ -11,11 +11,7 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        dir: 'build/cjs',
-        format: 'cjs'
-      },
-      {
-        dir: 'build/esm',
+        dir: 'build',
         format: 'esm'
       }
     ],

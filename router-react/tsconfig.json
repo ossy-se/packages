@@ -14,7 +14,7 @@
       "jsx": "react",
       "incremental": false,
       "declaration": true,
-      "declarationDir": "./build/esm"
+      "declarationDir": "./build/types"
     },
     "exclude": [
       "build",
