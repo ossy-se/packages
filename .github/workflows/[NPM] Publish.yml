@@ -30,7 +30,6 @@ jobs:
         with:
           node-version: '22.21.x'
           registry-url: ${{ env.REGISTRY }}
-          token: ${{ secrets.NPM_TOKEN }}
           scope: ${{ env.NPM_SCOPE }}
       - run: |
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
