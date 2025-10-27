@@ -16,7 +16,7 @@ concurrency:
 
 env:
   NPM_SCOPE: '@ossy'
-  REGISTRY: https://registry.npmjs.org
+  REGISTRY:  https://registry.yarnpkg.com
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v6
         with:
           node-version: '22.21.x'
           registry-url: ${{ env.REGISTRY }}

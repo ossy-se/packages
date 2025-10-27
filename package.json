@@ -2,7 +2,10 @@
   "name": "@ossy/packages",
   "version": "0.0.1",
   "description": "Monorepo for packages",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "scripts": {
     "build": "rm -rf **/build && lerna run build --skip-nx-cache",
     "test": "lerna run test --skip-nx-cache"
