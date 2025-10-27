@@ -16,6 +16,7 @@ concurrency:
 
 env:
   NPM_SCOPE: '@ossy'
+  REGISTRY: https://registry.npmjs.org
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,7 +34,7 @@ jobs:
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
           git config --global user.name "$(git log -1 --pretty=format:'%an')"
       - run: |
-          npm ci --verbose
+          npm ci
           npx lerna run build
           npx lerna publish --yes --loglevel verbose
         env:
