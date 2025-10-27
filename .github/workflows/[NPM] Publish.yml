@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22.21.x'
+          registry-url: ${{ env.REGISTRY }}
           scope: ${{ env.NPM_SCOPE }}
           token: ${{ secrets.NPM_TOKEN }}
       - run: |
