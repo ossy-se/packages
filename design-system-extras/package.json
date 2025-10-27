@@ -2,7 +2,7 @@
   "name": "@ossy/design-system-extras",
   "repository": "github:ossy-se/packages",
   "description": "Ossy's React Design System Extra Components",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "source": "src/index.js",
   "type": "module",
   "module": "build/index.js",
@@ -50,7 +50,7 @@
     "storybook": "^8.6.12"
   },
   "dependencies": {
-    "@ossy/themes": "^0.0.11",
+    "@ossy/themes": "^0.0.12",
     "moment": "^2.29.4"
   },
   "peerDependencies": {
