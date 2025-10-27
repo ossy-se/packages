@@ -1,7 +1,10 @@
 {
   "name": "@ossy/connected-components",
   "version": "0.0.12",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "description": "Ossy's CMS Connected React component library",
   "type": "module",
   "source": "src/index.js",
@@ -57,6 +60,7 @@
     "react": ">=19.0.0 <20.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

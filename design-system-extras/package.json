@@ -1,6 +1,9 @@
 {
   "name": "@ossy/design-system-extras",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "description": "Ossy's React Design System Extra Components",
   "version": "0.0.12",
   "source": "src/index.js",
@@ -61,6 +64,7 @@
     "react-syntax-highlighter": "^5.8.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

@@ -1,7 +1,10 @@
 {
   "name": "@ossy/router-react",
   "version": "0.0.12",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "description": "React router built for server side rendering and multi-language support with localized paths",
   "keywords": [
     "react",
@@ -52,6 +55,7 @@
     "react": ">=19.0.0 <20.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

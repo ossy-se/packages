@@ -1,6 +1,9 @@
 {
   "name": "@ossy/themes",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "description": "Ossy's design system themes",
   "version": "0.0.12",
   "source": "src/index.js",
@@ -34,6 +37,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

@@ -1,7 +1,10 @@
 {
   "name": "@ossy/router",
   "version": "0.0.12",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "description": "Base router built for multi-language support with localized paths",
   "keywords": [
     "router",
@@ -37,6 +40,7 @@
     "ts-jest": "^29.1.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

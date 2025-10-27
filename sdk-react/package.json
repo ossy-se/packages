@@ -6,7 +6,10 @@
   "source": "src/index.js",
   "module": "build/index.esm.js",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
-  "repository": "github:ossy-se/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossy-se/packages.git"
+  },
   "license": "MIT",
   "scripts": {
     "start": "",
@@ -43,6 +46,7 @@
     "react-dom": ">=19.0.0 <20.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
