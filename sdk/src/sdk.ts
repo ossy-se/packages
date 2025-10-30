@@ -13,9 +13,6 @@ import {
   WorkspacesEnableService, 
   WorkspacesDisableService, 
   WorkspacesGetUsers, 
-  UserGet, 
-  UserGetHistory, 
-  UserUpdate, 
   ResourcesCreateDirectory, 
   ResourcesCreate, 
   ResourcesUpload, 
@@ -36,7 +33,10 @@ import {
   AuthGetUser, 
   AuthSignOff, 
   WorkspacesGet,
-  WorkspacesGetCurrent
+  WorkspacesGetCurrent,
+  UserCurrentGet,
+  UserCurrentGetHistory,
+  UserCurrentUpdate
 } from './Actions';
 import { SDKConfig } from './config'
 
@@ -92,9 +92,9 @@ export class SDK {
 
   get currentUser () {
     return {
-      get: this.makeRequest(UserGet).bind(this),
-      update: this.makeRequest(UserUpdate).bind(this),
-      history: this.makeRequest(UserGetHistory).bind(this),
+      get: this.makeRequest(UserCurrentGet).bind(this),
+      update: this.makeRequest(UserCurrentUpdate).bind(this),
+      history: this.makeRequest(UserCurrentGetHistory).bind(this),
     }
   }
 
