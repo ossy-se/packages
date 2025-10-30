@@ -13,9 +13,6 @@ import {
   WorkspacesEnableService, 
   WorkspacesDisableService, 
   WorkspacesGetUsers, 
-  UserGet, 
-  UserGetHistory, 
-  UserUpdate, 
   ResourcesCreateDirectory, 
   ResourcesCreate, 
   ResourcesUpload, 
@@ -35,7 +32,11 @@ import {
   AuthGetAuthenticatedUserHistory, 
   AuthGetUser, 
   AuthSignOff, 
-  WorkspacesGet
+  WorkspacesGet,
+  WorkspacesGetCurrent,
+  UserCurrentGet,
+  UserCurrentGetHistory,
+  UserCurrentUpdate
 } from './Actions';
 import { SDKConfig } from './config'
 
@@ -69,6 +70,7 @@ export class SDK {
 
   get workspaces() {
     return {
+      current: this.makeRequest(WorkspacesGetCurrent).bind(this),
       list: this.makeRequest(WorkspacesList).bind(this),
       get: this.makeRequest(WorkspacesGet).bind(this),
       create: this.makeRequest(WorkspacesCreate).bind(this),
@@ -79,16 +81,21 @@ export class SDK {
       inviteUser: this.makeRequest(WorkspacesInviteUser).bind(this),
       enableService: this.makeRequest(WorkspacesEnableService).bind(this),
       disableService: this.makeRequest(WorkspacesDisableService).bind(this),
-      getUsers: this.makeRequest(WorkspacesGetUsers).bind(this),
     };
   }
 
-  get user() {
+  get users () {
     return {
-      get: this.makeRequest(UserGet).bind(this),
-      getHistory: this.makeRequest(UserGetHistory).bind(this),
-      update: this.makeRequest(UserUpdate).bind(this),
-    };
+      list: this.makeRequest(WorkspacesGetUsers).bind(this),
+    }
+  }
+
+  get currentUser () {
+    return {
+      get: this.makeRequest(UserCurrentGet).bind(this),
+      update: this.makeRequest(UserCurrentUpdate).bind(this),
+      history: this.makeRequest(UserCurrentGetHistory).bind(this),
+    }
   }
 
   get resources() {
@@ -121,7 +128,7 @@ export class SDK {
           })
       },
       get: this.makeRequest(ResourcesGet).bind(this),
-      list: (query: (Record<string, string> & { location?: string })) => {
+      list: (query: ({ location?: string; })) => {
         const search = new URLSearchParams({ ...query }).toString()
         return this.makeRequest(ResourcesList)({ search })
       },
@@ -147,14 +154,14 @@ export class SDK {
   }
 
   makeRequest = <T extends Action>(action: T) => {
-    return (_payload: Required<T['payload']>) => {
+    return (_payload?: Required<T['payload']>) => {
 
       let payload: Required<T['payload']> = {} as Required<T['payload']>;
 
       if (!!_payload || action.payload) {
         payload = {
-          ...(action.payload || {}),
-          ...(_payload || {})
+          ...(action.payload || {} as Required<T['payload']>),
+          ...(_payload || {} as Required<T['payload']>)
         }
       }
 

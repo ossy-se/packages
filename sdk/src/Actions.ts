@@ -36,8 +36,14 @@ export const WorkspacesList: Action = {
     method: 'GET'
 }
 
+export const WorkspacesGetCurrent: Action = {
+    id: 'workspaces.get-current',
+    endpoint: '/workspaces/current',
+    method: 'GET'
+}
+
 export const WorkspacesGet: Action<{ id: string }> = {
-    id: 'workspaces.by-id',
+    id: 'workspaces.get',
     endpoint: '/workspaces/:id',
     method: 'GET'
 }
@@ -97,19 +103,19 @@ export const WorkspacesGetUsers: Action = {
 }
 
 // UserClient actions
-export const UserGet: Action = {
+export const UserCurrentGet: Action = {
     id: 'user.get',
     endpoint: '/users/me',
     method: 'GET'
 }
 
-export const UserGetHistory: Action = {
+export const UserCurrentGetHistory: Action = {
     id: 'user.get-history',
     endpoint: '/users/me/history',
     method: 'GET'
 }
 
-export const UserUpdate: Action<{ user: any }> = {
+export const UserCurrentUpdate: Action<{ user: any }> = {
     id: 'user.update',
     endpoint: '/users/me',
     method: 'PUT'

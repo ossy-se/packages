@@ -1,7 +1,7 @@
 {
   "name": "@ossy/sdk",
   "description": "Sofware Development Kit for interacting with our services",
-  "version": "0.0.16",
+  "version": "0.1.0",
   "url": "git://github.com/ossy-se/packages/sdk",
   "source": "src/public.index.ts",
   "module": "build/public.index.js",
