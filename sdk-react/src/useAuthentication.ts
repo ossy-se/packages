@@ -50,7 +50,7 @@ export const useAuthentication = () => {
   const verifySignIn = useCallback(
     (token: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.verifySignIn(token)
+      return sdk.auth.verifySignIn({ token })
         .then(() => setStatus(AuthenticationStatus.Authenticated))
         .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)
@@ -63,7 +63,7 @@ export const useAuthentication = () => {
   const verifyInvitation = useCallback(
     (workspaceId: string, token: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.verifyInvitation(workspaceId, token)
+      return sdk.auth.verifyInvitation({ workspaceId, token})
         .then(() => setStatus(AuthenticationStatus.Authenticated))
         .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)

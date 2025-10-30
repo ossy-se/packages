@@ -15,13 +15,13 @@ export const useWorkspace = () => {
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {} })
-    sdk.workspaces.byId(workspaceId)
+    sdk.workspaces.getCurrent()
       .then((workspace: any) => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
       .catch(() => setWorkspace({ status: AsyncStatus.Error, data: {} }))
   }, [sdk, workspaceId])
 
   const createApiToken = useCallback(
-    (description: string) => sdk.workspaces.createApiToken(workspaceId, description)
+    (description: string) => sdk.workspaces.createApiToken({ description })
       .then(({ id, token }: { id: string, token: string }) => {
 
         setWorkspace({
@@ -38,7 +38,7 @@ export const useWorkspace = () => {
   )
 
   const inviteUser = useCallback(
-    (email: string) => sdk.workspaces.inviteUser(workspaceId, email),
+    (email: string) => sdk.workspaces.inviteUser({ email }),
     [sdk]
   )
 

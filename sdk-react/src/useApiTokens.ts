@@ -21,7 +21,11 @@ export const useApiTokens = () => {
   } = useCache(dataPath)
 
   const createApiToken = useCallback(
-    (description: string) => sdk.apiTokens.create(description)
+    (token: {
+      name: string;
+      description: string;
+      expiresAt: string;
+  }) => sdk.apiTokens.create(token)
       .then((token: any) => {
         setTokens((tokens: any[]) => [...tokens, token])
         return token
@@ -30,14 +34,14 @@ export const useApiTokens = () => {
   )
 
   const invalidateApiToken = useCallback(
-    (id: string) => sdk.apiTokens.invalidate(id)
+    (id: string) => sdk.apiTokens.invalidate({ id })
       .then(() => setTokens((tokens: any[]) => removeBy('id', id, tokens))),
     [sdk]
   )
 
   const loadApiTokens = useCallback(() => {
     setStatus(AsyncStatus.Loading)
-    sdk.apiTokens.getAll()
+    sdk.apiTokens.list()
       .then((tokens: any[]) => {
         setTokens(tokens)
         setStatus(AsyncStatus.Success)

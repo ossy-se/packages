@@ -1,6 +1,7 @@
 import React, { createContext, PropsWithChildren } from 'react'
-import { createCache } from './Cache' // TODO: We should use Cache from @ossy-se/components when it becomes public
-import { path, set, lensPath } from 'ramda' // TODO: not be dependent on ramda
+import { createCache } from './Cache'
+import { path, set, lensPath } from 'ramda'
+import { type SDK } from '@ossy/sdk'
 
 export const Context = createContext<Config>({} as Config)
 
@@ -10,7 +11,7 @@ const Cache = createCache({
 })
 
 export interface Config {
-  sdk: any
+  sdk: SDK
 }
 
 export const WorkspaceProvider = ({ sdk, children }: PropsWithChildren<Config>) => {

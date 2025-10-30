@@ -34,7 +34,7 @@ export const useUser = () => {
     if (status !== AsyncStatus.NotInitialized) return
     setStatus(() => AsyncStatus.Loading)
 
-    sdk.user.details()
+    sdk.currentUser.get()
       .then((user: any) => {
         if (!user) return Promise.reject()
         setUser(user)
@@ -45,7 +45,7 @@ export const useUser = () => {
         setStatus(() => AsyncStatus.Error)
       })
 
-  }, [status])
+  }, [status, sdk])
 
   return {
     status,

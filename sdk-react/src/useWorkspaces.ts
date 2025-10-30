@@ -15,13 +15,13 @@ export const useWorkspaces = () => {
 
   const loadWorkspaces = useCallback(() => {
     setWorkspaces({ status: AsyncStatus.Loading, data: [] })
-    sdk.workspaces.getAll()
+    sdk.workspaces.list()
       .then((workspaces: any[]) => setWorkspaces({ status: AsyncStatus.Success, data: workspaces }))
       .catch(() => setWorkspaces({ status: AsyncStatus.Error, data: [] }))
   }, [sdk])
 
   const createWorkspace = useCallback(
-    (name: string) => sdk.workspaces.create(name)
+    (name: string) => sdk.workspaces.create({ name })
       .then((workspace: any) => {
 
         setWorkspaces({

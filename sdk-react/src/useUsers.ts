@@ -16,7 +16,7 @@ export const useUsers = () => {
   const load = useCallback(() => {
     setUsers({ status: AsyncStatus.Loading, data: [] })
 
-    sdk.workspaces.users()
+    sdk.users.list()
       .then((users: any[]) => setUsers({ data: users, status: AsyncStatus.Success }))
       .catch(() => setUsers({ status: AsyncStatus.Error, data: [] }))
 

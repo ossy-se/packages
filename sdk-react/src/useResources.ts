@@ -39,7 +39,7 @@ export const useResources = (location?: string) => {
       const cachedResource = resources.find((resource: { id: string }) => resource.id === id)
       return !!cachedResource
         ? Promise.resolve(cachedResource)
-        : sdk.resources.byId(id)
+        : sdk.resources.get({ id })
           .then((resource: any) => {
             setResources((resources = []) => replaceBy('id', resource, resources))
             return resource
@@ -50,7 +50,7 @@ export const useResources = (location?: string) => {
 
   const loadResources = useCallback(() => {
     setStatus(AsyncStatus.Loading)
-    sdk.resources.byLocation(location)
+    sdk.resources.list({ location })
       .then((requestedResources: any) => {
         setStatus(AsyncStatus.Success)
         // TODO: Duplicated resources can occur when you move a resource into a directory
@@ -103,13 +103,13 @@ export const useResources = (location?: string) => {
   )
 
   const removeResource = useCallback(
-    (id: string) => sdk.resources.remove(id)
+    (id: string) => sdk.resources.remove({ id })
       .then(() => setResources((resources = []) => removeBy('id', id, resources))),
     [sdk, setResources]
   )
 
   const updateResourceContent = useCallback(
-    (id: string, content: any) => sdk.resources.updateContent(id, content)
+    (id: string, content: any) => sdk.resources.updateContent({ id, content})
       .then((resource: any) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
@@ -120,7 +120,7 @@ export const useResources = (location?: string) => {
   const moveResource = useCallback(
     // TODO: how should we add this to the new location in cache?
     // TODO: if recource is a direcotry, how should we move the nested resources from cache?
-    (id: string, target: string) => sdk.resources.move(id, target)
+    (id: string, target: string) => sdk.resources.move({ id, target })
       .then((resource: string) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
@@ -131,7 +131,7 @@ export const useResources = (location?: string) => {
   const renameResource = useCallback(
     // TODO: how should we update the cache for individual resources
     // mabye by making this an internal function and only use it through useResource?
-    (id: string, name: string) => sdk.resources.rename(id, name)
+    (id: string, name: string) => sdk.resources.rename({ id, name })
       .then((resource: any) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
