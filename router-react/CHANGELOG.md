@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0 (2025-10-30)
+
+
+### Features
+
+* **sdk:** get current workspace ([#4](https://github.com/ossy-se/packages/issues/4)) ([afce7d5](https://github.com/ossy-se/packages/commit/afce7d5787af42691f62c9eba672ea1be000e19e))
+
+
+
+
+
 ## 0.0.16 (2025-10-30)
 
 **Note:** Version bump only for package @ossy/router-react
