@@ -1,10 +1,12 @@
 {
   "name": "@ossy/sdk-react",
-  "description": "Sofware Development Kit for interactive with our services in React",
+  "description": "Sofware Development Kit React",
   "version": "0.0.16",
   "url": "git://github.com/ossy-se/packages/sdk-react",
-  "source": "src/index.js",
-  "module": "build/index.esm.js",
+  "source": "src/public.index.ts",
+  "module": "build/public.index.js",
+  "types": "build/public.index.d.ts",
+  "type": "module",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "repository": {
     "type": "git",
@@ -33,13 +35,14 @@
     "ramda": "^0.32.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.5",
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
-    "babel-loader": "^10.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rollup-plugin-babel": "^4.4.0"
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.26.0",
+    "@rollup/plugin-babel": "6.1.0",
+    "@types/ramda": "^0.31.1"
   },
   "peerDependencies": {
     "react": ">=19.0.0 <20.0.0",

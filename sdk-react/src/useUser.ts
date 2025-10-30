@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { useSdk } from './useSdk.js'
-import { AsyncStatus } from './asyncStatus.js'
+import { useCache } from './Cache'
+import { useSdk } from './useSdk'
+import { AsyncStatus } from './asyncStatus'
 
 const statusPath = ['user', 'status']
 const userPath = ['user', 'data']
@@ -20,9 +20,9 @@ export const useUser = () => {
   } = useCache(userPath)
 
   const update = useCallback(
-    user => {
+    (user: any) => {
       return sdk.user.update(user)
-        .then((updatedUser) => {
+        .then((updatedUser: any) => {
           setUser(updatedUser)
           return updatedUser
         })
@@ -35,7 +35,7 @@ export const useUser = () => {
     setStatus(() => AsyncStatus.Loading)
 
     sdk.user.details()
-      .then(user => {
+      .then((user: any) => {
         if (!user) return Promise.reject()
         setUser(user)
         setStatus(() => AsyncStatus.Success)

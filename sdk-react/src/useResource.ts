@@ -1,21 +1,21 @@
 import { useCallback, useMemo, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useResources } from './useResources.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useResources } from './useResources'
+import { useSdk } from './useSdk'
 
-export const useResource = (resourceId) => {
+export const useResource = (id: string) => {
   const sdk = useSdk()
   const workspaceId = sdk.workspaceId
 
   const statusCachePath = useMemo(
-    () => ['resource', workspaceId, resourceId, 'status'],
-    [resourceId, workspaceId]
+    () => ['resource', workspaceId, id, 'status'],
+    [id, workspaceId]
   )
 
   const dataCachePath = useMemo(
-    () => ['resource', workspaceId, resourceId, 'data'],
-    [resourceId, workspaceId]
+    () => ['resource', workspaceId, id, 'data'],
+    [id, workspaceId]
   )
 
   const {
@@ -38,8 +38,8 @@ export const useResource = (resourceId) => {
   const loadResource = useCallback(() => {
     setStatus(AsyncStatus.Loading)
     setResource({})
-    _loadResource(resourceId)
-      .then(resource => {
+    _loadResource(id)
+      .then((resource: any) => {
         setStatus(AsyncStatus.Success)
         setResource(resource)
       })
@@ -47,38 +47,38 @@ export const useResource = (resourceId) => {
         setStatus(AsyncStatus.Error)
         setResource({})
       })
-  }, [resourceId, _loadResource])
+  }, [id, _loadResource])
 
   const removeResource = useCallback(
-    () => _removeResource(resourceId)
+    () => _removeResource(id)
       .then(() => {
         setStatus(AsyncStatus.NotInitialized)
         setResource({})
       }),
-    [resourceId, _removeResource]
+    [id, _removeResource]
   )
 
   const updateResourceContent = useCallback(
-    resourceContent => _updateResourceContent(resourceId, resourceContent)
-      .then(updatedResource => setResource(updatedResource)),
-    [resourceId, _updateResourceContent]
+    (content: any) => _updateResourceContent(id, content)
+      .then((resource: any) => setResource(resource)),
+    [id, _updateResourceContent]
   )
 
   const renameResource = useCallback(
-    newName => _renameResource(resourceId, newName)
-      .then(updatedResource => setResource(updatedResource)),
-    [resourceId, _renameResource]
+    (name: string) => _renameResource(id, name)
+      .then((resource: any) => setResource(resource)),
+    [id, _renameResource]
   )
 
   useEffect(() => {
 
     if (!workspaceId) return
-    if (!resourceId) return
+    if (!id) return
     if (status !== AsyncStatus.NotInitialized) return
 
     loadResource()
 
-  }, [workspaceId, resourceId, loadResource])
+  }, [workspaceId, id, loadResource])
 
   return {
     status,

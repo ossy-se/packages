@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
 
 export const useUsers = () => {
   const sdk = useSdk()
@@ -17,7 +17,7 @@ export const useUsers = () => {
     setUsers({ status: AsyncStatus.Loading, data: [] })
 
     sdk.workspaces.users()
-      .then(users => setUsers({ data: users, status: AsyncStatus.Success }))
+      .then((users: any[]) => setUsers({ data: users, status: AsyncStatus.Success }))
       .catch(() => setUsers({ status: AsyncStatus.Error, data: [] }))
 
   }, [sdk])

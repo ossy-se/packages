@@ -1,11 +1,11 @@
 import { useCallback, useMemo, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { removeBy } from './removeBy.js'
-import { replaceBy } from './replaceBy.js'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { removeBy } from './removeBy'
+import { replaceBy } from './replaceBy'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
 
-export const useResources = (location) => {
+export const useResources = (location?: string) => {
   const sdk = useSdk()
   const workspaceId = sdk.workspaceId
 
@@ -30,19 +30,19 @@ export const useResources = (location) => {
   } = useCache(dataCachePath, [])
 
   const locationSpecificResources = useMemo(
-    () => resources.filter(resource => resource.location === location),
+    () => resources.filter((resource: { location: string }) => resource.location === location),
     [resources, location]
   )
 
   const loadResource = useCallback(
-    resourceId => {
-      const cachedResource = resources.find(resource => resource.id === resourceId)
+    (id: string) => {
+      const cachedResource = resources.find((resource: { id: string }) => resource.id === id)
       return !!cachedResource
         ? Promise.resolve(cachedResource)
-        : sdk.resources.byId(resourceId)
-          .then(requestedResource => {
-            setResources((resources = []) => replaceBy('id', requestedResource, resources))
-            return requestedResource
+        : sdk.resources.byId(id)
+          .then((resource: any) => {
+            setResources((resources = []) => replaceBy('id', resource, resources))
+            return resource
           })
     },
     [sdk, resources, setResources]
@@ -51,14 +51,14 @@ export const useResources = (location) => {
   const loadResources = useCallback(() => {
     setStatus(AsyncStatus.Loading)
     sdk.resources.byLocation(location)
-      .then(requestedResources => {
+      .then((requestedResources: any) => {
         setStatus(AsyncStatus.Success)
         // TODO: Duplicated resources can occur when you move a resource into a directory
         // then navigate to that directory, causing it to load the recently moved resource from BE into the resources list
         // Should probably use another data structure that ensures uniqueness.
         // temp fix is the resourcesWithStaleResourcesRemoved
-        setResources((resources = []) => {
-          const requestedResourcesIds = requestedResources.map(resource => resource.id)
+        setResources((resources: any[] = []) => {
+          const requestedResourcesIds = requestedResources.map((resource: { id: string }) => resource.id)
 
           const resourcesWithStaleResourcesRemoved = resources.filter(
             resource => !requestedResourcesIds.includes(resource.id)
@@ -71,48 +71,48 @@ export const useResources = (location) => {
   }, [sdk, location, setStatus, setResources])
 
   const createDocument = useCallback(
-    document => sdk.resources.create({
+   (document: any) => sdk.resources.create({
       type: document.type,
       location: document.location,
       name: document.name,
       content: document.content
     })
-      .then(newResource => {
-        setResources((resources = []) => [...resources, newResource])
-        return newResource
+      .then((resource: any) => {
+        setResources((resources = []) => [...resources, resource])
+        return resource
       }),
     [sdk, setResources]
   )
 
   const uploadFile = useCallback(
-    (location, file) => sdk.resources.upload({ location, file })
-      .then(newResource => {
-        setResources((resources = []) => [...resources, newResource])
-        return newResource
+    (location: string, file: File) => sdk.resources.upload({ location, file })
+      .then((resource: any) => {
+        setResources((resources = []) => [...resources, resource])
+        return resource
       }),
     [sdk, setResources]
   )
 
   const createDirectory = useCallback(
-    ({ location, name }) => sdk.resources.createDirectory({ location, name })
-      .then(newResource => {
-        setResources((resources = []) => [...resources, newResource])
-        return newResource
+    ({ location, name }: { location: string, name: string }) => sdk.resources.createDirectory({ location, name })
+      .then((resource: any) => {
+        setResources((resources = []) => [...resources, resource])
+        return resource
       }),
     [sdk, setResources]
   )
 
   const removeResource = useCallback(
-    resourceId => sdk.resources.remove(resourceId)
-      .then(() => setResources((resources = []) => removeBy('id', resourceId, resources))),
+    (id: string) => sdk.resources.remove(id)
+      .then(() => setResources((resources = []) => removeBy('id', id, resources))),
     [sdk, setResources]
   )
 
   const updateResourceContent = useCallback(
-    (resourceId, content) => sdk.resources.updateContent(resourceId, content)
-      .then(updatedResource => {
-        setResources((resources = []) => replaceBy('id', updatedResource, resources))
-        return updatedResource
+    (id: string, content: any) => sdk.resources.updateContent(id, content)
+      .then((resource: any) => {
+        setResources((resources = []) => replaceBy('id', resource, resources))
+        return resource
       }),
     [sdk, workspaceId, setResources]
   )
@@ -120,10 +120,10 @@ export const useResources = (location) => {
   const moveResource = useCallback(
     // TODO: how should we add this to the new location in cache?
     // TODO: if recource is a direcotry, how should we move the nested resources from cache?
-    (resourceId, newLocation) => sdk.resources.move(resourceId, newLocation)
-      .then(movedResource => {
-        setResources((resources = []) => replaceBy('id', movedResource, resources))
-        return movedResource
+    (id: string, target: string) => sdk.resources.move(id, target)
+      .then((resource: string) => {
+        setResources((resources = []) => replaceBy('id', resource, resources))
+        return resource
       }),
     [sdk, workspaceId, setResources]
   )
@@ -131,10 +131,10 @@ export const useResources = (location) => {
   const renameResource = useCallback(
     // TODO: how should we update the cache for individual resources
     // mabye by making this an internal function and only use it through useResource?
-    (resourceId, newName) => sdk.resources.rename(resourceId, newName)
-      .then(updatedResource => {
-        setResources((resources = []) => replaceBy('id', updatedResource, resources))
-        return updatedResource
+    (id: string, name: string) => sdk.resources.rename(id, name)
+      .then((resource: any) => {
+        setResources((resources = []) => replaceBy('id', resource, resources))
+        return resource
       }),
     [sdk, workspaceId, setResources]
   )

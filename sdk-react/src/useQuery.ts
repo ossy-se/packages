@@ -1,13 +1,12 @@
 import { useCallback, useMemo, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
 
-export const useQuery = incomingQuery => {
+export const useQuery = (incomingQuery: any) => {
   const sdk = useSdk()
   const workspaceId = sdk.workspaceId
   const queryString = new URLSearchParams(incomingQuery).toString()
-  console.log('useQuery', incomingQuery, queryString)
 
   const statusCachePath = useMemo(
     () => [workspaceId, 'queries', queryString, 'status'],
@@ -29,18 +28,17 @@ export const useQuery = incomingQuery => {
     set: setResources
   } = useCache(dataCachePath, [])
 
-  const loadResources = useCallback(query => {
+  const loadResources = useCallback((query: any) => {
     setStatus(AsyncStatus.Loading)
     sdk.resources.get(query)
-      .then(matchedResources => {
+      .then((resources: any) => {
         setStatus(AsyncStatus.Success)
-        setResources(matchedResources)
+        setResources(resources)
       })
       .catch(() => { setStatus(AsyncStatus.Error) })
   }, [sdk])
 
   useEffect(() => {
-    console.log('useQuery effect', workspaceId, incomingQuery, status)
     if (!workspaceId) return
     if (!incomingQuery) return
     if (status !== AsyncStatus.NotInitialized) return

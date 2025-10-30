@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
 
 const cachePath = ['workspaces']
 
@@ -16,13 +16,13 @@ export const useWorkspaces = () => {
   const loadWorkspaces = useCallback(() => {
     setWorkspaces({ status: AsyncStatus.Loading, data: [] })
     sdk.workspaces.getAll()
-      .then(workspaces => setWorkspaces({ status: AsyncStatus.Success, data: workspaces }))
+      .then((workspaces: any[]) => setWorkspaces({ status: AsyncStatus.Success, data: workspaces }))
       .catch(() => setWorkspaces({ status: AsyncStatus.Error, data: [] }))
   }, [sdk])
 
   const createWorkspace = useCallback(
-    workspaceName => sdk.workspaces.create(workspaceName)
-      .then(workspace => {
+    (name: string) => sdk.workspaces.create(name)
+      .then((workspace: any) => {
 
         setWorkspaces({
           status: workspaces.status,
