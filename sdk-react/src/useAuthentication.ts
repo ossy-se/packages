@@ -24,7 +24,7 @@ export const useAuthentication = () => {
   const signUp = useCallback(
     (email: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.signUp(email)
+      return sdk.auth.signUp({ email })
         .then(() => setStatus(AuthenticationStatus.VerifySignIn))
         .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)

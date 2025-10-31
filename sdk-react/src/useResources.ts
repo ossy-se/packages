@@ -94,7 +94,7 @@ export const useResources = (location?: string) => {
   )
 
   const createDirectory = useCallback(
-    ({ location, name }: { location: string, name: string }) => sdk.resources.createDirectory({ location, name })
+    ({ location, name }: { location: string, name: string }) => sdk.resources.createDirectory({ type: 'directory', location, name })
       .then((resource: any) => {
         setResources((resources = []) => [...resources, resource])
         return resource

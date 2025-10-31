@@ -21,7 +21,7 @@ export const useUser = () => {
 
   const update = useCallback(
     (user: any) => {
-      return sdk.user.update(user)
+      return sdk.currentUser.update(user)
         .then((updatedUser: any) => {
           setUser(updatedUser)
           return updatedUser

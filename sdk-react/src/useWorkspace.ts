@@ -15,7 +15,7 @@ export const useWorkspace = () => {
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {} })
-    sdk.workspaces.getCurrent()
+    sdk.workspaces.current()
       .then((workspace: any) => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
       .catch(() => setWorkspace({ status: AsyncStatus.Error, data: {} }))
   }, [sdk, workspaceId])
