@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.4 (2025-10-31)
+
+
+### Bug Fixes
+
+* **app:** add @babel/preset-env ([#7](https://github.com/ossy-se/packages/issues/7)) ([252b41a](https://github.com/ossy-se/packages/commit/252b41a6d4e3d7d3750661091c97186b0d9cdde2))
+
+
+
+
+
 ## 0.1.3 (2025-10-31)
 
 **Note:** Version bump only for package @ossy/cli
