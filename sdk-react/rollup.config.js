@@ -6,7 +6,7 @@ import minifyJS from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
 import preserveDirectives from "rollup-plugin-preserve-directives"
 import { dts } from "rollup-plugin-dts"
-import pkg from './package.json'
+import pkg from './package.json' with { type: 'json' };
 
 export default [
   {
