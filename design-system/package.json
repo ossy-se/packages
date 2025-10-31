@@ -1,7 +1,7 @@
 {
   "name": "@ossy/design-system",
   "description": "Ossy's design system React component library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "source": "src/index.js",
   "module": "build/index.js",
@@ -36,7 +36,7 @@
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.24.1",
     "@chromatic-com/storybook": "^3.2.2",
-    "@ossy/themes": "^0.1.0",
+    "@ossy/themes": "^0.1.1",
     "@rollup/plugin-babel": "6.0.4",
     "@storybook/addon-essentials": "^8.4.2",
     "@storybook/addon-interactions": "^8.4.2",
