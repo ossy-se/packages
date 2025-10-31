@@ -1,5 +1,3 @@
-// TODO: We should use Cache from @ossy-se/components when it becomes public
-
 import React, {
   createContext,
   useReducer,
@@ -8,18 +6,15 @@ import React, {
 } from 'react'
 
 const getInitialState = () => ({})
-export const CacheContext = createContext()
+export const CacheContext = createContext<any>({})
 
 const Actions = {
   Set: 'SET'
 }
 
-// get: (path, state)
-// set: (path, value, state)
-
-const createReducer = ({ set, get }) => (
+const createReducer = ({ set, get }: { set: any, get: any }) => (
   state = getInitialState(),
-  action
+  action: any
 ) => {
   switch (action.type) {
 
@@ -42,18 +37,18 @@ const createReducer = ({ set, get }) => (
   }
 }
 
-export const createCache = ({ get: _get, set: _set }) => props => {
+export const createCache = ({ get: _get, set: _set }: { get: any, set: any}) => (props: any) => {
 
   const [state, updateState] = useReducer(
     createReducer({ set: _set, get: _get }),
     getInitialState()
   )
 
-  const set = useCallback(cachePath => data => {
+  const set = useCallback((cachePath: any) => (data: any) => {
     updateState({ type: Actions.Set, cachePath, data })
   }, [updateState])
 
-  const get = useCallback(cachePath =>
+  const get = useCallback((cachePath: any) =>
     _get(cachePath, state),
   [state, _get]
   )
@@ -63,7 +58,7 @@ export const createCache = ({ get: _get, set: _set }) => props => {
   )
 }
 
-export const useCache = (cachePath, defaultValue) => {
+export const useCache = (cachePath: any, defaultValue?: any) => {
   // TODO: Add default value to context here, otherwise it will be undefined in the set((data) => { ...  }) function
   const { get, set } = useContext(CacheContext)
 

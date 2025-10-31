@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
 
 export const useWorkspace = () => {
   const sdk = useSdk()
@@ -15,17 +15,17 @@ export const useWorkspace = () => {
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {} })
-    sdk.workspaces.byId(workspaceId)
-      .then(workspace => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
+    sdk.workspaces.current()
+      .then((workspace: any) => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
       .catch(() => setWorkspace({ status: AsyncStatus.Error, data: {} }))
   }, [sdk, workspaceId])
 
   const createApiToken = useCallback(
-    description => sdk.workspaces.createApiToken(workspaceId, description)
-      .then(({ id, token }) => {
+    (description: string) => sdk.workspaces.createApiToken({ description })
+      .then(({ id, token }: { id: string, token: string }) => {
 
         setWorkspace({
-          status: workspaces.status,
+          status: workspace.status,
           data: {
             ...workspace,
             apiTokens: [...workspace.apiTokens, { id, description }]
@@ -38,7 +38,7 @@ export const useWorkspace = () => {
   )
 
   const inviteUser = useCallback(
-    email => sdk.workspaces.inviteUser(workspaceId, email),
+    (email: string) => sdk.workspaces.inviteUser({ email }),
     [sdk]
   )
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { useSdk } from './useSdk.js'
+import { useCache } from './Cache'
+import { useSdk } from './useSdk'
 
 export const AuthenticationStatus = {
   AuthenticationError: 'AuthenticationError',
@@ -22,11 +22,11 @@ export const useAuthentication = () => {
   } = useCache(statusPath)
 
   const signUp = useCallback(
-    email => {
+    (email: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.signUp(email)
+      return sdk.auth.signUp({ email })
         .then(() => setStatus(AuthenticationStatus.VerifySignIn))
-        .catch(error => {
+        .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)
           return Promise.reject(error)
         })
@@ -35,11 +35,11 @@ export const useAuthentication = () => {
   )
 
   const signIn = useCallback(
-    email => {
+    (email: any) => {
       setStatus(() => AuthenticationStatus.Verifying)
       return sdk.auth.signIn(email)
         .then(() => setStatus(AuthenticationStatus.VerifySignIn))
-        .catch((error) => {
+        .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)
           return Promise.reject(error)
         })
@@ -48,11 +48,11 @@ export const useAuthentication = () => {
   )
 
   const verifySignIn = useCallback(
-    token => {
+    (token: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.verifySignIn(token)
+      return sdk.auth.verifySignIn({ token })
         .then(() => setStatus(AuthenticationStatus.Authenticated))
-        .catch((error) => {
+        .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)
           return Promise.reject(error)
         })
@@ -61,11 +61,11 @@ export const useAuthentication = () => {
   )
 
   const verifyInvitation = useCallback(
-    (workspaceId, token) => {
+    (workspaceId: string, token: string) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.verifyInvitation(workspaceId, token)
+      return sdk.auth.verifyInvitation({ workspaceId, token})
         .then(() => setStatus(AuthenticationStatus.Authenticated))
-        .catch((error) => {
+        .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)
           return Promise.reject(error)
         })
@@ -84,7 +84,7 @@ export const useAuthentication = () => {
     setStatus(() => AuthenticationStatus.Verifying)
 
     sdk.auth.getAuthenticatedUser()
-      .then(user => {
+      .then((user: any) => {
         if (!user) return Promise.reject()
         setStatus(() => AuthenticationStatus.Authenticated)
       })

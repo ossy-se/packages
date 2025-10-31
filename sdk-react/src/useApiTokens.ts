@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react'
-import { useCache } from './Cache.jsx'
-import { AsyncStatus } from './asyncStatus.js'
-import { useSdk } from './useSdk.js'
-import { removeBy } from './removeBy.js'
+import { useCache } from './Cache'
+import { AsyncStatus } from './asyncStatus'
+import { useSdk } from './useSdk'
+import { removeBy } from './removeBy'
 
 const statusPath = ['apiTokens', 'status']
 const dataPath = ['apiTokens', 'data']
@@ -21,24 +21,28 @@ export const useApiTokens = () => {
   } = useCache(dataPath)
 
   const createApiToken = useCallback(
-    description => sdk.apiTokens.create(description)
-      .then(newToken => {
-        setTokens(tokens => [...tokens, newToken])
-        return newToken
+    (token: {
+      name: string;
+      description: string;
+      expiresAt: string;
+  }) => sdk.apiTokens.create(token)
+      .then((token: any) => {
+        setTokens((tokens: any[]) => [...tokens, token])
+        return token
       }),
     [sdk]
   )
 
   const invalidateApiToken = useCallback(
-    tokenId => sdk.apiTokens.invalidate(tokenId)
-      .then(() => setTokens(tokens => removeBy('id', tokenId, tokens))),
+    (id: string) => sdk.apiTokens.invalidate({ id })
+      .then(() => setTokens((tokens: any[]) => removeBy('id', id, tokens))),
     [sdk]
   )
 
   const loadApiTokens = useCallback(() => {
     setStatus(AsyncStatus.Loading)
-    sdk.apiTokens.getAll()
-      .then(tokens => {
+    sdk.apiTokens.list()
+      .then((tokens: any[]) => {
         setTokens(tokens)
         setStatus(AsyncStatus.Success)
       })
