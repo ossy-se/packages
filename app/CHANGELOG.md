@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.6 (2025-11-04)
+
+
+### Bug Fixes
+
+* **app:** include cli directory in published package ([#9](https://github.com/ossy-se/packages/issues/9)) ([690e08e](https://github.com/ossy-se/packages/commit/690e08e0f62d493926dae40efb0ea36a4f32f3f8))
+
+
+
+
+
 ## 0.1.5 (2025-11-04)
 
 **Note:** Version bump only for package @ossy/app
