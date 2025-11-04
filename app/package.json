@@ -29,6 +29,7 @@
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "arg": "^5.0.2",
     "babel-loader": "^9.2.1",
     "express": "^4.21.1",
@@ -42,5 +43,9 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss-modules": "^2.1.1",
     "rollup-plugin-preserve-directives": "^0.4.0"
-  }
+  },
+  "files": [
+    "/build",
+    "README.md"
+  ]
 }
