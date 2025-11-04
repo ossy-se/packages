@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.7 (2025-11-04)
+
+
+### Bug Fixes
+
+* **sdk-react:** correct path to build index ([#10](https://github.com/ossy-se/packages/issues/10)) ([8cc1e6c](https://github.com/ossy-se/packages/commit/8cc1e6cb32506b25f9237f3dd1f26bf01d2d6b3f))
+
+
+
+
+
 ## 0.1.6 (2025-11-04)
 
 
