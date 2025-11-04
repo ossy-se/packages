@@ -4,7 +4,7 @@
   "version": "0.1.5",
   "url": "git://github.com/ossy-se/packages/sdk-react",
   "source": "src/public.index.ts",
-  "module": "build/public.index.js",
+  "module": "build/sdk-react/src/public.index.js",
   "types": "build/public.index.d.ts",
   "type": "module",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
