@@ -23,5 +23,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "files": [
+    "/build",
+    "README.md"
+  ]
 }
