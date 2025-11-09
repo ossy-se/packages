@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2025-11-09)
+
+
+### Features
+
+* **app:** api routes ([#13](https://github.com/ossy-se/packages/issues/13)) ([4826790](https://github.com/ossy-se/packages/commit/48267909b542c579772614ae9023de9bb5cc9d3e))
+
+
+
+
+
 ## 0.1.9 (2025-11-09)
 
 **Note:** Version bump only for package @ossy/router-react
