@@ -33,6 +33,7 @@ export const build = async (cliArgs) => {
 
     const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/Api.js');
+    let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/Middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
     const buildPath = path.resolve(options['--destination'] || 'build');
     const publicDir = path.resolve('public')
@@ -51,6 +52,10 @@ export const build = async (cliArgs) => {
       apiSourcePath = path.resolve(scriptDir, 'Api.js')
     }
 
+    if (!fs.existsSync(middlewareSourcePath)) {
+      apiSourcePath = path.resolve(scriptDir, 'Middleware.js')
+    }
+
     if (fs.existsSync(configPath)) {
         inputFiles.push(configPath)
     }
@@ -61,14 +66,22 @@ export const build = async (cliArgs) => {
           remove({ targets: buildPath }),
           // inject({ 'React': 'react' }),
           replace({
+            preventAssignment: true,
             delimiters: ['%%', '%%'],
             '@ossy/app/source-file': appSourcePath,
           }),
           replace({
+            preventAssignment: true,
             delimiters: ['%%', '%%'],
             '@ossy/api/source-file': apiSourcePath,
           }),
           replace({
+            preventAssignment: true,
+            delimiters: ['%%', '%%'],
+            '@ossy/middleware/source-file': apiSourcePath,
+          }),
+          replace({
+            preventAssignment: true,
             'process.env.NODE_ENV': JSON.stringify('production')
           }),
           json(),

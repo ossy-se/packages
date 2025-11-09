@@ -8,14 +8,20 @@ import { prerenderToNodeStream } from 'react-dom/static'
 
 import App from '%%@ossy/app/source-file%%'
 import ApiRoutes from '%%@ossy/api/source-file%%'
+import Middleware from '%%@ossy/middleware/source-file%%'
 
 const app = express();
 
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
-app.use(morgan('tiny'));
-app.use(express.static(ROOT_PATH));
+const middleware = [
+  morgan('tiny'),
+  express.static(ROOT_PATH),
+  ...(Middleware || [])
+]
+
+app.use(middleware)
 
 const ApiRouter = Router.of({ pages: ApiRoutes || [] })
 
