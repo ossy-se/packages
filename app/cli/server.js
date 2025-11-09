@@ -1,27 +1,36 @@
 import path from 'path';
 import url from 'url'
 import React, { createElement } from 'react';
-import express from 'express';
+import express from 'express'
+import morgan from 'morgan'
+import { Router } from '@ossy/router'
 import { prerenderToNodeStream } from 'react-dom/static'
+
 import App from '%%@ossy/app/source-file%%'
-import ApiRouter from '%%@ossy/api/source-file%%'
+import ApiRoutes from '%%@ossy/api/source-file%%'
 
 const app = express();
 
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
+app.use(morgan('tiny'));
 app.use(express.static(ROOT_PATH));
 
-ApiRouter && app.use('/*api', ApiRouter)
+const ApiRouter = Router.of({ pages: ApiRoutes || [] })
 
-app.get('/*app', (req, res) => {
+app.all('/*all', (req, res) => {
+  const pathname = req.originalUrl
 
-  console.log('[@ossy/cli][app][server] req.url: ', req.url)
+  const apiRoute = ApiRouter.getPageByUrl(pathname)
 
-    renderToString(App, { url: req.url })
-      .then(html => { res.send(html) })
-      .catch(err => { res.send(err) })
+  if (apiRoute) {
+    apiRoute.handle(req, res)
+  }
+
+  renderToString(App, { url: req.url })
+    .then(html => { res.send(html) })
+    .catch(err => { res.send(err) })
 
 });
 
