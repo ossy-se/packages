@@ -11,11 +11,9 @@ const app = express();
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
-console.log('[@ossy/cli][app][server] ROOT_PATH: ', ROOT_PATH)
-
 app.use(express.static(ROOT_PATH));
 
-ApiRouter && app.use('/api', ApiRouter)
+ApiRouter && app.use('*', ApiRouter)
 
 app.get('*', (req, res) => {
 
