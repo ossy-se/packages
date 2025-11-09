@@ -31,7 +31,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "arg": "^5.0.2",
     "babel-loader": "^9.2.1",
-    "express": "^4.21.1",
+    "express": ">=5.0.0 <6.0.0",
     "react": ">=19.0.0 <20.0.0",
     "react-dom": ">=19.0.0 <20.0.0",
     "rollup": "^4.24.3",

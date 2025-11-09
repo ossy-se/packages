@@ -13,9 +13,9 @@ const ROOT_PATH = path.resolve(currentDir, 'public')
 
 app.use(express.static(ROOT_PATH));
 
-ApiRouter && app.use('*', ApiRouter)
+ApiRouter && app.use('/*api', ApiRouter)
 
-app.get('*', (req, res) => {
+app.get('/*app', (req, res) => {
 
   console.log('[@ossy/cli][app][server] req.url: ', req.url)
 
