@@ -1,6 +1,6 @@
 {
   "name": "@ossy/connected-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ossy-se/packages.git"
@@ -38,7 +38,7 @@
     "prop-types": "^15.8.1"
   },
   "dependencies": {
-    "@ossy/themes": "^0.2.0",
+    "@ossy/themes": "^0.3.0",
     "moment": "^2.29.4"
   },
   "peerDependencies": {

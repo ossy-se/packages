@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.3.0 (2025-11-09)
+
+
+### Features
+
+* **app:** middleware support ([#14](https://github.com/ossy-se/packages/issues/14)) ([53805fe](https://github.com/ossy-se/packages/commit/53805fee5ef03e58ec1d893c60a90aaed6e8f0d3))
+
+
+
+
+
 # 0.2.0 (2025-11-09)
 
 
