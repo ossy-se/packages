@@ -53,7 +53,7 @@ export const build = async (cliArgs) => {
     }
 
     if (!fs.existsSync(middlewareSourcePath)) {
-      apiSourcePath = path.resolve(scriptDir, 'Middleware.js')
+      middlewareSourcePath = path.resolve(scriptDir, 'Middleware.js')
     }
 
     if (fs.existsSync(configPath)) {
