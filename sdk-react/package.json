@@ -1,7 +1,7 @@
 {
   "name": "@ossy/sdk-react",
   "description": "Sofware Development Kit React",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "url": "git://github.com/ossy-se/packages/sdk-react",
   "source": "src/public.index.ts",
   "module": "build/sdk-react/src/public.index.js",

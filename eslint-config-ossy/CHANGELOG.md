@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.2 (2025-11-10)
+
+
+### Bug Fixes
+
+* **app:** middleware replace path ([#18](https://github.com/ossy-se/packages/issues/18)) ([3a41a96](https://github.com/ossy-se/packages/commit/3a41a9681877e9a66a22a99fb78a6a786d03a7df))
+
+
+
+
+
 ## 1.4.1 (2025-11-10)
 
 
