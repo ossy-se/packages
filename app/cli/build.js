@@ -78,7 +78,7 @@ export const build = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/middleware/source-file': apiSourcePath,
+            '@ossy/middleware/source-file': middlewareSourcePath,
           }),
           replace({
             preventAssignment: true,
