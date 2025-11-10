@@ -127,7 +127,7 @@ export const dev = async (cliArgs) => {
         }
     ];
 
-    const bundle = await rollup(inputOptions);
+    const bundle = await rollup.watch(inputOptions);
 
     for (const options of outputOptions) {
         await bundle.write(options);
