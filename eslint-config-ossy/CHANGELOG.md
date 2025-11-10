@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2025-11-10)
+
+
+### Features
+
+* **app:** dev mode ([#16](https://github.com/ossy-se/packages/issues/16)) ([fbedd63](https://github.com/ossy-se/packages/commit/fbedd63904f16d3f850a3dace1da2af02bb1b1cc))
+
+
+
+
+
 ## 1.3.1 (2025-11-10)
 
 **Note:** Version bump only for package @ossy/eslint-config-ossy
