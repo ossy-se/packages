@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.1 (2025-11-10)
+
+
+### Bug Fixes
+
+* **app:** Middleware.js import path ([#17](https://github.com/ossy-se/packages/issues/17)) ([bcc7bc1](https://github.com/ossy-se/packages/commit/bcc7bc1f13449532811b1f9a4c1435ea4751f584))
+
+
+
+
+
 # 1.4.0 (2025-11-10)
 
 
