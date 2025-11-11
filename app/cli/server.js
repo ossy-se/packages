@@ -17,7 +17,7 @@ const ROOT_PATH = path.resolve(currentDir, 'public')
 
 
 if (Middleware !== undefined) {
-  console.log(`[@ossy/cli][app][server] ${Middleware?.length || 0} custom middleware loaded`)
+  console.log(`[@ossy/app][server] ${Middleware?.length || 0} custom middleware loaded`)
 }
 
 const middleware = [
@@ -36,7 +36,7 @@ app.all('/*all', (req, res) => {
   const apiRoute = ApiRouter.getPageByUrl(pathname)
 
   if (apiRoute) {
-    console.log(`[@ossy/cli][app][server] Handling API route: ${pathname}`)
+    console.log(`[@ossy/app][server] Handling API route: ${pathname}`)
     apiRoute.handle(req, res)
   }
 
