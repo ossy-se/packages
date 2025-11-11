@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.3 (2025-11-11)
+
+
+### Bug Fixes
+
+* **sdk-react:** sign in ([#19](https://github.com/ossy-se/packages/issues/19)) ([a3b89b1](https://github.com/ossy-se/packages/commit/a3b89b1b692048c98f0f84a0fce48f07f04f8369))
+
+
+
+
+
 ## 1.4.2 (2025-11-10)
 
 
