@@ -5,6 +5,7 @@ import express from 'express'
 import morgan from 'morgan'
 import { Router } from '@ossy/router'
 import { prerenderToNodeStream } from 'react-dom/static'
+import { ProxyInternal } from './proxy-internal.js'
 
 import App from '%%@ossy/app/source-file%%'
 import ApiRoutes from '%%@ossy/api/source-file%%'
@@ -24,6 +25,7 @@ const middleware = [
   morgan('tiny'),
   express.static(ROOT_PATH),
   express.json({ strict: false }),
+  ProxyInternal(),
   ...(Middleware || [])
 ]
 
