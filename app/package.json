@@ -25,6 +25,7 @@
     "@ossy/design-system-extras": "^0.5.0",
     "@ossy/resource-templates": "^0.5.0",
     "@ossy/router-react": "^0.5.0",
+    "@ossy/router": "^0.5.0",
     "@ossy/sdk": "0.5.0",
     "@ossy/sdk-react": "0.5.0",
     "@ossy/themes": "^0.5.0",
