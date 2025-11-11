@@ -172,8 +172,6 @@ export class SDK {
       let endpoint = action.endpoint;
 
       if (payload) {
-        body = JSON.stringify(payload);
-
         const paramNames = (action.endpoint.match(/:([a-zA-Z0-9_]+)/g) || []).map(
           param => param.slice(1) as keyof T['payload']
         );
@@ -183,18 +181,25 @@ export class SDK {
           action.endpoint
         )
       }
-  
-      return fetch(`${baseUrl}${endpoint}`, {
+
+      const url = `${baseUrl}${endpoint}`
+
+      const request: RequestInit = {
+        method: action.method,
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           workspaceId: workspaceId as string,
           Authorization: authorization as string
-
         },
-        method: action.method,
-        body
-      }).then(response => {
+      }
+
+      if (request.method !== 'GET' && payload) {
+        request.body = JSON.stringify(payload);
+      }
+
+  
+      return fetch(url, request).then(response => {
         const contentType = response.headers.get('Content-Type') || ''
         const status = response.status
         const okResponseCodes = [200, 204]
