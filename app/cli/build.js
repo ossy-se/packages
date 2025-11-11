@@ -33,7 +33,7 @@ export const build = async (cliArgs) => {
 
     const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/Api.js');
-    let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/Middleware.js');
+    let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
     const buildPath = path.resolve(options['--destination'] || 'build');
     const publicDir = path.resolve('public')
@@ -53,7 +53,7 @@ export const build = async (cliArgs) => {
     }
 
     if (!fs.existsSync(middlewareSourcePath)) {
-      middlewareSourcePath = path.resolve(scriptDir, 'Middleware.js')
+      middlewareSourcePath = path.resolve(scriptDir, 'middleware.js')
     }
 
     if (fs.existsSync(configPath)) {
