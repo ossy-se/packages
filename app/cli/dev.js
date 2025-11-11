@@ -17,7 +17,7 @@ import arg from 'arg'
 // import inject from '@rollup/plugin-inject'
 
 export const dev = async (cliArgs) => {
-    console.log('[@ossy/cli][app][build] Starting...')
+    console.log('[@ossy/app][build] Starting...')
 
     const options = arg({
         '--source': String,
@@ -45,7 +45,7 @@ export const dev = async (cliArgs) => {
     const inputFiles = [inputClient, inputServer]
 
     if (!fs.existsSync(appSourcePath)) {
-        throw new Error(`[@ossy/cli][app][build] Source path does not exist: ${appSourcePath}`);
+        throw new Error(`[@ossy/app][build] Source path does not exist: ${appSourcePath}`);
     }
 
     if (!fs.existsSync(apiSourcePath)) {
@@ -133,5 +133,5 @@ export const dev = async (cliArgs) => {
         await bundle.write(options);
     }
 
-    console.log('[@ossy/cli][app][build] Finished');
+    console.log('[@ossy/app][build] Finished');
 };
