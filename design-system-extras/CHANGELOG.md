@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.0 (2025-11-11)
+
+
+### Features
+
+* **app:** add body-parser as default middleware ([#20](https://github.com/ossy-se/packages/issues/20)) ([d31e00e](https://github.com/ossy-se/packages/commit/d31e00e63a9ab347eebac673c8bcdefb8e1bcc18))
+
+
+
+
+
 ## 0.4.3 (2025-11-11)
 
 

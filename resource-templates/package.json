@@ -5,7 +5,7 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "description": "Resource Templates",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "type": "module",
   "source": "src/index.js",
   "module": "build/index.js",
