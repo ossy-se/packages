@@ -30,7 +30,7 @@
     ]
   },
   "devDependencies": {
-    "@ossy/themes": "^0.5.0"
+    "@ossy/themes": ">=0.5.0 <1.0.0"
   },
   "peerDependencies": {
     "react": ">=19.0.0 <20.0.0",
