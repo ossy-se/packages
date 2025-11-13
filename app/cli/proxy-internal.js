@@ -1,10 +1,11 @@
 export function ProxyInternal() {
     return (req, res, next) => {
+        console.log(`[@ossy/app][proxy] ${req.method} ${req.originalUrl}`)
 
         if (!req.originalUrl.startsWith('/@ossy')) {
             return next()
         }
-    
+
         const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
         const url = `${domain}${req.path}`
         const headers = JSON.parse(JSON.stringify(req.headers)) // Clone headers
@@ -13,6 +14,8 @@ export function ProxyInternal() {
         if (workspaceId) {
             headers['workspaceid'] = workspaceId
         }
+
+        console.log(`[@ossy/app][proxy] workspaceId ${workspaceId}`)
     
         const request = {
             method: req.method,
@@ -38,6 +41,7 @@ export function ProxyInternal() {
                 res.json("")
             })
             .catch((error) => {
+                console.log(`[@ossy/app][proxy][error]`, error)
                 const status = error.status
                 res.status(status || 500)
                 res.json({ message: error.message || 'Internal Server Error' })
