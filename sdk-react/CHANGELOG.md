@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.5 (2025-11-13)
+
+
+### Bug Fixes
+
+* **app:** we should swith to typescript ([#32](https://github.com/ossy-se/packages/issues/32)) ([78060c5](https://github.com/ossy-se/packages/commit/78060c550f2b9aa276cbc637bd1e8678a456882b))
+
+
+
+
+
 ## 0.5.4 (2025-11-13)
 
 **Note:** Version bump only for package @ossy/sdk-react
