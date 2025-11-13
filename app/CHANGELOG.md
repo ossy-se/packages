@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.2 (2025-11-13)
+
+
+### Bug Fixes
+
+* **app:** execution order of middleware ([#29](https://github.com/ossy-se/packages/issues/29)) ([61f1b7b](https://github.com/ossy-se/packages/commit/61f1b7b9c9c76c8b16ac72e50e2b56d8704950aa))
+
+
+
+
+
 ## 0.5.1 (2025-11-13)
 
 **Note:** Version bump only for package @ossy/app
