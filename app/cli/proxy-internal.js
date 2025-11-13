@@ -8,7 +8,7 @@ export function ProxyInternal() {
         const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
         const url = `${domain}${req.path}`
         const headers = JSON.parse(JSON.stringify(req.headers)) // Clone headers
-        const workspaceId = headers.workspaceId || config.workspaceId
+        const workspaceId = headers.workspaceId
     
         if (workspaceId) {
             headers['workspaceid'] = workspaceId

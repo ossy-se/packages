@@ -23,10 +23,10 @@ if (Middleware !== undefined) {
 
 const middleware = [
   morgan('tiny'),
-  express.static(ROOT_PATH),
   express.json({ strict: false }),
+  ...(Middleware || []),
+  express.static(ROOT_PATH),
   ProxyInternal(),
-  ...(Middleware || [])
 ]
 
 app.use(middleware)
