@@ -41,7 +41,7 @@
     "moment": "^2.29.4"
   },
   "peerDependencies": {
-    "@ossy/router": "0.5.0",
+    "@ossy/router": ">=0.5.0 <1.0.0",
     "@ossy/design-system": ">=0.5.0 <1.0.0",
     "@ossy/design-system-extras": ">=0.5.0 <1.0.0",
     "@ossy/router-react": ">=0.5.0 <1.0.0",
