@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.6 (2025-11-13)
+
+
+### Bug Fixes
+
+* **sdk:** parameter handling ([#33](https://github.com/ossy-se/packages/issues/33)) ([8c60d57](https://github.com/ossy-se/packages/commit/8c60d5776c47ca9510bf7509e1903978f03f5b68))
+
+
+
+
+
 ## 1.5.5 (2025-11-13)
 
 
