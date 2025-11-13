@@ -172,12 +172,10 @@ export class SDK {
       let endpoint = action.endpoint;
 
       if (payload) {
-        const paramNames = (action.endpoint.match(/:([a-zA-Z0-9_]+)/g) || []).map(
-          param => param.slice(1) as keyof T['payload']
-        );
+        const paramNames = (action.endpoint.match(/(:[a-zA-Z0-9_]+)/g) || [])
   
         endpoint = paramNames.reduce(
-          (endpoint, paramName) => endpoint.replace(String(paramName), String(payload[paramName])),
+          (endpoint, paramName) => endpoint.replace(String(paramName), String(payload[paramName.replace(':', '') as keyof typeof payload])),
           action.endpoint
         )
       }
