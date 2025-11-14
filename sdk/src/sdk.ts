@@ -172,12 +172,17 @@ export class SDK {
       let endpoint = action.endpoint;
 
       if (payload) {
-        const paramNames = (action.endpoint.match(/(:[a-zA-Z0-9_]+)/g) || [])
+        const payloadKeys = Object.keys(payload) as (keyof typeof payload)[]
+        console.log('[@ossy/sdk] payloadKeys', payloadKeys)
+        console.log('[@ossy/sdk] action.endpoint', action.endpoint)
+        endpoint = action.endpoint
   
-        endpoint = paramNames.reduce(
-          (endpoint, paramName) => endpoint.replace(String(paramName), String(payload[paramName.replace(':', '') as keyof typeof payload])),
+        endpoint = payloadKeys.reduce(
+          (endpoint, paramName) => endpoint.replace(`${paramName as string}`, `${payload[paramName]}`),
           action.endpoint
         )
+
+        console.log('[@ossy/sdk] endpoint after', endpoint)
       }
 
       const url = `${baseUrl}${endpoint}`
