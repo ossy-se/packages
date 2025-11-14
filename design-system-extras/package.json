@@ -5,7 +5,7 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "description": "Ossy's React Design System Extra Components",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "source": "src/index.js",
   "type": "module",
   "module": "build/index.js",
@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@ossy/themes": "^0.5.10",
+    "@ossy/themes": "^0.5.11",
     "moment": "^2.29.4"
   },
   "peerDependencies": {

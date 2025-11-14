@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.11 (2025-11-14)
+
+
+### Bug Fixes
+
+* **sdk-react:** allow workspaceId to be set by proxy ([#38](https://github.com/ossy-se/packages/issues/38)) ([6a8d05f](https://github.com/ossy-se/packages/commit/6a8d05fc99a1a56664f81ed77e591a42f505c9ba))
+
+
+
+
+
 ## 1.5.10 (2025-11-14)
 
 **Note:** Version bump only for package @ossy/eslint-config-ossy
