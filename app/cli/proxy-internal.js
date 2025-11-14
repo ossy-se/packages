@@ -1,10 +1,11 @@
 export function ProxyInternal() {
     return (req, res, next) => {
-        console.log(`[@ossy/app][proxy] ${req.method} ${req.originalUrl}`)
 
         if (!req.originalUrl.startsWith('/@ossy')) {
             return next()
         }
+        
+        console.log(`[@ossy/app][proxy] ${req.method} ${req.originalUrl}`)
 
         const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
         const url = `${domain}${req.originalUrl?.replace('/@ossy', '/api/v0')}`
