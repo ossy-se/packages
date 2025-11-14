@@ -178,7 +178,7 @@ export class SDK {
         endpoint = action.endpoint
   
         endpoint = payloadKeys.reduce(
-          (endpoint, paramName) => endpoint.replace(`${paramName as string}`, `${payload[paramName]}`),
+          (endpoint, paramName) => endpoint.replace(`:${paramName as string}`, `${payload[paramName]}`),
           action.endpoint
         )
 
