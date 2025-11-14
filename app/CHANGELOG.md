@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.8 (2025-11-14)
+
+**Note:** Version bump only for package @ossy/app
+
+
+
+
+
 ## 0.5.7 (2025-11-14)
 
 **Note:** Version bump only for package @ossy/app
