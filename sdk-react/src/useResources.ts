@@ -140,7 +140,6 @@ export const useResources = (location?: string) => {
   )
 
   useEffect(() => {
-    if (!workspaceId) return
     if (!location) return
     if (status !== AsyncStatus.NotInitialized) return
 
