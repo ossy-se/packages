@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.9 (2025-11-14)
+
+
+### Bug Fixes
+
+* **app:** forward response headers when proxying requests ([#36](https://github.com/ossy-se/packages/issues/36)) ([d098a6f](https://github.com/ossy-se/packages/commit/d098a6fd0b4da4ab2f4ca78908161d5378859741))
+
+
+
+
+
 ## 0.5.8 (2025-11-14)
 
 **Note:** Version bump only for package @ossy/connected-components
