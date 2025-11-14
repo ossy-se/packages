@@ -23,7 +23,6 @@ export const useUsers = () => {
   }, [sdk])
 
   useEffect(() => {
-    if (!workspaceId) return
     if (users.status === AsyncStatus.NotInitialized) {
       load()
     }

@@ -71,8 +71,6 @@ export const useResource = (id: string) => {
   )
 
   useEffect(() => {
-
-    if (!workspaceId) return
     if (!id) return
     if (status !== AsyncStatus.NotInitialized) return
 

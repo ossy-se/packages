@@ -39,7 +39,6 @@ export const useQuery = (incomingQuery: any) => {
   }, [sdk])
 
   useEffect(() => {
-    if (!workspaceId) return
     if (!incomingQuery) return
     if (status !== AsyncStatus.NotInitialized) return
     loadResources(incomingQuery)

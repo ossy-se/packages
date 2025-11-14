@@ -3,9 +3,10 @@ import { useCache } from './Cache'
 import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 
-export const useWorkspace = () => {
+export const useWorkspace = (props?: { id: string }) => {
   const sdk = useSdk()
-  const workspaceId = sdk.workspaceId
+  const workspaceId = props?.id || sdk.workspaceId
+
   const cachePath = useMemo(() => ['workspace', workspaceId], [workspaceId])
 
   const {
@@ -51,7 +52,6 @@ export const useWorkspace = () => {
   }
 
   useEffect(() => {
-    if (!workspaceId) return
     if (workspace.status === AsyncStatus.NotInitialized) {
       loadWorkspace()
     }
