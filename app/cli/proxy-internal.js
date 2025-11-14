@@ -28,17 +28,21 @@ export function ProxyInternal() {
     
         fetch(url, request)
             .then((response) => {
-    
+                // Forward headers from the proxy response
+                response.headers.forEach((value, name) => {
+                    res.setHeader(name, value);
+                });
+
                 if (response.headers.get('content-type')?.includes('application/json')) {
                     return response.json()
                         .then(data => {
-                            res.status(response.status)
-                            res.json(data)
-                        })
+                            res.status(response.status);
+                            res.json(data);
+                        });
                 }
-    
-                res.status(response.status)
-                res.json("")
+
+                res.status(response.status);
+                res.json("");
             })
             .catch((error) => {
                 console.log(`[@ossy/app][proxy][error]`, error)
