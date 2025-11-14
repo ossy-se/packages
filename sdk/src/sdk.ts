@@ -192,9 +192,23 @@ export class SDK {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          workspaceId: workspaceId as string,
-          Authorization: authorization as string
         },
+      }
+
+      if (workspaceId) {
+        request.headers = {
+          ...request.headers,
+          //@ts-ignore
+          'workspaceId': workspaceId
+        };
+      }
+
+      if (authorization) {
+        request.headers = {
+          ...request.headers,
+          //@ts-ignore
+          'Authorization': authorization
+        };
       }
 
       if (request.method !== 'GET' && payload) {
