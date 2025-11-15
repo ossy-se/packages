@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.12 (2025-11-15)
+
+**Note:** Version bump only for package @ossy/resource-templates
+
+
+
+
+
 ## 0.5.11 (2025-11-14)
 
 
