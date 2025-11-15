@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.1 (2025-11-15)
+
+
+### Bug Fixes
+
+* **app:** api path ([#42](https://github.com/ossy-se/packages/issues/42)) ([60ff9b7](https://github.com/ossy-se/packages/commit/60ff9b73c2b7916c40247924ba749ebe78ff7226))
+
+
+
+
+
 # 0.6.0 (2025-11-15)
 
 

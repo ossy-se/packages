@@ -5,7 +5,7 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "description": "Ossy's design system themes",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "source": "src/index.js",
   "module": "build/index.js",
   "type": "module",
