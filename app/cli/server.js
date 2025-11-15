@@ -25,6 +25,11 @@ const middleware = [
   morgan('tiny'),
   express.json({ strict: false }),
   cookieParser(process.env.OSSY_COOKIE_SECRET || 'default_secret'),
+  (req, res, next) => {
+    const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
+    req.userAppSettings = userSettings
+    next()
+  },
   ...(Middleware || []),
   express.static(ROOT_PATH),
   ProxyInternal(),
