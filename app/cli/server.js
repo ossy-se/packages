@@ -28,6 +28,11 @@ const middleware = [
   (req, res, next) => {
     const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
     req.userAppSettings = userSettings
+
+    if (userSettings.workspaceId && !req.headers.workspaceId) {
+      req.headers.workspaceId = userSettings.workspaceId
+    }
+
     next()
   },
   ...(Middleware || []),
