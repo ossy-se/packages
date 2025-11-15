@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import { Router } from '@ossy/router'
 import { prerenderToNodeStream } from 'react-dom/static'
 import { ProxyInternal } from './proxy-internal.js'
+import cookieParser from 'cookie-parser'
 
 import App from '%%@ossy/app/source-file%%'
 import ApiRoutes from '%%@ossy/api/source-file%%'
@@ -16,7 +17,6 @@ const app = express();
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
-
 if (Middleware !== undefined) {
   console.log(`[@ossy/app][server] ${Middleware?.length || 0} custom middleware loaded`)
 }
@@ -24,29 +24,7 @@ if (Middleware !== undefined) {
 const middleware = [
   morgan('tiny'),
   express.json({ strict: false }),
-  (req, res, next) => {
-    const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
-    const url = `${domain}/api/v0/users/me/app-settings`
-    const headers = { ...(req.headers || {}) } // Clone headers
-
-    const request = {
-      method: req.method,
-      headers: JSON.parse(JSON.stringify(headers))
-    }
-
-    fetch(url, request)
-      .then(response => response.json())
-      .then((userAppSettings) => {
-        req.userAppSettings = userAppSettings || {}
-        next()
-      })
-      .catch((error) => {
-        console.log(`[@ossy/app][server][error]`, error)
-        req.userAppSettings = {}
-        next()
-      })
-
-  },
+  cookieParser(process.env.OSSY_COOKIE_SECRET || 'default_secret'),
   ...(Middleware || []),
   express.static(ROOT_PATH),
   ProxyInternal(),
