@@ -1,9 +1,7 @@
 import React, {
-  useEffect,
   useState,
   createContext,
   useContext,
-  useRef
 } from 'react'
 import { createCss } from './createCss.js'
 
@@ -50,7 +48,7 @@ export const Theme = ({
   ...props
 }) => {
   const _themes = typeof theme === 'object' ? { default: theme } : themes
-  const [activeTheme, setTheme] = useState(() => typeof theme === 'object' ? 'default' : theme)
+  const [activeTheme, setTheme] = useState(typeof theme === 'object' ? 'default' : theme)
   const activeThemeValues = _themes[activeTheme]
 
   return (
