@@ -1,13 +1,11 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useCache } from './Cache'
 import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 
 export const useWorkspace = (props?: { id: string }) => {
   const sdk = useSdk()
-  const workspaceId = props?.id || sdk.workspaceId
-
-  const cachePath = useMemo(() => ['workspace', workspaceId], [workspaceId])
+  const cachePath = ['workspace']
 
   const {
     data: workspace = { status: AsyncStatus.NotInitialized, data: {} },
@@ -16,10 +14,15 @@ export const useWorkspace = (props?: { id: string }) => {
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {} })
-    sdk.workspaces.current()
+    
+    const promise = props?.id
+      ? sdk.workspaces.get({ id: props.id })
+      : sdk.workspaces.current()
+
+    promise
       .then((workspace: any) => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
       .catch(() => setWorkspace({ status: AsyncStatus.Error, data: {} }))
-  }, [sdk, workspaceId])
+  }, [sdk])
 
   const createApiToken = useCallback(
     (description: string) => sdk.workspaces.createApiToken({ description })
@@ -55,7 +58,7 @@ export const useWorkspace = (props?: { id: string }) => {
     if (workspace.status === AsyncStatus.NotInitialized) {
       loadWorkspace()
     }
-  }, [workspaceId, workspace])
+  }, [workspace])
 
   return {
     status: workspace.status,

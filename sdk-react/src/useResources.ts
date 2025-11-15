@@ -7,17 +7,13 @@ import { useSdk } from './useSdk'
 
 export const useResources = (location?: string) => {
   const sdk = useSdk()
-  const workspaceId = sdk.workspaceId
 
   const statusCachePath = useMemo(
-    () => ['resources', workspaceId, 'status', location],
-    [workspaceId, location]
+    () => ['resources', 'status', location],
+    [location]
   )
 
-  const dataCachePath = useMemo(
-    () => ['resources', workspaceId, 'data'],
-    [workspaceId]
-  )
+  const dataCachePath = ['resources', 'data']
 
   const {
     data: status,
@@ -114,7 +110,7 @@ export const useResources = (location?: string) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
       }),
-    [sdk, workspaceId, setResources]
+    [sdk, setResources]
   )
 
   const moveResource = useCallback(
@@ -125,7 +121,7 @@ export const useResources = (location?: string) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
       }),
-    [sdk, workspaceId, setResources]
+    [sdk, setResources]
   )
 
   const renameResource = useCallback(
@@ -136,7 +132,7 @@ export const useResources = (location?: string) => {
         setResources((resources = []) => replaceBy('id', resource, resources))
         return resource
       }),
-    [sdk, workspaceId, setResources]
+    [sdk, setResources]
   )
 
   useEffect(() => {
@@ -145,7 +141,7 @@ export const useResources = (location?: string) => {
 
     loadResources()
 
-  }, [workspaceId, location, status])
+  }, [location, status])
 
   return {
     status,

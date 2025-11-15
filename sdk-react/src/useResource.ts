@@ -6,16 +6,15 @@ import { useSdk } from './useSdk'
 
 export const useResource = (id: string) => {
   const sdk = useSdk()
-  const workspaceId = sdk.workspaceId
 
   const statusCachePath = useMemo(
-    () => ['resource', workspaceId, id, 'status'],
-    [id, workspaceId]
+    () => ['resource', id, 'status'],
+    [id]
   )
 
   const dataCachePath = useMemo(
-    () => ['resource', workspaceId, id, 'data'],
-    [id, workspaceId]
+    () => ['resource', id, 'data'],
+    [id]
   )
 
   const {
@@ -76,7 +75,7 @@ export const useResource = (id: string) => {
 
     loadResource()
 
-  }, [workspaceId, id, loadResource])
+  }, [id, loadResource])
 
   return {
     status,
