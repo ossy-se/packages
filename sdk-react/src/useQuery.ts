@@ -5,17 +5,16 @@ import { useSdk } from './useSdk'
 
 export const useQuery = (incomingQuery: any) => {
   const sdk = useSdk()
-  const workspaceId = sdk.workspaceId
   const queryString = new URLSearchParams(incomingQuery).toString()
 
   const statusCachePath = useMemo(
-    () => [workspaceId, 'queries', queryString, 'status'],
-    [workspaceId, queryString]
+    () => ['queries', queryString, 'status'],
+    [queryString]
   )
 
   const dataCachePath = useMemo(
-    () => [workspaceId, 'queries', queryString, 'data'],
-    [workspaceId, queryString]
+    () => ['queries', queryString, 'data'],
+    [queryString]
   )
 
   const {
@@ -42,7 +41,7 @@ export const useQuery = (incomingQuery: any) => {
     if (!incomingQuery) return
     if (status !== AsyncStatus.NotInitialized) return
     loadResources(incomingQuery)
-  }, [workspaceId, incomingQuery, status])
+  }, [incomingQuery, status])
 
   return { status, resources }
 }

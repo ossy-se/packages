@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useCache } from './Cache'
 import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 
 export const useUsers = () => {
   const sdk = useSdk()
-  const workspaceId = sdk.workspaceId
-  const cachePath = useMemo(() => ['workspace', workspaceId, 'users'], [workspaceId])
+  const cachePath = ['workspace', 'users']
 
   const {
     data: users = { status: AsyncStatus.NotInitialized, data: [] },
@@ -26,7 +25,7 @@ export const useUsers = () => {
     if (users.status === AsyncStatus.NotInitialized) {
       load()
     }
-  }, [workspaceId, users])
+  }, [users])
 
   return {
     status: users.status,
