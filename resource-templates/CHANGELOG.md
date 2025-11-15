@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.5 (2025-11-15)
+
+
+### Bug Fixes
+
+* **design-system:** active theme ([#46](https://github.com/ossy-se/packages/issues/46)) ([c88557a](https://github.com/ossy-se/packages/commit/c88557a590e0387f07a980785f123d18edfe884a))
+
+
+
+
+
 ## 0.6.4 (2025-11-15)
 
 
