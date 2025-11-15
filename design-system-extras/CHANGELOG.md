@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.13 (2025-11-15)
+
+
+### Bug Fixes
+
+* **app:** forward headers ([#40](https://github.com/ossy-se/packages/issues/40)) ([980b817](https://github.com/ossy-se/packages/commit/980b817f9e9f3272bcf583ca8c3f30cb287709fd))
+
+
+
+
+
 ## 0.5.12 (2025-11-15)
 
 **Note:** Version bump only for package @ossy/design-system-extras
