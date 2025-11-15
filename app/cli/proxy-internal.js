@@ -5,44 +5,44 @@ export function ProxyInternal() {
             return next()
         }
 
-        // if (req.originalUrl.startsWith('/@ossy/users/me/app-settings') && req.method === 'PATCH') {
+        if (req.originalUrl.startsWith('/@ossy/users/me/app-settings') && req.method === 'PATCH') {
         
-        //     if (!req.body) {
-        //         res.status(400)
-        //         res.json("Invalid request body")
-        //         return
-        //     }
+            if (!req.body) {
+                res.status(400)
+                res.json("Invalid request body")
+                return
+            }
     
-        //     const requestedSettings = req.body
+            const requestedSettings = req.body
     
     
-        //     const expiresMaxAge = 2147483647 // Max age for cookies in milliseconds
+            const expiresMaxAge = 2147483647 // Max age for cookies in milliseconds
     
-        //     const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
+            const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
             
-        //     const updatedSettings = {
-        //         ...userSettings,
-        //         ...requestedSettings
-        //     }
+            const updatedSettings = {
+                ...userSettings,
+                ...requestedSettings
+            }
     
-        //     res.cookie('x-ossy-user-settings', JSON.stringify(updatedSettings), {
-        //     httpOnly: true,
-        //     signed: true,
-        //     expires: new Date(Date.now() + expiresMaxAge)
-        //     })
+            res.cookie('x-ossy-user-settings', JSON.stringify(updatedSettings), {
+            httpOnly: true,
+            signed: true,
+            expires: new Date(Date.now() + expiresMaxAge)
+            })
     
-        //     res.status(201)
-        //     res.json("")
-        //     return
-        // }
+            res.status(201)
+            res.json("")
+            return
+        }
     
-        // if (req.originalUrl.startsWith('/@ossy/users/me/app-settings') && req.method === 'GET') {
-        //     LogService.Info({ message: `[UsersService][HandleUserAppSettings] METHOD ${req.method}` })
-        //     const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
-        //     res.status(200)
-        //     res.json(userSettings)
-        //     return
-        // }
+        if (req.originalUrl.startsWith('/@ossy/users/me/app-settings') && req.method === 'GET') {
+            LogService.Info({ message: `[UsersService][HandleUserAppSettings] METHOD ${req.method}` })
+            const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
+            res.status(200)
+            res.json(userSettings)
+            return
+        }
         
         console.log(`[@ossy/app][proxy] ${req.method} ${req.originalUrl}`)
 
