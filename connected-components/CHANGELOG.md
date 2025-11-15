@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.3 (2025-11-15)
+
+
+### Bug Fixes
+
+* **app:** set app settings on requiest ([#44](https://github.com/ossy-se/packages/issues/44)) ([40565b9](https://github.com/ossy-se/packages/commit/40565b9372a7d9d95d6baf086c1c95e03800ea15))
+
+
+
+
+
 ## 0.6.2 (2025-11-15)
 
 **Note:** Version bump only for package @ossy/connected-components
