@@ -24,6 +24,29 @@ if (Middleware !== undefined) {
 const middleware = [
   morgan('tiny'),
   express.json({ strict: false }),
+  (req, res, next) => {
+    const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
+    const url = `${domain}/api/v0/users/me`
+    const headers = { ...(req.headers || {}) } // Clone headers
+
+    const request = {
+      method: req.method,
+      headers: JSON.parse(JSON.stringify(req.headers))
+    }
+
+    fetch(url, request)
+      .then(response => response.json())
+      .then((userAppSettings) => {
+        req.userAppSettings = userAppSettings || {}
+        next()
+      })
+      .catch((error) => {
+        console.log(`[@ossy/app][server][error]`, error)
+        req.userAppSettings = {}
+        next()
+      })
+
+  },
   ...(Middleware || []),
   express.static(ROOT_PATH),
   ProxyInternal(),
@@ -43,7 +66,9 @@ app.all('/*all', (req, res) => {
     apiRoute.handle(req, res)
   }
 
-  renderToString(App, { url: req.url })
+  const userAppSettings = req.userAppSettings || {}
+
+  renderToString(App, { url: req.url, theme: userAppSettings.theme || 'light' })
     .then(html => { res.send(html) })
     .catch(err => { res.send(err) })
 
