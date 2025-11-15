@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.6.0 (2025-11-15)
+
+
+### Features
+
+* **app:** make user theme preference available for server side rendering ([#41](https://github.com/ossy-se/packages/issues/41)) ([028b0c8](https://github.com/ossy-se/packages/commit/028b0c861e8952ec034914b051af27b555a0d024))
+
+
+
+
+
 ## 1.5.13 (2025-11-15)
 
 
