@@ -26,12 +26,12 @@ const middleware = [
   express.json({ strict: false }),
   (req, res, next) => {
     const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
-    const url = `${domain}/api/v0/users/me`
+    const url = `${domain}/api/v0/users/me/app-settings`
     const headers = { ...(req.headers || {}) } // Clone headers
 
     const request = {
       method: req.method,
-      headers: JSON.parse(JSON.stringify(req.headers))
+      headers: JSON.parse(JSON.stringify(headers))
     }
 
     fetch(url, request)
