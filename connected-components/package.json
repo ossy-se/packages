@@ -1,6 +1,6 @@
 {
   "name": "@ossy/connected-components",
-  "version": "0.5.11",
+  "version": "0.6.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ossy-se/packages.git"
