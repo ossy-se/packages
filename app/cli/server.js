@@ -44,7 +44,7 @@ app.use(middleware)
 
 const ApiRouter = Router.of({ pages: ApiRoutes || [] })
 
-app.all('/*all', (req, res) => {
+app.all('*all', (req, res) => {
   const pathname = req.originalUrl
 
   const apiRoute = ApiRouter.getPageByUrl(pathname)
