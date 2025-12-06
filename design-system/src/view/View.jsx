@@ -19,7 +19,7 @@ export const View = ({
       <style href="@ossy/design-system/view" precedence="high">
       {`
         [data-view] {
-          maxWidth: 100%;
+          max-width: 100%;
         }
       `}
       </style>

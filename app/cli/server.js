@@ -63,7 +63,7 @@ app.all('*all', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+  console.log('[@ossy/app][server] Running on http://localhost:3000');
 });
 
 async function renderToSteam(App, config) {

@@ -32,7 +32,7 @@ export const useResources = (location?: string) => {
 
   const loadResource = useCallback(
     (id: string) => {
-      const cachedResource = resources.find((resource: { id: string }) => resource.id === id)
+      const cachedResource = resources?.find((resource: { id: string }) => resource.id === id)
       return !!cachedResource
         ? Promise.resolve(cachedResource)
         : sdk.resources.get({ id })
