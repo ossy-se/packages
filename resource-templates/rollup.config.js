@@ -28,11 +28,11 @@ export default [
       minifyJS()
     ]
   },
-  {
-    input: "build/types/public.index.d.ts",
-    output: [{ file: "build/public.index.d.ts", format: "es" }],
-    plugins: [
-      dts()
-    ],
-  },
+  // {
+  //   input: "build/types/public.index.d.ts",
+  //   output: [{ file: "build/public.index.d.ts", format: "es" }],
+  //   plugins: [
+  //     dts()
+  //   ],
+  // },
 ]
