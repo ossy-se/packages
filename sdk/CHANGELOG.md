@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.7 (2025-12-06)
+
+
+### Bug Fixes
+
+* comment out unused Rollup configuration for public index types ([#50](https://github.com/ossy-se/packages/issues/50)) ([acc50ac](https://github.com/ossy-se/packages/commit/acc50acebdb1ad12e1b119ad553d7278b4d4045e))
+
+
+
+
+
 ## 0.6.6 (2025-11-25)
 
 **Note:** Version bump only for package @ossy/sdk
