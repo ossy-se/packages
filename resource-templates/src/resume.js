@@ -5,7 +5,7 @@ export const ResumeTemplates = [
     fields: [
       {
         name: 'Title',
-        type: 'text'
+        type: 'text',
       },
       {
         name: 'Sub Title',

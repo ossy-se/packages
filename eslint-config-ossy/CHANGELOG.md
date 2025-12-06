@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.6.6 (2025-11-25)
+
+**Note:** Version bump only for package @ossy/eslint-config-ossy
+
+
+
+
+
 ## 1.6.5 (2025-11-15)
 
 

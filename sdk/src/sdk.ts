@@ -154,7 +154,7 @@ export class SDK {
   }
 
   makeRequest = <T extends Action>(action: T) => {
-    return (_payload?: Required<T['payload']>) => {
+    return (_payload?: Required<T['payload']>)  => {
 
       let payload: Required<T['payload']> = {} as Required<T['payload']>;
 
