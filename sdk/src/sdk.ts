@@ -173,16 +173,12 @@ export class SDK {
 
       if (payload) {
         const payloadKeys = Object.keys(payload) as (keyof typeof payload)[]
-        console.log('[@ossy/sdk] payloadKeys', payloadKeys)
-        console.log('[@ossy/sdk] action.endpoint', action.endpoint)
         endpoint = action.endpoint
   
         endpoint = payloadKeys.reduce(
           (endpoint, paramName) => endpoint.replace(`:${paramName as string}`, `${payload[paramName]}`),
           action.endpoint
         )
-
-        console.log('[@ossy/sdk] endpoint after', endpoint)
       }
 
       const url = `${baseUrl}${endpoint}`
