@@ -169,6 +169,12 @@ export const ResourcesSearch: Action<{ query: any }> = {
     method: 'POST'
 }
 
+export const ResourceUpdateAccess: Action<{ id: string, access: 'restricted' | 'public' }> = {
+    id: 'resources.update-access',
+    endpoint: '/resources/:id/access',
+    method: 'PUT'
+}
+
 export const ResourcesRemove: Action<{ id: string }> = {
     id: 'resources.remove',
     endpoint: '/resources/:id',

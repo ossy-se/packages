@@ -36,7 +36,8 @@ import {
   WorkspacesGetCurrent,
   UserCurrentGet,
   UserCurrentGetHistory,
-  UserCurrentUpdate
+  UserCurrentUpdate,
+  ResourceUpdateAccess
 } from './Actions';
 import { SDKConfig } from './config'
 
@@ -102,6 +103,7 @@ export class SDK {
     return {
       createDirectory: this.makeRequest(ResourcesCreateDirectory).bind(this),
       create: this.makeRequest(ResourcesCreate).bind(this),
+      access: this.makeRequest(ResourceUpdateAccess).bind(this),
       upload: ({ location = '/', file }: { location: string; file: File} ) => {
         const payload = {
           type: file.type,
