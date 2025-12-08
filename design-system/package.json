@@ -1,7 +1,7 @@
 {
   "name": "@ossy/design-system",
   "description": "Ossy's design system React component library",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
   "source": "src/index.js",
   "module": "build/index.js",
@@ -30,7 +30,7 @@
     ]
   },
   "devDependencies": {
-    "@ossy/themes": "^0.7.0"
+    "@ossy/themes": "^0.7.1"
   },
   "peerDependencies": {
     "react": ">=19.0.0 <20.0.0",
