@@ -31,7 +31,8 @@ export const useResource = (id: string) => {
     loadResource: _loadResource,
     removeResource: _removeResource,
     updateResourceContent: _updateResourceContent,
-    renameResource: _renameResource
+    renameResource: _renameResource,
+    access: _access
   } = useResources()
 
   const loadResource = useCallback(() => {
@@ -69,6 +70,14 @@ export const useResource = (id: string) => {
     [id, _renameResource]
   )
 
+  const access = useCallback(({ access }: { access: 'restricted' | 'public' }) => {
+    return _access({ id, access })
+      .then((resource: any) => {
+        setResource(resource)
+        return resource
+      })
+  }, [id ])
+
   useEffect(() => {
     if (!id) return
     if (status !== AsyncStatus.NotInitialized) return
@@ -83,6 +92,7 @@ export const useResource = (id: string) => {
     loadResource,
     removeResource,
     updateResourceContent,
-    renameResource
+    renameResource,
+    access
   }
 }
