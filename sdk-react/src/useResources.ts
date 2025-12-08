@@ -135,6 +135,14 @@ export const useResources = (location?: string) => {
     [sdk, setResources]
   )
 
+  const access = useCallback((params: { id: string; access: 'restricted' | 'public' }) => {
+    return sdk.resources.access(params)
+      .then((resource: any) => {
+        setResources((resources = []) => replaceBy('id', resource, resources))
+        return resource
+      })
+  }, [])
+
   useEffect(() => {
     if (!location) return
     if (status !== AsyncStatus.NotInitialized) return
@@ -153,6 +161,7 @@ export const useResources = (location?: string) => {
     updateResourceContent,
     moveResource,
     renameResource,
-    uploadFile
+    uploadFile,
+    access
   }
 }
