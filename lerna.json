@@ -13,7 +13,8 @@
     "router-react",
     "sdk",
     "sdk-react",
-    "themes"
+    "themes",
+    "types"
   ],
   "command": {
     "publish": {

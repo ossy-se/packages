@@ -1,11 +1,11 @@
 {
-  "name": "@ossy/sdk",
-  "description": "Sofware Development Kit for interacting with our services",
-  "version": "0.6.7",
-  "url": "git://github.com/ossy-se/packages/sdk",
-  "source": "src/public.index.ts",
-  "module": "build/public.index.js",
-  "types": "build/public.index.d.ts",
+  "name": "@ossy/types",
+  "description": "Shared TypeScript types for all packages",
+  "version": "0.0.0",
+  "url": "git://github.com/ossy-se/packages/types",
+  "source": "src/index.ts",
+  "module": "build/index.js",
+  "types": "build/index.d.ts",
   "type": "module",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "repository": {
@@ -13,9 +13,6 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "license": "MIT",
-  "dependencies": {
-    "@ossy/types": "*"
-  },
   "scripts": {
     "start": "",
     "build": "rollup -c rollup.config.js",

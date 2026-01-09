@@ -1,6 +1,3 @@
 export { Jobs, JobStatus } from './jobs-client.js'
-export * from './Field'
-export * from './Resource'
-export * from './ResourceTemplate'
-export * from './Workspace'
+export * from '@ossy/types'
 export * from './sdk'
