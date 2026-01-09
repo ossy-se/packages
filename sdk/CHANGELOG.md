@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.1 (2025-12-08)
+
+**Note:** Version bump only for package @ossy/sdk
+
+
+
+
+
+# 0.7.0 (2025-12-07)
+
+
+### Features
+
+* add ResourceUpdateAccess action to update resource access level ([#51](https://github.com/ossy-se/packages/issues/51)) ([d2ae5a0](https://github.com/ossy-se/packages/commit/d2ae5a0e9cb1d2c17acef6a11a974153e5c1e5c9))
+
+
+
+
+
 ## 0.6.7 (2025-12-06)
 
 
