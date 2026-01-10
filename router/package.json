@@ -34,9 +34,9 @@
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "license": "MIT",
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
+    "@jest/globals": "^30.2.0",
     "casual": "^1.6.2",
-    "jest": "^29.7.0",
+    "jest": "^30.2.0",
     "ts-jest": "^29.1.1"
   },
   "publishConfig": {
