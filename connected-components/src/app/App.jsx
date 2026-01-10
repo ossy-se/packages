@@ -22,7 +22,7 @@ export const App = (_appSettings) => {
     <AppContext.Provider value={appSettings}>
       <Theme theme={appSettings.theme} themes={appSettings.themes}>
         <WorkspaceProvider sdk={sdk}>
-          <Router {..._appSettings} />
+          <Router {...appSettings} />
           { appSettings.devMode && <ThemeEditor />}
         </WorkspaceProvider>
       </Theme>

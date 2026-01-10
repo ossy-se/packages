@@ -3,4 +3,6 @@ import 'react-dom'
 import { hydrateRoot } from 'react-dom/client';
 import App from '%%@ossy/app/source-file%%'
 
-hydrateRoot(document, createElement(App))
+const initialConfig = window.__INITIAL_APP_CONFIG__ || {}
+
+hydrateRoot(document, createElement(App, initialConfig))

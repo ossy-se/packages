@@ -1,4 +1,4 @@
-import { useResource, AsyncStatus } from '@ossy/sdk-react'
+import React, { useResource, AsyncStatus } from '@ossy/sdk-react'
 import { Theme } from '@ossy/design-system'
 
 export const ThemeProvider = props => {
