@@ -34,7 +34,8 @@ const middleware = [
     }
 
     // Check for auth cookie
-    req.isAuthenticated = !!req.signedCookies?.auth
+    const cookieHeader = req.headers.cookie
+    req.isAuthenticated = cookieHeader ? cookieHeader.includes('auth=') : false
 
     next()
   },
