@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.4 (2026-01-10)
+
+
+### Bug Fixes
+
+* **connected-components:** export ([4f4ab94](https://github.com/ossy-se/packages/commit/4f4ab94da86e86c3c0c80deee9acac4863eb0350))
+
+
+
+
+
 ## 0.0.3 (2026-01-10)
 
 
