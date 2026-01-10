@@ -1,9 +1,4 @@
 
-import { useContext } from 'react'
-import { AppContext } from './App.jsx'
-
-export const useAppSettings = () => useContext(AppContext)
-
 export function defaultAppSettings() {
     return {
       workspaceId: undefined,
