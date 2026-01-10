@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.4 (2026-01-10)
+
+
+### Bug Fixes
+
+* **app, connected-components:** send initial app config to the client ([#55](https://github.com/ossy-se/packages/issues/55)) ([d047448](https://github.com/ossy-se/packages/commit/d04744831dc6a466668f86f714e8f7e4106f01fa))
+
+
+
+
+
 ## 1.7.3 (2026-01-10)
 
 
