@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import React, { useState, useMemo, useCallback, useEffect } from 'react'
 import { useResource } from '@ossy/sdk-react'
 import { Overlay, Button, useTheme, View, Text } from '@ossy/design-system'
 

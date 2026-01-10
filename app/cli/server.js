@@ -79,9 +79,10 @@ app.listen(3000, () => {
 async function renderToString(App, config) {
 
   const { prelude } = await prerenderToNodeStream(createElement(App, config), {
+    bootstrapScriptContent: `window.__INITIAL_APP_CONFIG__ = ${JSON.stringify(config)};`,
     bootstrapModules: ['/static/main.js']
   });
-  
+
   return new Promise((resolve, reject) => {
     let data = '';
     prelude.on('data', chunk => {
