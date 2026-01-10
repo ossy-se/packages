@@ -1,14 +1,11 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { SDK } from '@ossy/sdk'
 import { WorkspaceProvider } from '@ossy/sdk-react'
 import { Theme } from '@ossy/design-system'
 import { ThemeEditor } from '../theme-editor/ThemeEditor.jsx'
 import { defaultAppSettings } from './AppSettings.jsx'
 import { Router } from '@ossy/router-react'
-
-export const AppContext = createContext(defaultAppSettings())
-
-export const useApp = () => React.useContext(AppContext)
+import { AppContext } from './AppContext.js'
 
 export const App = (_appSettings) => {
   const appSettings = { ...defaultAppSettings(), ..._appSettings }

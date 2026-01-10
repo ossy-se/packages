@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react'
 import { useResource } from '@ossy/sdk-react'
 import { Overlay, Button, useTheme, View, Text } from '@ossy/design-system'
+import { useApp } from '../app/AppContext.js'
 
 const overlayStyles = {
   background: 'transparent',
@@ -58,13 +59,14 @@ const ThemeSwitcher = () => {
 }
 
 export const ThemeEditor = () => {
+  const app = useApp()
   const { updateResourceContent } = useResource('PCX53TaGviq4_8KvK-VOp')
   const [isEditorOpen, setIsEditorOpen] = useState(false)
   const [viewCount, setViewCount] = useState(0)
   // const [theme, temporarilyUpdateTheme] = useTheme()
   const theme = {}
   const temporarilyUpdateTheme = () => {}
-
+  
   const toggleStyles = useMemo(() => !isEditorOpen
     ? blobStyles
     : { ...blobStyles, transform: 'rotate(-45deg)' }, [isEditorOpen])
@@ -96,7 +98,7 @@ export const ThemeEditor = () => {
   useEffect(() => {
     if (!isEditorOpen) return
     const views = document.querySelectorAll('[data-view]')
-    views.forEach(view => view.style.border = '1px solid red')
+    // views.forEach(view => view.style.border = '1px solid red')
     setViewCount(views.length)
   }, [isEditorOpen])
 
@@ -120,6 +122,18 @@ export const ThemeEditor = () => {
               </View>
               <ThemeSwitcher/>
               <Text>Views: {viewCount}</Text>
+            </View>
+            <View>
+
+              <View>
+                Pages: {app?.pages?.length || 0}
+              </View>
+
+              <View>
+                {(app?.pages || []).map(page => (
+                  <Button>{page.id}</Button>
+                ))}
+              </View>
             </View>
           </div>
         )

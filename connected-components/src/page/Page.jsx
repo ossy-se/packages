@@ -1,10 +1,9 @@
 import { useResources } from '@ossy/sdk-react'
-import { useActivePageLocation } from '../use-active-page-location'
 import { Layout } from '../layout'
 import { Section } from '../section'
 
 export const Page = () => {
-  const activePageLocation = useActivePageLocation()
+  const activePageLocation = '/'
   const { resources: folder } = useResources(`/pages${activePageLocation}`)
   const pageSettings = folder.find(entry => entry.name === 'Page settings')
   const sections = folder.filter(entry => entry.name.endsWith('Section'))

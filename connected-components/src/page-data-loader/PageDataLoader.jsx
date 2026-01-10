@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useResources, AsyncStatus } from '@ossy/sdk-react'
 import { Switch, useDocumentTitle } from '@ossy/design-system'
-import { useActivePageLocation } from '../use-active-page-location'
 
 const getLoadingPageSettings = () => ({
   title: 'Loading...'
@@ -27,7 +26,7 @@ const PageStatus = {
 }
 
 export const PageDataLoader = ({ children }) => {
-  const activePageLocation = useActivePageLocation()
+  const activePageLocation = '/'
   const { status, resources: folder } = useResources(`/pages${activePageLocation}`)
   const [pageStatus, setPageStatus] = useState(PageStatus.Loading)
   const [pageSettings, setPageSettings] = useState(getLoadingPageSettings())
