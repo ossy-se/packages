@@ -2,7 +2,6 @@
 import { resolve } from 'path'
 import { readFileSync } from 'fs'
 import arg from 'arg'
-import fetch from 'node-fetch'
 import { logInfo, logError, logErrorAndReject, logDebug } from '../log.js'
 
 const Api = {

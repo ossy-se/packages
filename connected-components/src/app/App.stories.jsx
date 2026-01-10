@@ -1,6 +1,6 @@
 import React from 'react'
 import { App } from './App.jsx'
-import { Ossy } from '@ossy/themes'
+import { CloudLight } from '@ossy/themes'
 
 export default {
   title: 'App',
@@ -13,7 +13,7 @@ const Story = props => <></>
 export const Default = Story.bind({})
 Default.args = {
   workspaceId: '',
-  theme: Ossy,
+  theme: CloudLight,
   routes: [
     {
     path: '/',

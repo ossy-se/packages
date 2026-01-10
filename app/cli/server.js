@@ -33,6 +33,9 @@ const middleware = [
       req.headers.workspaceId = userSettings.workspaceId
     }
 
+    // Check for auth cookie
+    req.isAuthenticated = !!req.signedCookies?.auth
+
     next()
   },
   ...(Middleware || []),
@@ -56,7 +59,13 @@ app.all('*all', (req, res) => {
 
   const userAppSettings = req.userAppSettings || {}
 
-  renderToString(App, { url: req.url, theme: userAppSettings.theme || 'light' })
+  const appConfig = {
+    url: req.url,
+    theme: userAppSettings.theme || 'light',
+    isAuthenticated: req.isAuthenticated || false,
+  }
+
+  renderToString(App, appConfig)
     .then(html => { res.send(html) })
     .catch(err => { res.send(err) })
 
@@ -65,14 +74,6 @@ app.all('*all', (req, res) => {
 app.listen(3000, () => {
   console.log('[@ossy/app][server] Running on http://localhost:3000');
 });
-
-async function renderToSteam(App, config) {
-
-  return prerenderToNodeStream(createElement(App, config), {
-    bootstrapModules: ['/static/index.js']
-  })
-
-}
 
 async function renderToString(App, config) {
 

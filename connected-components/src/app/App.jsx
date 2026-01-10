@@ -8,6 +8,8 @@ import { Router } from '@ossy/router-react'
 
 export const AppContext = createContext(defaultAppSettings())
 
+export const useApp = () => React.useContext(AppContext)
+
 export const App = (_appSettings) => {
   const appSettings = { ...defaultAppSettings(), ..._appSettings }
 
