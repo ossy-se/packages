@@ -40,6 +40,7 @@ import {
   ResourceUpdateAccess
 } from './Actions';
 import { SDKConfig } from './config'
+import { JobsClient } from './jobs-client'
 
 export class SDK {
 
@@ -153,6 +154,10 @@ export class SDK {
       getUser: this.makeRequest(AuthGetUser).bind(this),
       signOff: this.makeRequest(AuthSignOff).bind(this),
     };
+  }
+
+  get jobs() {
+    return JobsClient.of({ resources: this.resources });
   }
 
   makeRequest = <T extends Action>(action: T) => {
