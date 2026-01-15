@@ -1,6 +1,6 @@
 {
   "name": "@ossy/eslint-config-ossy",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "description": "ESLint config used by Ossy",
   "main": "index.js",
   "url": "git://github.com/ossy-se/ossy.git",
