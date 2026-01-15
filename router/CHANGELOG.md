@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.9 (2026-01-15)
+
+
+### Bug Fixes
+
+* **sdk:** output single bundled file instead of preserving modules ([#60](https://github.com/ossy-se/packages/issues/60)) ([85816c9](https://github.com/ossy-se/packages/commit/85816c98ed4b7fb60cec28a8b86ead1907dee69b))
+
+
+
+
+
 ## 0.7.8 (2026-01-15)
 
 **Note:** Version bump only for package @ossy/router
