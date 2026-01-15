@@ -11,8 +11,7 @@ export default [
     input: pkg.source,
     output: [
       {
-        dir: 'build',
-        preserveModules: true,
+        file: 'build/public.index.js',
         format: 'esm'
       }
     ],
