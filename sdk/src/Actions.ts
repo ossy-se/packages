@@ -1,11 +1,6 @@
-import { SDKConfig } from "./config";
+import type { Action } from '@ossy/types';
 
-export interface Action<Payload extends (Record<string, string | boolean | number> & SDKConfig) | undefined = {}> {
-    id: string;
-    endpoint: string;
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-    payload?: Payload
-}
+export type { Action };
   
 export const ApiTokenGetAll: Action = {
     id: 'api-tokens.get-all',

@@ -1,0 +1,1 @@
+const s={VisualContentDescriptors:"@ossy/jobs/visual-content-descriptors",ResizeCommonWeb:"@ossy/jobs/resize-common-web"},e={Queued:"queued",InProgress:"in progress",Success:"success",Failed:"failed"};export{e as JobStatus,s as Jobs};

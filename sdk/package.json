@@ -4,8 +4,15 @@
   "version": "0.7.6",
   "url": "git://github.com/ossy-se/packages/sdk",
   "source": "src/public.index.ts",
+  "main": "build/public.index.js",
   "module": "build/public.index.js",
   "types": "build/public.index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./build/public.index.js",
+      "types": "./build/public.index.d.ts"
+    }
+  },
   "type": "module",
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "repository": {
