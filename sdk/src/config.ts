@@ -1,5 +1,1 @@
-export interface SDKConfig {
-  apiUrl?: string;
-  workspaceId?: string;
-  authorization?: string
-}
+export type { SDKConfig } from '@ossy/types';

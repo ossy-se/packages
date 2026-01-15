@@ -1,14 +1,6 @@
-export const Jobs = {
-  VisualContentDescriptors: '@ossy/jobs/visual-content-descriptors',
-  ResizeCommonWeb: '@ossy/jobs/resize-common-web',
-}
+import { Jobs, JobStatus } from '@ossy/types';
 
-export const JobStatus = {
-  Queued: 'queued',
-  InProgress: 'in progress',
-  Success: 'success',
-  Failed: 'failed',
-}
+export { Jobs, JobStatus };
 
 export class JobsClient {
   static location = '/@ossy/jobs/'
