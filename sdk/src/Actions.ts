@@ -158,7 +158,7 @@ export const ResourcesList: Action<{ search?: string }> = {
     method: 'GET',
 }
 
-export const ResourcesSearch: Action<{ query: any }> = {
+export const ResourcesSearch: Action<Record<string, unknown>> = {
     id: 'resources.search',
     endpoint: '/resources/search',
     method: 'POST'

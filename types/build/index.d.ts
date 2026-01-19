@@ -45,7 +45,7 @@ interface SDKConfig {
     authorization?: string;
 }
 
-interface Action<Payload extends (Record<string, string | boolean | number> & SDKConfig) | undefined = {}> {
+interface Action<Payload extends (Record<string, string | boolean | number | unknown> & SDKConfig) | undefined = {}> {
     id: string;
     endpoint: string;
     method: 'GET' | 'POST' | 'PUT' | 'DELETE';
