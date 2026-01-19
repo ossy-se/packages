@@ -3,7 +3,7 @@ import { Jobs, JobStatus, JobType, Resource, Job } from '@ossy/types';
 export { Jobs, JobStatus };
 
 interface ResourcesClient {
-  search: (payload: { query: Record<string, unknown> }) => Promise<Resource<Job>[]>;
+  search: (payload: Record<string, unknown> ) => Promise<Resource<Job>[]>;
   create: (data: {
     type: string;
     location: string;
@@ -44,20 +44,18 @@ export class JobsClient {
 
   getUnprocessed(): Promise<Resource<Job>[]> {
     return this.resources.search({
-      query: {
-        $and: [
-          {
-            $or: [
-              { 'content.nextReevaluation': { $exists: false } },
-              { 'content.nextReevaluation': null },
-              { 'content.nextReevaluation': { $lt: Date.now() } },
-            ],
-          },
-          { 'content.status': { $in: ['queued', 'failed'] } },
-          { location: '/@ossy/jobs/' },
-          { type: { $regex: '^@ossy/jobs' } },
-        ],
-      },
+      $and: [
+        {
+          $or: [
+            { 'content.nextReevaluation': { $exists: false } },
+            { 'content.nextReevaluation': null },
+            { 'content.nextReevaluation': { $lt: Date.now() } },
+          ],
+        },
+        { 'content.status': { $in: ['queued', 'failed'] } },
+        { location: '/@ossy/jobs/' },
+        { type: { $regex: '^@ossy/jobs' } },
+      ],
     });
   }
 
