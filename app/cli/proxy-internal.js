@@ -81,6 +81,7 @@ export function ProxyInternal() {
                         });
                 }
 
+                res.clearCookie('auth')
                 res.status(response.status);
                 res.json("");
             })
