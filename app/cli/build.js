@@ -32,7 +32,7 @@ export const build = async (cliArgs) => {
 
 
     const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
-    let apiSourcePath = path.resolve(options['--api-source'] || 'src/Api.js');
+    let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
     const buildPath = path.resolve(options['--destination'] || 'build');
@@ -49,7 +49,7 @@ export const build = async (cliArgs) => {
     }
 
     if (!fs.existsSync(apiSourcePath)) {
-      apiSourcePath = path.resolve(scriptDir, 'Api.js')
+      apiSourcePath = path.resolve(scriptDir, 'api.js')
     }
 
     if (!fs.existsSync(middlewareSourcePath)) {
@@ -110,11 +110,12 @@ export const build = async (cliArgs) => {
             dir: 'build',
             // preserveModules: true,
             entryFileNames: ({ name }) => {
-              if (name === 'server') {
+
+              const serverFileNames = ['server', 'api', 'middleware']
+
+              if (serverFileNames.includes(name)) {
                 return '[name].js'
-              } else if (name === 'Api') {
-                return '[name].js'
-              } else if (name === 'client') {
+              }  else if (name === 'client') {
                 return 'public/static/main.js'
               } else if (name === 'config') {
                 return 'public/static/[name].js'
