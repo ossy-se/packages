@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.14 (2026-03-10)
+
+
+### Bug Fixes
+
+* **cli:** run error ([ee1565b](https://github.com/ossy-se/packages/commit/ee1565b07cefe71521a842fbe454a439f5d8986c))
+
+
+
+
+
 ## 0.7.13 (2026-03-10)
 
 **Note:** Version bump only for package @ossy/sdk
