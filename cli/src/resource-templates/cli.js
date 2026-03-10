@@ -1,8 +1,7 @@
-#!/usr/bin/env node
 import { resolve } from 'path'
 import { readFileSync } from 'fs'
 import arg from 'arg'
-import { logInfo, logError, logErrorAndReject, logDebug } from '../log.js'
+import { logInfo, logError, logErrorAndReject } from '../log.js'
 
 const Api = {
   uploadResourceTemplates: (apiUrl, token, workspaceId, resourceTemplates) => {
@@ -45,22 +44,22 @@ const importResourceTemplates = options => {
       const workspaceId = config?.workspaceId
       const resourceTemplates = config?.resourceTemplates
 
-      if (!workspaceId) return logErrorAndReject({ message: '[CMS] No workspaceId provided in ossy.json'})
-      if (!resourceTemplates) return logErrorAndReject({ message: '[CMS] No resource templates provided in ossy.json'})
+      if (!workspaceId) return logErrorAndReject({ message: '[@ossy/cli] No workspaceId provided in config'})
+      if (!resourceTemplates) return logErrorAndReject({ message: '[@ossy/cli] No resource templates provided in config'})
 
-      logInfo({ message: '[CMS] uploading resource templates' })
+      logInfo({ message: '[@ossy/cli] uploading resource templates' })
 
       Api.uploadResourceTemplates(apiUrl, token, workspaceId, resourceTemplates)
           .then(response => {
-            logInfo({ message: '[CMS] Done' })
+            logInfo({ message: '[@ossy/cli] Done' })
           })
-          .catch(error => logError({ message: '[CMS] Error', error }))
+          .catch(error => logError({ message: '[@ossy/cli] Error', error }))
     })
 
 }
 
 export const handler = ([command, ...options]) => {
   !!command
-    ? { 'import-resource-templates': importResourceTemplates }[command](options)
-    : logError({ message: '[CMS] No command provided' })
+    ? { 'upload': importResourceTemplates }[command](options)
+    : logError({ message: '[@ossy/cli] No command provided' })
 }

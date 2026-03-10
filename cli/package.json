@@ -24,7 +24,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "files": [
-    "/build",
+    "/src",
     "README.md"
   ]
 }

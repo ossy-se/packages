@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /* eslint-disable global-require, no-unused-vars */
+import { handler } from './resource-templates/cli.js'
 
 const [_, __, handlerName, ...restArgs] = process.argv
 
-const loadHandler = {
-  cms: () => import('./cms/cli.js')
+const handler = {
+  'resource-templates': () => handler
 }[handlerName]
 
-!!loadHandler && loadHandler().then(({ handler })=> handler(restArgs))
+handler(restArgs)
