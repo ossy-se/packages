@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.8.0 (2026-03-14)
+
+
+### Features
+
+* **app:** dev mode ([97928d1](https://github.com/ossy-se/packages/commit/97928d1090122b68c062e230ebb5d84c16193ede))
+
+
+
+
+
 ## 0.7.16 (2026-03-14)
 
 **Note:** Version bump only for package @ossy/router
