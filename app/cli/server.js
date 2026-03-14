@@ -17,6 +17,9 @@ const app = express();
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
+const isDevReloadEnabled = process.env.OSSY_DEV_RELOAD === '1'
+const reloadClients = new Set()
+
 function parsePortFromArgv(argv) {
   // Supports: --port 4000, --port=4000, -p 4000
   const idx = argv.findIndex(a => a === '--port' || a === '-p')
@@ -40,6 +43,34 @@ const port = normalizePort(parsePortFromArgv(process.argv) ?? process.env.PORT, 
 
 if (Middleware !== undefined) {
   console.log(`[@ossy/app][server] ${Middleware?.length || 0} custom middleware loaded`)
+}
+
+if (isDevReloadEnabled) {
+  app.get('/__ossy_reload', (req, res) => {
+    res.status(200)
+    res.setHeader('Content-Type', 'text/event-stream')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+    res.flushHeaders?.()
+
+    res.write('event: connected\ndata: ok\n\n')
+    reloadClients.add(res)
+
+    req.on('close', () => {
+      reloadClients.delete(res)
+    })
+  })
+
+  app.post('/__ossy_reload', (req, res) => {
+    for (const client of reloadClients) {
+      try {
+        client.write('event: reload\ndata: now\n\n')
+      } catch {
+        // ignore broken connections
+      }
+    }
+    res.status(204).end()
+  })
 }
 
 const middleware = [
@@ -99,8 +130,12 @@ app.listen(port, () => {
 
 async function renderToString(App, config) {
 
+  const devReloadScript = isDevReloadEnabled
+    ? `(function(){try{var es=new EventSource('/__ossy_reload');es.addEventListener('reload',function(){location.reload();});}catch(e){}})();`
+    : ``
+
   const { prelude } = await prerenderToNodeStream(createElement(App, config), {
-    bootstrapScriptContent: `window.__INITIAL_APP_CONFIG__ = ${JSON.stringify(config)};`,
+    bootstrapScriptContent: `window.__INITIAL_APP_CONFIG__ = ${JSON.stringify(config)};${devReloadScript}`,
     bootstrapModules: ['/static/main.js']
   });
 
