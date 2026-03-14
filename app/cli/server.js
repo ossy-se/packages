@@ -17,6 +17,27 @@ const app = express();
 const currentDir = path.dirname(url.fileURLToPath(import.meta.url))
 const ROOT_PATH = path.resolve(currentDir, 'public')
 
+function parsePortFromArgv(argv) {
+  // Supports: --port 4000, --port=4000, -p 4000
+  const idx = argv.findIndex(a => a === '--port' || a === '-p')
+  if (idx !== -1 && argv[idx + 1]) return argv[idx + 1]
+
+  const eq = argv.find(a => a.startsWith('--port='))
+  if (eq) return eq.split('=')[1]
+
+  return undefined
+}
+
+function normalizePort(value, fallback) {
+  if (value === undefined || value === null || value === '') return fallback
+  const n = Number.parseInt(String(value), 10)
+  if (!Number.isFinite(n) || n <= 0) return fallback
+  return n
+}
+
+const DEFAULT_PORT = 3000
+const port = normalizePort(parsePortFromArgv(process.argv) ?? process.env.PORT, DEFAULT_PORT)
+
 if (Middleware !== undefined) {
   console.log(`[@ossy/app][server] ${Middleware?.length || 0} custom middleware loaded`)
 }
@@ -72,8 +93,8 @@ app.all('*all', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-  console.log('[@ossy/app][server] Running on http://localhost:3000');
+app.listen(port, () => {
+  console.log(`[@ossy/app][server] Running on http://localhost:${port}`);
 });
 
 async function renderToString(App, config) {
