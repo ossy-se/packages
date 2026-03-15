@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.2 (2026-03-15)
+
+
+### Bug Fixes
+
+* **sdk-react:** critical bug fixes ([#68](https://github.com/ossy-se/packages/issues/68)) ([efaba52](https://github.com/ossy-se/packages/commit/efaba5217793b950ac087e352fb27a033b73b93d))
+
+
+
+
+
+## 0.8.1 (2026-03-15)
+
+**Note:** Version bump only for package @ossy/app
+
+
+
+
+
 # 0.8.0 (2026-03-14)
 
 
