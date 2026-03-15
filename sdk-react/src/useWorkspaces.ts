@@ -23,15 +23,13 @@ export const useWorkspaces = () => {
   const createWorkspace = useCallback(
     (name: string) => sdk.workspaces.create({ name })
       .then((workspace: any) => {
-
-        setWorkspaces({
-          status: workspaces.status,
-          data: [...workspaces.data, workspace]
-        })
-
+        setWorkspaces((prev: { status: string; data: any[] } | undefined) => ({
+          status: prev?.status ?? AsyncStatus.NotInitialized,
+          data: [...(prev?.data ?? []), workspace]
+        }))
         return workspace
       }),
-    [sdk]
+    [sdk, setWorkspaces]
   )
 
   useEffect(() => {
