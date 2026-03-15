@@ -5,15 +5,26 @@ import { replaceBy } from './replaceBy'
 import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 
+/** Normalize location to match API: single leading and trailing slash */
+function normalizeLocation(loc: string | undefined): string {
+  if (loc == null || loc === '') return '/'
+  const trimmed = loc.replace(/^\/+|\/+$/g, '')
+  return trimmed ? `/${trimmed}/` : '/'
+}
+
 export const useResources = (location?: string) => {
   const sdk = useSdk()
+  const normalizedLocation = useMemo(() => normalizeLocation(location), [location])
 
   const statusCachePath = useMemo(
-    () => ['resources', 'status', location],
-    [location]
+    () => ['resources', 'status', normalizedLocation],
+    [normalizedLocation]
   )
 
-  const dataCachePath = ['resources', 'data']
+  const dataCachePath = useMemo(
+    () => ['resources', 'data', normalizedLocation],
+    [normalizedLocation]
+  )
 
   const {
     data: status,
@@ -25,135 +36,119 @@ export const useResources = (location?: string) => {
     set: setResources
   } = useCache(dataCachePath, [])
 
-  const locationSpecificResources = useMemo(
-    () => resources.filter((resource: { location: string }) => resource.location === location),
-    [resources, location]
-  )
-
   const loadResource = useCallback(
     (id: string) => {
       const cachedResource = resources?.find((resource: { id: string }) => resource.id === id)
       return !!cachedResource
         ? Promise.resolve(cachedResource)
-        : sdk.resources.get({ id })
-          .then((resource: any) => {
-            setResources((resources = []) => replaceBy('id', resource, resources))
+        : sdk.resources.get({ id }).then((resource: any) => {
+            setResources((prev: any[] = []) =>
+              normalizeLocation(resource.location) === normalizedLocation ? replaceBy('id', resource, prev) : prev
+            )
             return resource
           })
     },
-    [sdk, resources, setResources]
+    [sdk, resources, setResources, normalizedLocation]
   )
 
   const loadResources = useCallback(() => {
     setStatus(AsyncStatus.Loading)
-    sdk.resources.list({ location })
+    sdk.resources.list({ location: normalizedLocation })
       .then((requestedResources: any) => {
         setStatus(AsyncStatus.Success)
-        // TODO: Duplicated resources can occur when you move a resource into a directory
-        // then navigate to that directory, causing it to load the recently moved resource from BE into the resources list
-        // Should probably use another data structure that ensures uniqueness.
-        // temp fix is the resourcesWithStaleResourcesRemoved
-        setResources((resources: any[] = []) => {
-          const requestedResourcesIds = requestedResources.map((resource: { id: string }) => resource.id)
-
-          const resourcesWithStaleResourcesRemoved = resources.filter(
-            resource => !requestedResourcesIds.includes(resource.id)
-          )
-
-          return [...requestedResources, ...resourcesWithStaleResourcesRemoved]
-        })
+        setResources(requestedResources)
       })
       .catch(() => { setStatus(AsyncStatus.Error) })
-  }, [sdk, location, setStatus, setResources])
+  }, [sdk, normalizedLocation, setStatus, setResources])
 
   const createDocument = useCallback(
    (document: any) => sdk.resources.create({
       type: document.type,
-      location: document.location,
+      location: normalizeLocation(document.location),
       name: document.name,
       content: document.content
     })
       .then((resource: any) => {
-        setResources((resources = []) => [...resources, resource])
+        setResources((prev: any[] = []) =>
+          normalizeLocation(resource.location) === normalizedLocation ? [...prev, resource] : prev
+        )
         return resource
       }),
-    [sdk, setResources]
+    [sdk, setResources, normalizedLocation]
   )
 
   const uploadFile = useCallback(
-    (location: string, file: File) => sdk.resources.upload({ location, file })
+    (location: string, file: File) => sdk.resources.upload({ location: normalizeLocation(location), file })
       .then((resource: any) => {
-        setResources((resources = []) => [...resources, resource])
+        setResources((prev: any[] = []) =>
+          normalizeLocation(resource.location) === normalizedLocation ? [...prev, resource] : prev
+        )
         return resource
       }),
-    [sdk, setResources]
+    [sdk, setResources, normalizedLocation]
   )
 
   const createDirectory = useCallback(
-    ({ location, name }: { location: string, name: string }) => sdk.resources.createDirectory({ type: 'directory', location, name })
+    ({ location, name }: { location: string, name: string }) => sdk.resources.createDirectory({ type: 'directory', location: normalizeLocation(location), name })
       .then((resource: any) => {
-        setResources((resources = []) => [...resources, resource])
+        setResources((prev: any[] = []) =>
+          normalizeLocation(resource.location) === normalizedLocation ? [...prev, resource] : prev
+        )
         return resource
       }),
-    [sdk, setResources]
+    [sdk, setResources, normalizedLocation]
   )
 
   const removeResource = useCallback(
-    (id: string) => sdk.resources.remove({ id })
-      .then(() => setResources((resources = []) => removeBy('id', id, resources))),
+    (id: string) => sdk.resources.remove({ id }).then(() => {
+      setResources((prev: any[] = []) => removeBy('id', id, prev))
+    }),
     [sdk, setResources]
   )
 
   const updateResourceContent = useCallback(
-    (id: string, content: any) => sdk.resources.updateContent({ id, content})
-      .then((resource: any) => {
-        setResources((resources = []) => replaceBy('id', resource, resources))
-        return resource
-      }),
+    (id: string, content: any) => sdk.resources.updateContent({ id, content }).then((resource: any) => {
+      setResources((prev: any[] = []) => replaceBy('id', resource, prev))
+      return resource
+    }),
     [sdk, setResources]
   )
 
   const moveResource = useCallback(
-    // TODO: how should we add this to the new location in cache?
-    // TODO: if recource is a direcotry, how should we move the nested resources from cache?
-    (id: string, target: string) => sdk.resources.move({ id, target })
-      .then((resource: string) => {
-        setResources((resources = []) => replaceBy('id', resource, resources))
-        return resource
-      }),
-    [sdk, setResources]
+    (id: string, target: string) => sdk.resources.move({ id, target }).then((resource: any) => {
+      setResources((prev: any[] = []) =>
+        normalizeLocation(resource.location) === normalizedLocation ? replaceBy('id', resource, prev) : removeBy('id', id, prev)
+      )
+      return resource
+    }),
+    [sdk, setResources, normalizedLocation]
   )
 
   const renameResource = useCallback(
-    // TODO: how should we update the cache for individual resources
-    // mabye by making this an internal function and only use it through useResource?
     (id: string, name: string) => sdk.resources.rename({ id, name })
       .then((resource: any) => {
-        setResources((resources = []) => replaceBy('id', resource, resources))
+        setResources((prev: any[] = []) => replaceBy('id', resource, prev))
         return resource
       }),
     [sdk, setResources]
   )
 
   const access = useCallback((params: { id: string; access: 'restricted' | 'public' }) => {
-    return sdk.resources.access(params)
-      .then((resource: any) => {
-        setResources((resources = []) => replaceBy('id', resource, resources))
-        return resource
-      })
-  }, [])
+    return sdk.resources.access(params).then((resource: any) => {
+      setResources((prev: any[] = []) => replaceBy('id', resource, prev))
+      return resource
+    })
+  }, [setResources])
 
   useEffect(() => {
-    if (!location) return
     if (status !== AsyncStatus.NotInitialized) return
 
     loadResources()
-
-  }, [location, status])
+  }, [normalizedLocation, status])
 
   return {
     status,
-    resources: locationSpecificResources,
+    resources,
     removeResource,
     createDocument,
     createDirectory,
