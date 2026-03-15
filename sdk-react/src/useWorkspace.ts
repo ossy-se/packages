@@ -14,7 +14,7 @@ export const useWorkspace = (props?: { id: string }) => {
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {} })
-    
+
     const promise = props?.id
       ? sdk.workspaces.get({ id: props.id })
       : sdk.workspaces.current()
@@ -22,23 +22,21 @@ export const useWorkspace = (props?: { id: string }) => {
     promise
       .then((workspace: any) => setWorkspace({ data: workspace, status: AsyncStatus.Success }))
       .catch(() => setWorkspace({ status: AsyncStatus.Error, data: {} }))
-  }, [sdk])
+  }, [sdk, props?.id])
 
   const createApiToken = useCallback(
     (description: string) => sdk.workspaces.createApiToken({ description })
       .then(({ id, token }: { id: string, token: string }) => {
-
-        setWorkspace({
-          status: workspace.status,
+        setWorkspace((prev: { status: string; data: any } | undefined) => ({
+          status: prev?.status ?? AsyncStatus.NotInitialized,
           data: {
-            ...workspace,
-            apiTokens: [...workspace.apiTokens, { id, description }]
+            ...(prev?.data ?? {}),
+            apiTokens: [...(prev?.data?.apiTokens ?? []), { id, description }]
           }
-        })
-
+        }))
         return token
       }),
-    [sdk]
+    [sdk, setWorkspace]
   )
 
   const inviteUser = useCallback(
@@ -58,7 +56,7 @@ export const useWorkspace = (props?: { id: string }) => {
     if (workspace.status === AsyncStatus.NotInitialized) {
       loadWorkspace()
     }
-  }, [workspace])
+  }, [workspace.status, loadWorkspace])
 
   return {
     status: workspace.status,
