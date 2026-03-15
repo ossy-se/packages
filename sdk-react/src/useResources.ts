@@ -26,6 +26,11 @@ export const useResources = (location?: string) => {
     [normalizedLocation]
   )
 
+  const errorCachePath = useMemo(
+    () => ['resources', 'error', normalizedLocation],
+    [normalizedLocation]
+  )
+
   const {
     data: status,
     set: setStatus
@@ -35,6 +40,11 @@ export const useResources = (location?: string) => {
     data: resources,
     set: setResources
   } = useCache(dataCachePath, [])
+
+  const {
+    data: error,
+    set: setError
+  } = useCache(errorCachePath, null)
 
   const loadResource = useCallback(
     (id: string) => {
@@ -53,13 +63,18 @@ export const useResources = (location?: string) => {
 
   const loadResources = useCallback(() => {
     setStatus(AsyncStatus.Loading)
+    setError(null)
     sdk.resources.list({ location: normalizedLocation })
       .then((requestedResources: any) => {
         setStatus(AsyncStatus.Success)
         setResources(requestedResources)
+        setError(null)
       })
-      .catch(() => { setStatus(AsyncStatus.Error) })
-  }, [sdk, normalizedLocation, setStatus, setResources])
+      .catch((err: unknown) => {
+        setStatus(AsyncStatus.Error)
+        setError(err instanceof Error ? err : new Error(String(err)))
+      })
+  }, [sdk, normalizedLocation, setStatus, setResources, setError])
 
   const createDocument = useCallback(
    (document: any) => sdk.resources.create({
@@ -149,6 +164,7 @@ export const useResources = (location?: string) => {
   return {
     status,
     resources,
+    error,
     loadResources,
     removeResource,
     createDocument,
