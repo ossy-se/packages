@@ -144,11 +144,12 @@ export const useResources = (location?: string) => {
     if (status !== AsyncStatus.NotInitialized) return
 
     loadResources()
-  }, [normalizedLocation, status])
+  }, [normalizedLocation, status, loadResources])
 
   return {
     status,
     resources,
+    loadResources,
     removeResource,
     createDocument,
     createDirectory,

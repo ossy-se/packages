@@ -76,7 +76,7 @@ export const useResource = (id: string) => {
         setResource(resource)
         return resource
       })
-  }, [id ])
+  }, [id, _access])
 
   useEffect(() => {
     if (!id) return
