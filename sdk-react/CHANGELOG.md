@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.9.0 (2026-03-15)
+
+
+### Features
+
+* **sdk-react:** expose error and improve error handling ([#71](https://github.com/ossy-se/packages/issues/71)) ([2d98b10](https://github.com/ossy-se/packages/commit/2d98b10e4c18cb71fe616f6ae5e00fbd2a425fc9))
+
+
+
+
+
 ## 0.8.4 (2026-03-15)
 
 
