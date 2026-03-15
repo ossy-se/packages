@@ -5,7 +5,7 @@ import { useSdk } from './useSdk'
 
 export const useUsers = () => {
   const sdk = useSdk()
-  const cachePath = ['workspace', 'users']
+  const cachePath = ['users']
 
   const {
     data: users = { status: AsyncStatus.NotInitialized, data: [], error: null },

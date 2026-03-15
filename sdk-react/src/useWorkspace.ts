@@ -49,14 +49,6 @@ export const useWorkspace = (props?: { id: string }) => {
     [sdk]
   )
 
-  const enableService = () => {
-
-  }
-
-  const disabledService = () => {
-    
-  }
-
   useEffect(() => {
     if (workspace.status === AsyncStatus.NotInitialized) {
       loadWorkspace()
