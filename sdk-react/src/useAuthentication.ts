@@ -11,7 +11,7 @@ export const AuthenticationStatus = {
   VerifySignIn: 'VerifySignIn'
 }
 
-const statusPath = ['auth', 'status']
+const statusCacheKey = 'auth:status'
 
 export const useAuthentication = () => {
   const sdk = useSdk()
@@ -19,7 +19,7 @@ export const useAuthentication = () => {
   const {
     data: status = AuthenticationStatus.NotInitialized,
     set: setStatus
-  } = useCache(statusPath)
+  } = useCache(statusCacheKey)
 
   const signUp = useCallback(
     (email: string) => {

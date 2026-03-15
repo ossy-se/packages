@@ -7,35 +7,35 @@ export const useQuery = (incomingQuery: any) => {
   const sdk = useSdk()
   const queryString = new URLSearchParams(incomingQuery).toString()
 
-  const statusCachePath = useMemo(
-    () => ['queries', queryString, 'status'],
+  const statusCacheKey = useMemo(
+    () => `queries:${queryString}:status`,
     [queryString]
   )
 
-  const dataCachePath = useMemo(
-    () => ['queries', queryString, 'data'],
+  const dataCacheKey = useMemo(
+    () => `queries:${queryString}:data`,
     [queryString]
   )
 
-  const errorCachePath = useMemo(
-    () => ['queries', queryString, 'error'],
+  const errorCacheKey = useMemo(
+    () => `queries:${queryString}:error`,
     [queryString]
   )
 
   const {
     data: status,
     set: setStatus
-  } = useCache(statusCachePath, AsyncStatus.NotInitialized)
+  } = useCache(statusCacheKey, AsyncStatus.NotInitialized)
 
   const {
     data: resources,
     set: setResources
-  } = useCache(dataCachePath, [])
+  } = useCache(dataCacheKey, [])
 
   const {
     data: error,
     set: setError
-  } = useCache(errorCachePath, null)
+  } = useCache(errorCacheKey, null)
 
   const loadResources = useCallback((query: any) => {
     setStatus(AsyncStatus.Loading)

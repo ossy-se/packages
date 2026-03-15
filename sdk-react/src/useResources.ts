@@ -16,35 +16,35 @@ export const useResources = (location?: string) => {
   const sdk = useSdk()
   const normalizedLocation = useMemo(() => normalizeLocation(location), [location])
 
-  const statusCachePath = useMemo(
-    () => ['resources', 'status', normalizedLocation],
+  const statusCacheKey = useMemo(
+    () => `resources:status:${normalizedLocation}`,
     [normalizedLocation]
   )
 
-  const dataCachePath = useMemo(
-    () => ['resources', 'data', normalizedLocation],
+  const dataCacheKey = useMemo(
+    () => `resources:data:${normalizedLocation}`,
     [normalizedLocation]
   )
 
-  const errorCachePath = useMemo(
-    () => ['resources', 'error', normalizedLocation],
+  const errorCacheKey = useMemo(
+    () => `resources:error:${normalizedLocation}`,
     [normalizedLocation]
   )
 
   const {
     data: status,
     set: setStatus
-  } = useCache(statusCachePath, AsyncStatus.NotInitialized)
+  } = useCache(statusCacheKey, AsyncStatus.NotInitialized)
 
   const {
     data: resources,
     set: setResources
-  } = useCache(dataCachePath, [])
+  } = useCache(dataCacheKey, [])
 
   const {
     data: error,
     set: setError
-  } = useCache(errorCachePath, null)
+  } = useCache(errorCacheKey, null)
 
   const loadResource = useCallback(
     (id: string) => {

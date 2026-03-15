@@ -1,14 +1,12 @@
 import React, { createContext, PropsWithChildren } from 'react'
 import { createCache } from './Cache'
-import { path, set, lensPath } from 'ramda'
+import { createMapCache } from './cacheUtils'
 import { type SDK } from '@ossy/sdk'
 
 export const Context = createContext<Config>({} as Config)
 
-const Cache = createCache({
-  get: path,
-  set: (path: any, value: any, data: any) => set(lensPath(path), value, data)
-})
+const mapCache = createMapCache()
+const Cache = createCache(mapCache)
 
 export interface Config {
   sdk: SDK

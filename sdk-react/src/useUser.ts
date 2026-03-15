@@ -3,8 +3,8 @@ import { useCache } from './Cache'
 import { useSdk } from './useSdk'
 import { AsyncStatus } from './asyncStatus'
 
-const statusPath = ['user', 'status']
-const userPath = ['user', 'data']
+const statusCacheKey = 'user:status'
+const userCacheKey = 'user:data'
 
 export const useUser = () => {
   const sdk = useSdk()
@@ -12,12 +12,12 @@ export const useUser = () => {
   const {
     data: status = AsyncStatus.NotInitialized,
     set: setStatus
-  } = useCache(statusPath)
+  } = useCache(statusCacheKey)
 
   const {
     data: user = {},
     set: setUser
-  } = useCache(userPath)
+  } = useCache(userCacheKey)
 
   const update = useCallback(
     (user: any) => {

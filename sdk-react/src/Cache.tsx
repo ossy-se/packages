@@ -5,51 +5,63 @@ import React, {
   useCallback
 } from 'react'
 
-const getInitialState = () => ({})
 export const CacheContext = createContext<any>({})
 
 const Actions = {
   Set: 'SET'
 }
 
-const createReducer = ({ set, get }: { set: any, get: any }) => (
-  state = getInitialState(),
+interface CacheConfig {
+  get: (key: string, state: unknown) => unknown
+  set: (key: string, value: unknown, state: unknown) => unknown
+  getInitialState?: () => unknown
+}
+
+const createReducer = ({ set, get, getInitialState }: CacheConfig) => (
+  state: unknown,
   action: any
 ) => {
+  const initialState = getInitialState?.() ?? {}
+  if (state === undefined) state = initialState
   switch (action.type) {
 
   case Actions.Set: {
     let data
 
     if (typeof action.data === 'function') {
-      const previousValue = get(action.cachePath, state)
+      const previousValue = get(action.cacheKey, state)
       data = action.data(previousValue)
     } else {
       data = action.data
     }
 
-    return set(action.cachePath, data, state)
+    return set(action.cacheKey, data, state)
   }
 
   default:
-    return ({ ...state })
+    return state
 
   }
 }
 
-export const createCache = ({ get: _get, set: _set }: { get: any, set: any}) => (props: any) => {
-
+export const createCache = ({
+  get: _get,
+  set: _set,
+  getInitialState
+}: CacheConfig) => (props: any) => {
+  const initialState = getInitialState?.() ?? {}
   const [state, updateState] = useReducer(
-    createReducer({ set: _set, get: _get }),
-    getInitialState()
+    createReducer({ set: _set, get: _get, getInitialState }),
+    undefined as unknown,
+    () => initialState
   )
 
-  const set = useCallback((cachePath: any) => (data: any) => {
-    updateState({ type: Actions.Set, cachePath, data })
+  const set = useCallback((cacheKey: string) => (data: unknown) => {
+    updateState({ type: Actions.Set, cacheKey, data })
   }, [updateState])
 
-  const get = useCallback((cachePath: any) =>
-    _get(cachePath, state),
+  const get = useCallback((cacheKey: string) =>
+    _get(cacheKey, state),
   [state, _get]
   )
 
@@ -58,19 +70,18 @@ export const createCache = ({ get: _get, set: _set }: { get: any, set: any}) => 
   )
 }
 
-export const useCache = (cachePath: any, defaultValue?: any) => {
-  // TODO: Add default value to context here, otherwise it will be undefined in the set((data) => { ...  }) function
+export const useCache = (cacheKey: string, defaultValue?: unknown) => {
   const { get, set } = useContext(CacheContext)
 
   const getData = () => {
-    const data = get(cachePath)
+    const data = get(cacheKey)
     return data === undefined || data === null
       ? defaultValue
       : data
   }
 
-  return ({
+  return {
     data: getData(),
-    set: set(cachePath)
-  })
+    set: set(cacheKey)
+  }
 }

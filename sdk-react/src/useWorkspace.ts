@@ -5,12 +5,12 @@ import { useSdk } from './useSdk'
 
 export const useWorkspace = (props?: { id: string }) => {
   const sdk = useSdk()
-  const cachePath = ['workspace']
+  const cacheKey = 'workspace'
 
   const {
     data: workspace = { status: AsyncStatus.NotInitialized, data: {}, error: null },
     set: setWorkspace
-  } = useCache(cachePath)
+  } = useCache(cacheKey)
 
   const loadWorkspace = useCallback(() => {
     setWorkspace({ status: AsyncStatus.Loading, data: {}, error: null })

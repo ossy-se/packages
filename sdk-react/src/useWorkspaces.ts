@@ -3,7 +3,7 @@ import { useCache } from './Cache'
 import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 
-const cachePath = ['workspaces']
+const cacheKey = 'workspaces'
 
 export const useWorkspaces = () => {
   const sdk = useSdk()
@@ -11,7 +11,7 @@ export const useWorkspaces = () => {
   const {
     set: setWorkspaces,
     data: workspaces = { status: AsyncStatus.NotInitialized, data: [], error: null }
-  } = useCache(cachePath)
+  } = useCache(cacheKey)
 
   const loadWorkspaces = useCallback(() => {
     setWorkspaces({ status: AsyncStatus.Loading, data: [], error: null })

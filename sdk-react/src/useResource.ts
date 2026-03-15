@@ -7,35 +7,35 @@ import { useSdk } from './useSdk'
 export const useResource = (id: string) => {
   const sdk = useSdk()
 
-  const statusCachePath = useMemo(
-    () => ['resource', id, 'status'],
+  const statusCacheKey = useMemo(
+    () => `resource:${id}:status`,
     [id]
   )
 
-  const dataCachePath = useMemo(
-    () => ['resource', id, 'data'],
+  const dataCacheKey = useMemo(
+    () => `resource:${id}:data`,
     [id]
   )
 
-  const errorCachePath = useMemo(
-    () => ['resource', id, 'error'],
+  const errorCacheKey = useMemo(
+    () => `resource:${id}:error`,
     [id]
   )
 
   const {
     data: status = AsyncStatus.NotInitialized,
     set: setStatus
-  } = useCache(statusCachePath)
+  } = useCache(statusCacheKey)
 
   const {
     data: resource = {},
     set: setResource
-  } = useCache(dataCachePath)
+  } = useCache(dataCacheKey)
 
   const {
     data: error = null,
     set: setError
-  } = useCache(errorCachePath, null)
+  } = useCache(errorCacheKey, null)
 
   const {
     loadResource: _loadResource,

@@ -30,17 +30,13 @@
       "last 1 safari version"
     ]
   },
-  "dependencies": {
-    "ramda": "^0.32.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.15.8",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.24.1",
-    "@babel/preset-typescript": "^7.26.0",
-    "@types/ramda": "^0.31.1"
+    "@babel/preset-typescript": "^7.26.0"
   },
   "peerDependencies": {
     "@ossy/sdk": ">=0.6.7 <1.0.0",

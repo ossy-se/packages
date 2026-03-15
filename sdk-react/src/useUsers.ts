@@ -5,12 +5,12 @@ import { useSdk } from './useSdk'
 
 export const useUsers = () => {
   const sdk = useSdk()
-  const cachePath = ['users']
+  const cacheKey = 'users'
 
   const {
     data: users = { status: AsyncStatus.NotInitialized, data: [], error: null },
     set: setUsers
-  } = useCache(cachePath)
+  } = useCache(cacheKey)
 
   const load = useCallback(() => {
     setUsers({ status: AsyncStatus.Loading, data: [], error: null })

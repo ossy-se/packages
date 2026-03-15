@@ -4,8 +4,8 @@ import { AsyncStatus } from './asyncStatus'
 import { useSdk } from './useSdk'
 import { removeBy } from './removeBy'
 
-const statusPath = ['apiTokens', 'status']
-const dataPath = ['apiTokens', 'data']
+const statusCacheKey = 'apiTokens:status'
+const dataCacheKey = 'apiTokens:data'
 
 export const useApiTokens = () => {
   const sdk = useSdk()
@@ -13,12 +13,12 @@ export const useApiTokens = () => {
   const {
     data: status = AsyncStatus.NotInitialized,
     set: setStatus
-  } = useCache(statusPath)
+  } = useCache(statusCacheKey)
 
   const {
     data: tokens = [],
     set: setTokens
-  } = useCache(dataPath)
+  } = useCache(dataCacheKey)
 
   const createApiToken = useCallback(
     (token: {
