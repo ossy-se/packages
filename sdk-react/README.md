@@ -5,32 +5,32 @@ with react hooks you can use to fetch data.
 
 ## Getting started
 
-To use these hooks install the package **@ossy/cms-client-react**
+To use these hooks install the package **@ossy/sdk-react** along with **@ossy/sdk**:
 
 ```
-npm install @ossy/cms-client-react
+npm install @ossy/sdk-react @ossy/sdk
 ```
 
-Then we simply need to wrap our app in a <WorkspaceProvider /> that will
-handle data storage and configuration for us.
-You will need the workspaceId for the workspace you want to fetch data from.
-The workspaceId can be found in the list of workspaces you have access to or
-in the url when you view the resources in the UI.
+Create an SDK instance and wrap your app in `<WorkspaceProvider />` to handle
+data storage and configuration:
 
-```
+```jsx
 // App.jsx
-import { WorkspaceProvider } from '@ossy/cms-client-react'
+import { WorkspaceProvider } from '@ossy/sdk-react'
+import { SDK } from '@ossy/sdk'
 import { MyComponent } from './MyComponent.jsx'
 
+const sdk = new SDK({ baseUrl: 'https://your-api.example.com' })
+
 export const App = () => (
-  <WorkspaceProvider workspaceId="your-workspace-id">
+  <WorkspaceProvider sdk={sdk}>
     <MyComponent />
   </WorkspaceProvider>
 )
 ```
-```
+```jsx
 // MyComponent.jsx
-import { useResources } from '@ossy/cms-client-react'
+import { useResources } from '@ossy/sdk-react'
 
 export const MyComponent = () => {
   const { status, resources } = useResources('/folder/path/in/cms')
@@ -62,12 +62,12 @@ export const MyComponent = () => {
 ### useResources
 
 ```
-const { status, resources } = useResources('/')
+const { status, resources, loadResources } = useResources('/')
 ```
 
 **Parameters**
 
-- **path** - Folder path in the cms UI
+- **path** - (optional) Folder path in the cms UI. Defaults to `/` when omitted.
 
 **Returns**
 
@@ -78,6 +78,7 @@ Returns an object containing
   Possible values are: NotInitialized, Loading, Success, Error
 - **resources** - Array of resources, defaults to an empty array when
   loading is not Success
+- **loadResources** - Function to manually refetch the resource list
 
 ### useResource
 
