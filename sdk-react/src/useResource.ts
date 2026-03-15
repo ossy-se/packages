@@ -17,6 +17,11 @@ export const useResource = (id: string) => {
     [id]
   )
 
+  const errorCachePath = useMemo(
+    () => ['resource', id, 'error'],
+    [id]
+  )
+
   const {
     data: status = AsyncStatus.NotInitialized,
     set: setStatus
@@ -26,6 +31,11 @@ export const useResource = (id: string) => {
     data: resource = {},
     set: setResource
   } = useCache(dataCachePath)
+
+  const {
+    data: error = null,
+    set: setError
+  } = useCache(errorCachePath, null)
 
   const {
     loadResource: _loadResource,
@@ -38,16 +48,19 @@ export const useResource = (id: string) => {
   const loadResource = useCallback(() => {
     setStatus(AsyncStatus.Loading)
     setResource({})
+    setError(null)
     _loadResource(id)
       .then((resource: any) => {
         setStatus(AsyncStatus.Success)
         setResource(resource)
+        setError(null)
       })
-      .catch(() => {
+      .catch((err: unknown) => {
         setStatus(AsyncStatus.Error)
         setResource({})
+        setError(err instanceof Error ? err : new Error(String(err)))
       })
-  }, [id, _loadResource])
+  }, [id, _loadResource, setStatus, setResource, setError])
 
   const removeResource = useCallback(
     () => _removeResource(id)
@@ -76,7 +89,7 @@ export const useResource = (id: string) => {
         setResource(resource)
         return resource
       })
-  }, [id ])
+  }, [id, _access])
 
   useEffect(() => {
     if (!id) return
@@ -89,6 +102,7 @@ export const useResource = (id: string) => {
   return {
     status,
     resource,
+    error,
     loadResource,
     removeResource,
     updateResourceContent,

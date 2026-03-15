@@ -17,6 +17,11 @@ export const useQuery = (incomingQuery: any) => {
     [queryString]
   )
 
+  const errorCachePath = useMemo(
+    () => ['queries', queryString, 'error'],
+    [queryString]
+  )
+
   const {
     data: status,
     set: setStatus
@@ -27,21 +32,31 @@ export const useQuery = (incomingQuery: any) => {
     set: setResources
   } = useCache(dataCachePath, [])
 
+  const {
+    data: error,
+    set: setError
+  } = useCache(errorCachePath, null)
+
   const loadResources = useCallback((query: any) => {
     setStatus(AsyncStatus.Loading)
+    setError(null)
     sdk.resources.get(query)
       .then((resources: any) => {
         setStatus(AsyncStatus.Success)
         setResources(resources)
+        setError(null)
       })
-      .catch(() => { setStatus(AsyncStatus.Error) })
-  }, [sdk])
+      .catch((err: unknown) => {
+        setStatus(AsyncStatus.Error)
+        setError(err instanceof Error ? err : new Error(String(err)))
+      })
+  }, [sdk, setStatus, setResources, setError])
 
   useEffect(() => {
     if (!incomingQuery) return
     if (status !== AsyncStatus.NotInitialized) return
     loadResources(incomingQuery)
-  }, [incomingQuery, status])
+  }, [incomingQuery, status, loadResources])
 
-  return { status, resources }
+  return { status, resources, error, loadResources }
 }
