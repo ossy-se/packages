@@ -79,10 +79,8 @@ export const useAuthentication = () => {
     [sdk]
   )
 
-  useEffect(() => {
-    if (status !== AuthenticationStatus.NotInitialized) return
+  const checkAuth = useCallback(() => {
     setStatus(() => AuthenticationStatus.Verifying)
-
     sdk.auth.getAuthenticatedUser()
       .then((user: any) => {
         if (!user) return Promise.reject()
@@ -91,8 +89,12 @@ export const useAuthentication = () => {
       .catch(() => {
         setStatus(() => AuthenticationStatus.NotAuthenticated)
       })
+  }, [sdk])
 
-  }, [status])
+  useEffect(() => {
+    if (status !== AuthenticationStatus.NotInitialized) return
+    checkAuth()
+  }, [status, checkAuth])
 
   return {
     status,

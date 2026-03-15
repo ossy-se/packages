@@ -41,7 +41,7 @@ export const useQuery = (incomingQuery: any) => {
     if (!incomingQuery) return
     if (status !== AsyncStatus.NotInitialized) return
     loadResources(incomingQuery)
-  }, [incomingQuery, status])
+  }, [incomingQuery, status, loadResources])
 
-  return { status, resources }
+  return { status, resources, loadResources }
 }
