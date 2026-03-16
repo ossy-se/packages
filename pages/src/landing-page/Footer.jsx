@@ -7,7 +7,7 @@ export const Footer = ({
   return (
     <View layout="row" placeContent="normal space-between" gap="xl" className="footer">
 
-      <style href="@ossy/design-system-extras/footer" precedence="high" >
+      <style href="@ossy/pages/footer" precedence="high" >
         {`
           .footer {
             padding: var(--space-s);

@@ -1,10 +1,10 @@
 {
-  "name": "@ossy/design-system-extras",
+  "name": "@ossy/pages",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ossy-se/packages.git"
   },
-  "description": "Ossy's React Design System Extra Components",
+  "description": "Ossy's page templates and layouts",
   "version": "0.9.1",
   "source": "src/index.js",
   "type": "module",

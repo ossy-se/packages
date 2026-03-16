@@ -2,7 +2,7 @@ import React from 'react'
 import { Resume } from './Resume.jsx'
 
 export default {
-  title: 'Design System Extras/Resume',
+  title: 'Pages/Resume',
   component: Resume,
   parameters: {
    layout: 'fullscreen',

@@ -3,7 +3,7 @@ import { WorkspaceProvider } from '@ossy/sdk-react'
 import { Resume } from './Resume.jsx'
 
 export default {
-  title: 'Resume',
+  title: 'Connected Components/Resume',
   component: Resume,
   args: { workspaceId: '36zDqF0TKZZ5KkJdyg7NH' },
   parameters: {

@@ -3,7 +3,7 @@ import { Page } from "@ossy/design-system"
 import { LandingPage2020 } from './LandingPage.jsx'
 
 export default {
-  title: 'Design System Extras/Landing Page',
+  title: 'Pages/Landing Page',
   parameters: {
    layout: 'fullscreen',
  },

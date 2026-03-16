@@ -3,7 +3,7 @@ import { ThemeDisplay } from './ThemeDisplay.jsx'
 import { CloudLight } from '@ossy/themes'
 
 export default {
-  title: 'Design System Extras/Theme Display',
+  title: 'Pages/Theme Display',
   component: ThemeDisplay,
   parameters: {
    layout: 'fullscreen',

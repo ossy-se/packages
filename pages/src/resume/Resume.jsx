@@ -83,10 +83,10 @@ export const Resume = ({
   }
 
   return (
-    <div data-component="@design-system-extras/resume" data-status={status}>
+    <div data-component="@ossy/pages/resume" data-status={status}>
 
-      <style href="@design-system-extras/resume" precedence="high">{`
-        [data-component="@design-system-extras/resume"] {
+      <style href="@ossy/pages/resume" precedence="high">{`
+        [data-component="@ossy/pages/resume"] {
 
           --padding: var(--resume-padding, 0);
           --background: var(--resume-background, transparent);
@@ -106,7 +106,7 @@ export const Resume = ({
             "content";
         }
 
-        [data-component="@design-system-extras/resume"] [data-slot="actions"] {
+        [data-component="@ossy/pages/resume"] [data-slot="actions"] {
           min-width: 0;
           box-sizing: border-box;
           grid-area: actions;
@@ -116,21 +116,21 @@ export const Resume = ({
           padding: var(--header-padding);
         }
 
-        [data-component="@design-system-extras/resume"] [data-slot="actions"]::-webkit-scrollbar {
+        [data-component="@ossy/pages/resume"] [data-slot="actions"]::-webkit-scrollbar {
           display: none;
         }
 
-        [data-component="@design-system-extras/resume"] .secondary-actions {
+        [data-component="@ossy/pages/resume"] .secondary-actions {
           display: none;
           gap: var(--space-s);
         }
 
-        [data-component="@design-system-extras/resume"] [data-slot="profile-summary"] {
+        [data-component="@ossy/pages/resume"] [data-slot="profile-summary"] {
           grid-area: profile-summary;
           z-index: 1;
         }
 
-        [data-component="@design-system-extras/resume"] [data-slot="content"] {
+        [data-component="@ossy/pages/resume"] [data-slot="content"] {
           display: flex;
           width: 100%;
           flex-direction: column;
@@ -143,7 +143,7 @@ export const Resume = ({
           background: var(--content-background);
         }
 
-        [data-component="@design-system-extras/resume"] [data-animation="fade-in"] {
+        [data-component="@ossy/pages/resume"] [data-animation="fade-in"] {
           opacity: 0;
           transition-property: opacity, transform;
           transition-duration: 1s, 1s;
@@ -151,20 +151,20 @@ export const Resume = ({
           transform: translateZ(0);
         }
 
-        [data-component="@design-system-extras/resume"] [data-scroll] {
+        [data-component="@ossy/pages/resume"] [data-scroll] {
           scrollbar-width: none;
           overflow-y: auto;
         }
 
-        [data-component="@design-system-extras/resume"] [data-scroll]::-webkit-scrollbar {
+        [data-component="@ossy/pages/resume"] [data-scroll]::-webkit-scrollbar {
           display: none;
         }
 
-        [data-component="@design-system-extras/resume"][data-status="Success"] [data-animation="fade-in"] {
+        [data-component="@ossy/pages/resume"][data-status="Success"] [data-animation="fade-in"] {
           opacity: 1;
         }
 
-        [data-component="@design-system-extras/resume"] .content-section {
+        [data-component="@ossy/pages/resume"] .content-section {
           display: flex;
           flex-direction: column;
           gap: var(--space-l);
@@ -173,7 +173,7 @@ export const Resume = ({
         }
 
         @media (min-width: 1200px) {
-          [data-component="@design-system-extras/resume"] {
+          [data-component="@ossy/pages/resume"] {
             height: 100vh;
             grid-template-columns: 400px 1fr;
             grid-template-rows: min-content 1fr;
@@ -182,17 +182,17 @@ export const Resume = ({
               "profile-summary content";
           }
 
-          [data-component="@design-system-extras/resume"] [data-slot="actions"] {
+          [data-component="@ossy/pages/resume"] [data-slot="actions"] {
             justify-content: space-between;
           }
 
-          [data-component="@design-system-extras/resume"] .secondary-actions {
+          [data-component="@ossy/pages/resume"] .secondary-actions {
             display: flex;
           }
         }
 
         @media (min-width: 1900px) {
-          [data-component="@design-system-extras/resume"] [data-slot="content"] {
+          [data-component="@ossy/pages/resume"] [data-slot="content"] {
             grid-column-start: profile-summary;
             grid-column-end: content;
             grid-row-start: content;

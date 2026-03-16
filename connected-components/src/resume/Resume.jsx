@@ -1,5 +1,5 @@
 import React from 'react'
-import { Resume as _Resume } from '@ossy/design-system-extras'
+import { Resume as _Resume } from '@ossy/pages'
 import { useResume } from './useResume.js'
 
 export const Resume = ({

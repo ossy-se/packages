@@ -9,7 +9,7 @@ export const Hero = ({
 }) => (
   <div data-component="hero">
 
-    <style href="@ossy/design-system-extras/hero" precedence="high">
+    <style href="@ossy/pages/hero" precedence="high">
       {`
       [data-component="hero"] {
           display: flex;

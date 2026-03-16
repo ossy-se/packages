@@ -12,7 +12,7 @@ on:
         - cli
         - connected-components
         - design-system
-        - design-system-extras
+        - pages
         - eslint-config-ossy
         - resource-templates
         - router

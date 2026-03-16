@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const config = {
   stories: [
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../design-system-extras/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../pages/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../connected-components/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
