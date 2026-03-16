@@ -41,6 +41,23 @@ const createMaxWidthCss = theme => css => {
   )
 }
 
+const createSurfaceVars = theme => css => {
+  const surfaces = theme.surfaces
+  if (!surfaces) return ''
+  const vars = Object.entries(surfaces)
+    .filter(([, rules]) => rules && typeof rules.background === 'string')
+    .map(([name, rules]) => `--surface-${name}: ${rules.background};`)
+    .join('\n    ')
+  if (!vars) return ''
+  return css + (
+`
+  :root {
+    ${vars}
+  }
+`
+  )
+}
+
 const createRestVars = theme => css => {
   const vars = createCssVars(theme)
   return css + (
@@ -54,11 +71,13 @@ const createRestVars = theme => css => {
 
 export const createCss = (theme, options) => {
   if (!theme) return ''
+  const restTheme = { ...theme, maxWidth: undefined, 'max-width': undefined, surfaces: undefined, space: undefined, surface: undefined }
   return [
     createSpacingCss(theme),
     createMaxWidthCss(theme),
+    createSurfaceVars(theme),
     createSurfacesCss(theme),
-    createRestVars({ ...theme, maxWidth: undefined, 'max-width': undefined, surfaces: undefined, space: undefined }),
+    createRestVars(restTheme),
   ].reduce((css, fn) => fn(css), '')
 }
 

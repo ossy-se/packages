@@ -12,8 +12,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "storybook dev -p 6006",
-    "build:storybook": "storybook build",
     "build": "rollup -c rollup.config.js",
     "test": ""
   },
@@ -30,11 +28,15 @@
     ]
   },
   "devDependencies": {
-    "@ossy/themes": "^0.9.1"
+    "@ossy/themes": "^0.9.1",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0"
   },
   "peerDependencies": {
     "react": ">=19.0.0 <20.0.0",
-    "react-dom": ">=19.0.0 <20.0.0"
+    "react-dom": ">=19.0.0 <20.0.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0"
   },
   "publishConfig": {
     "access": "public",

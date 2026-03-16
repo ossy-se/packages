@@ -1,10 +1,10 @@
-import { Standard } from './standard.js'
+import { base } from './base.js'
 import { topography } from './patterns/index.js'
 
+/** Standard dark theme */
 export const CloudDark = {
-
-  space: Standard.space,
-  'max-width': Standard['max-width'],
+  space: base.space,
+  'max-width': base['max-width'],
 
   color: {
     foreground: {
@@ -29,7 +29,7 @@ export const CloudDark = {
   },
 
   surfaces: {
-    ...Standard.surfaces,
+    ...base.surfaces,
 
     base: {
       background: 'hsl(207, 95%, 10%)',
@@ -67,10 +67,6 @@ export const CloudDark = {
 
   },
 
-  separator: {
-    primary: 'hsl(203, 50%, 15%)',
-    accent: 'hsl(23, 100%, 53%)'
-  },
 
   title: {
 
@@ -284,7 +280,7 @@ export const CloudDark = {
 
     hero: {
       'background': `
-        ${topography},
+        ${topography()},
         linear-gradient(321deg, hsl(200, 80%, 85%) 0%, hsl(200, 100%, 97%) 20%, hsl(15, 100%, 95%) 80%, hsl(15, 100%, 85%) 100%)
       `,
       'border-color': 'transparent',

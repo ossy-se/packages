@@ -12,15 +12,11 @@
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "license": "MIT",
   "scripts": {
-    "start": "storybook dev -p 6006",
     "build": "rollup -c rollup.config.js",
     "build:addons2": "rollup -c ./src/addons/rollup.config.js",
     "build:addons": "babel --no-babelrc babelrc.addons.js ./src/addons --out-dir ./storybook",
     "test": "",
-    "build:storybook": "storybook build",
-    "lint": "eslint '**/*.(js|jsx)'",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "lint": "eslint '**/*.(js|jsx)'"
   },
   "browserslist": {
     "production": [
@@ -41,9 +37,7 @@
   "peerDependencies": {
     "@ossy/design-system": ">=0.0.1 <1.0.0",
     "react": ">=19.0.0 <20.0.0",
-    "react-dom": ">=19.0.0 <20.0.0",
-    "react-markdown": "^10.1.0",
-    "react-syntax-highlighter": "^16.1.0"
+    "react-dom": ">=19.0.0 <20.0.0"
   },
   "publishConfig": {
     "access": "public",

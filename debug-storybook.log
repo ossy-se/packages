@@ -1,0 +1,28 @@
+[19:06:09.792] [INFO] storybook v10.2.16
+[19:06:10.046] [DEBUG] Getting package.json info for /Users/oskarssylwan/Projects/packages/package.json...
+[19:06:10.054] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
+[19:06:10.057] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
+[19:06:10.251] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
+[19:06:10.252] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
+[19:06:10.645] [INFO] Starting...
+[19:06:10.678] [WARN] No story files found for the specified pattern: [34mconnected-components/src/**/*.mdx[39m
+[19:06:10.679] [WARN] No story files found for the specified pattern: [34mdesign-system-extras/src/**/*.mdx[39m
+[19:06:10.683] [WARN] No story files found for the specified pattern: [34mdesign-system/src/**/*.mdx[39m
+[19:06:10.912] [ERROR] [38;2;241;97;97mError: Build failed with 2 errors:
+.storybook/manager.js:1:23: ERROR: Could not resolve "@storybook/manager-api"
+.storybook/manager.js:2:23: ERROR: Could not resolve "@storybook/theming/create"[39m
+    at failureErrorWithLog (./node_modules/esbuild/lib/main.js:1467:15)
+    at ./node_modules/esbuild/lib/main.js:926:25
+    at runOnEndCallbacks (./node_modules/esbuild/lib/main.js:1307:45)
+    at buildResponseToResult (./node_modules/esbuild/lib/main.js:924:7)
+    at ./node_modules/esbuild/lib/main.js:951:16
+    at responseCallbacks.<computed> (./node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (./node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (./node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+[19:06:10.914] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[19:06:10.916] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
+[19:06:10.916] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
+[19:06:18.203] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":false}

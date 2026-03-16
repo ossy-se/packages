@@ -12,9 +12,7 @@
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "test": "",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "test": ""
   },
   "browserslist": {
     "production": [

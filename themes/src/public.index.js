@@ -1,2 +1,3 @@
 export * from './cloud-light.js'
-export * from './minimal.js'
+export * from './cloud-dark.js'
+export * from './normalizeTheme.js'
