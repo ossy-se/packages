@@ -23,6 +23,8 @@ export const dev = async (cliArgs) => {
     const options = arg({
         '--source': String,
         '--s': '--source',
+        '--pages': String,
+        '--p': '--pages',
 
         '--destination': String,
         '--d': '--destination',
@@ -32,6 +34,8 @@ export const dev = async (cliArgs) => {
       }, { argv: cliArgs, permissive: true })
 
 
+    const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
+    const pagesSourcePath = path.resolve(options['--pages'] || 'src/pages.jsx');
     const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
@@ -39,14 +43,21 @@ export const dev = async (cliArgs) => {
     const buildPath = path.resolve(options['--destination'] || 'build');
     const publicDir = path.resolve('public')
 
-    const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
     const inputClient = path.resolve(scriptDir, 'client.js')
     const inputServer = path.resolve(scriptDir, 'server.js')
 
     const inputFiles = [inputClient, inputServer]
 
-    if (!fs.existsSync(appSourcePath)) {
-        throw new Error(`[@ossy/app][build] Source path does not exist: ${appSourcePath}`);
+    const usePagesMode = fs.existsSync(pagesSourcePath)
+    const useAppMode = fs.existsSync(appSourcePath)
+    const resolvedAppSourcePath = useAppMode
+      ? appSourcePath
+      : usePagesMode
+        ? path.resolve(scriptDir, 'default-app.jsx')
+        : null
+
+    if (!resolvedAppSourcePath) {
+        throw new Error(`[@ossy/app][dev] No entry found. Create either src/App.jsx or src/pages.jsx`);
     }
 
     if (!fs.existsSync(apiSourcePath)) {
@@ -69,8 +80,13 @@ export const dev = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/app/source-file': appSourcePath,
+            '@ossy/app/source-file': resolvedAppSourcePath,
           }),
+          ...(usePagesMode ? [replace({
+            preventAssignment: true,
+            delimiters: ['%%', '%%'],
+            '@ossy/pages/source-file': pagesSourcePath,
+          })] : []),
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],

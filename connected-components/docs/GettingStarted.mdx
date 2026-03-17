@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Getting Started
 
-The App component is the main entry point for applications in the **Ossy Ecosystem**. It provides routing, theming, workspace context, and SDK integration out of the box.
+The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK integration. Use either a **page-centric** setup (recommended) or the `App` component directly.
 
 ## Installation
 
@@ -12,7 +12,24 @@ The App component is the main entry point for applications in the **Ossy Ecosyst
 npm install @ossy/connected-components @ossy/design-system @ossy/themes @ossy/router-react @ossy/sdk @ossy/sdk-react
 ```
 
-## Basic Setup
+## Page-centric (recommended)
+
+With `@ossy/app`, create `src/pages.jsx` — no App.jsx needed:
+
+```jsx
+import React from 'react'
+
+export default [
+  { id: 'home', path: '/', element: <HomePage /> },
+  { id: 'about', path: '/about', element: <AboutPage /> },
+]
+```
+
+The build uses the default app wrapper with your pages. Add `src/config.js` for `workspaceId`, `theme`, etc.
+
+## App component
+
+For full control, use the `App` component directly:
 
 ```jsx
 import { App } from '@ossy/connected-components';
@@ -22,15 +39,9 @@ export default () => (
   <App
     workspaceId="your-workspace-id"
     theme={CloudLight}
-    routes={[
-      {
-        path: '/',
-        element: <HomePage />,
-      },
-      {
-        path: '/about',
-        element: <AboutPage />,
-      },
+    pages={[
+      { id: 'home', path: '/', element: <HomePage /> },
+      { id: 'about', path: '/about', element: <AboutPage /> },
     ]}
   />
 );
@@ -43,7 +54,8 @@ export default () => (
 | `workspaceId` | Your workspace identifier |
 | `theme` | Theme object (e.g. `CloudLight`, `CloudDark`) |
 | `themes` | Multiple themes for switching via `useTheme` |
-| `routes` | Array of route configs with `path` and `element` |
+| `pages` | Array of page configs with `id`, `path`, and `element` |
+| `routes` | Legacy: array of route configs with `path` and `element` (converted to pages) |
 | `apiUrl` | Optional API base URL |
 | `devMode` | Enables theme editor when `true` |
 
@@ -58,6 +70,6 @@ Use themes from `@ossy/themes` or pass custom theme objects. For multiple themes
     light: CloudLight,
     dark: CloudDark,
   }}
-  routes={routes}
+  pages={pages}
 />
 ```

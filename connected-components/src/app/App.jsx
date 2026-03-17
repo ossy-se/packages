@@ -7,8 +7,25 @@ import { defaultAppSettings } from './AppSettings.jsx'
 import { Router } from '@ossy/router-react'
 import { AppContext } from './AppContext.js'
 
+function routesToPages(routes) {
+  if (!routes?.length) return []
+  return routes.map((route, i) => {
+    const path = typeof route.path === 'string' ? route.path : route.path?.en ?? '/'
+    const id = route.id ?? (path === '/' ? 'home' : path.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-') || `page-${i}`)
+    return {
+      id,
+      path: route.path,
+      element: route.element,
+      render: route.render ?? (() => route.element),
+    }
+  })
+}
+
 export const App = (_appSettings) => {
   const appSettings = { ...defaultAppSettings(), ..._appSettings }
+  const pages = appSettings.pages?.length
+    ? appSettings.pages
+    : routesToPages(appSettings.routes)
 
   const sdk = SDK.of({
     apiUrl: appSettings.apiUrl,
@@ -19,7 +36,7 @@ export const App = (_appSettings) => {
     <AppContext.Provider value={appSettings}>
       <Theme theme={appSettings.theme} themes={appSettings.themes}>
         <WorkspaceProvider sdk={sdk}>
-          <Router {...appSettings} />
+          <Router {...appSettings} pages={pages} />
           { appSettings.devMode && <ThemeEditor />}
         </WorkspaceProvider>
       </Theme>

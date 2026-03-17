@@ -2,6 +2,34 @@
 
 Server-side rendering runtime for Ossy apps.
 
+## Page-centric setup (recommended)
+
+Create `src/pages.jsx` — no App.jsx required:
+
+```jsx
+import React from 'react'
+
+export default [
+  { id: 'home', path: '/', element: <HomePage /> },
+  { id: 'about', path: '/about', element: <AboutPage /> },
+]
+```
+
+Add `src/config.js` for workspace and theme:
+
+```js
+export default {
+  workspaceId: 'your-workspace-id',
+  theme: 'light', // or import CloudLight from '@ossy/themes'
+}
+```
+
+Run `npx @ossy/app dev` or `npx @ossy/app build`.
+
+## App-centric setup (optional)
+
+For full control, create `src/App.jsx` and use the `App` component from `@ossy/connected-components` directly. The build will use your App when it exists.
+
 ## Port configuration
 
 By default, the server listens on port **3000**.

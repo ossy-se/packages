@@ -7,6 +7,7 @@ export function defaultAppSettings() {
       theme: undefined,
       themes: undefined,
       routes: [],
+      pages: [],
       initialEntries: [],
       initialIndex: 0,
       router: 'browser',
