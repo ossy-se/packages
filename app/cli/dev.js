@@ -22,8 +22,6 @@ export const dev = async (cliArgs) => {
     console.log('[@ossy/app][dev] Starting...')
 
     const options = arg({
-        '--source': String,
-        '--s': '--source',
         '--pages': String,
         '--p': '--pages',
 
@@ -37,7 +35,6 @@ export const dev = async (cliArgs) => {
 
     const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
     const pagesSourcePath = path.resolve(options['--pages'] || 'src/pages.jsx');
-    const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
@@ -49,19 +46,11 @@ export const dev = async (cliArgs) => {
 
     const inputFiles = [inputClient, inputServer]
 
-    const usePagesMode = fs.existsSync(pagesSourcePath)
-    const useAppMode = fs.existsSync(appSourcePath)
-    const resolvedAppSourcePath = useAppMode
-      ? appSourcePath
-      : usePagesMode
-        ? path.resolve(scriptDir, 'default-app.jsx')
-        : null
-
-    if (!resolvedAppSourcePath) {
-        throw new Error(`[@ossy/app][dev] No entry found. Create either src/App.jsx or src/pages.jsx`);
+    if (!fs.existsSync(pagesSourcePath)) {
+        throw new Error(`[@ossy/app][dev] Pages file not found. Create src/pages.jsx`);
     }
 
-    printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath });
+    printBuildOverview({ pagesSourcePath, apiSourcePath, configPath });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')
@@ -83,13 +72,13 @@ export const dev = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/app/source-file': resolvedAppSourcePath,
+            '@ossy/app/source-file': path.resolve(scriptDir, 'default-app.jsx'),
           }),
-          ...(usePagesMode ? [replace({
+          replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
             '@ossy/pages/source-file': pagesSourcePath,
-          })] : []),
+          }),
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],

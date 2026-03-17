@@ -49,46 +49,28 @@ export function parsePagesFromSource(filePath) {
   }
 }
 
-export function printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath }) {
+export function printBuildOverview({ pagesSourcePath, apiSourcePath, configPath }) {
   const rel = (p) => path.relative(process.cwd(), p)
   console.log('\n  \x1b[1mBuild overview\x1b[0m')
   console.log('  ' + '─'.repeat(50))
-  if (useAppMode) {
-    console.log(`  \x1b[36mEntry:\x1b[0m  App (${rel(appSourcePath)})`)
-  } else {
-    console.log(`  \x1b[36mEntry:\x1b[0m  Pages (${rel(pagesSourcePath)})`)
-  }
+  console.log(`  \x1b[36mPages:\x1b[0m ${rel(pagesSourcePath)}`)
   if (fs.existsSync(configPath)) {
     console.log(`  \x1b[36mConfig:\x1b[0m ${rel(configPath)}`)
   }
   console.log('  ' + '─'.repeat(50))
 
-  if (useAppMode) {
-    const routes = parsePagesFromSource(appSourcePath)
-    if (routes.length > 0) {
-      console.log('  \x1b[36mRoutes:\x1b[0m')
-      const maxId = Math.max(6, ...routes.map((p) => String(p.id).length))
-      const maxPath = Math.max(6, ...routes.map((p) => String(p.path).length))
-      routes.forEach((p) => {
-        const id = String(p.id).padEnd(maxId)
-        const pathStr = String(p.path).padEnd(maxPath)
-        console.log(`    ${id}  ${pathStr}`)
-      })
-    }
-  } else if (usePagesMode) {
-    const pages = parsePagesFromSource(pagesSourcePath)
-    if (pages.length > 0) {
-      console.log('  \x1b[36mPages:\x1b[0m')
-      const maxId = Math.max(6, ...pages.map((p) => String(p.id).length))
-      const maxPath = Math.max(6, ...pages.map((p) => String(p.path).length))
-      pages.forEach((p) => {
-        const id = String(p.id).padEnd(maxId)
-        const pathStr = String(p.path).padEnd(maxPath)
-        console.log(`    ${id}  ${pathStr}`)
-      })
-    } else {
-      console.log('  \x1b[33mPages:\x1b[0m (could not parse or empty)')
-    }
+  const pages = parsePagesFromSource(pagesSourcePath)
+  if (pages.length > 0) {
+    console.log('  \x1b[36mRoutes:\x1b[0m')
+    const maxId = Math.max(6, ...pages.map((p) => String(p.id).length))
+    const maxPath = Math.max(6, ...pages.map((p) => String(p.path).length))
+    pages.forEach((p) => {
+      const id = String(p.id).padEnd(maxId)
+      const pathStr = String(p.path).padEnd(maxPath)
+      console.log(`    ${id}  ${pathStr}`)
+    })
+  } else {
+    console.log('  \x1b[33mRoutes:\x1b[0m (could not parse or empty)')
   }
 
   if (fs.existsSync(apiSourcePath)) {
@@ -107,8 +89,6 @@ export const build = async (cliArgs) => {
     console.log('[@ossy/app][build] Starting...')
 
     const options = arg({
-        '--source': String,
-        '--s': '--source',
         '--pages': String,
         '--p': '--pages',
 
@@ -122,7 +102,6 @@ export const build = async (cliArgs) => {
 
     const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
     const pagesSourcePath = path.resolve(options['--pages'] || 'src/pages.jsx');
-    const appSourcePath = path.resolve(options['--source'] || 'src/App.jsx');
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
@@ -134,22 +113,12 @@ export const build = async (cliArgs) => {
 
     const inputFiles = [inputClient, inputServer]
 
-    // Page-centric: use default app when pages.jsx exists (with or without App.jsx)
-    // App-centric: use App.jsx when it exists
-    const usePagesMode = fs.existsSync(pagesSourcePath)
-    const useAppMode = fs.existsSync(appSourcePath)
-
-    const resolvedAppSourcePath = useAppMode
-      ? appSourcePath
-      : usePagesMode
-        ? path.resolve(scriptDir, 'default-app.jsx')
-        : null
-
-    if (!resolvedAppSourcePath) {
-        throw new Error(`[@ossy/app][build] No entry found. Create either src/App.jsx or src/pages.jsx`);
+    if (!fs.existsSync(pagesSourcePath)) {
+        throw new Error(`[@ossy/app][build] Pages file not found. Create src/pages.jsx`);
     }
 
-    printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath });
+    const appEntryPath = path.resolve(scriptDir, 'default-app.jsx')
+    printBuildOverview({ pagesSourcePath, apiSourcePath, configPath });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')
@@ -171,13 +140,13 @@ export const build = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/app/source-file': resolvedAppSourcePath,
+            '@ossy/app/source-file': appEntryPath,
           }),
-          ...(usePagesMode ? [replace({
+          replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
             '@ossy/pages/source-file': pagesSourcePath,
-          })] : []),
+          }),
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],

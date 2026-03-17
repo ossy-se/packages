@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Getting Started
 
-The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK integration. Use either a **page-centric** setup (recommended) or the `App` component directly.
+The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK integration.
 
 ## Installation
 
@@ -12,9 +12,9 @@ The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK int
 npm install @ossy/connected-components @ossy/design-system @ossy/themes @ossy/router-react @ossy/sdk @ossy/sdk-react
 ```
 
-## Page-centric (recommended)
+## Setup with @ossy/app
 
-With `@ossy/app`, create `src/pages.jsx` — no App.jsx needed:
+Create `src/pages.jsx`:
 
 ```jsx
 import React from 'react'
@@ -25,11 +25,11 @@ export default [
 ]
 ```
 
-The build uses the default app wrapper with your pages. Add `src/config.js` for `workspaceId`, `theme`, etc.
+Add `src/config.js` for `workspaceId`, `theme`, etc. Run `npx @ossy/app dev` or `npx @ossy/app build`.
 
 ## App component
 
-For full control, use the `App` component directly:
+The `App` component wraps routing, theming, and SDK. With `@ossy/app`, it's used internally. For custom setups, you can use it directly:
 
 ```jsx
 import { App } from '@ossy/connected-components';
@@ -55,7 +55,6 @@ export default () => (
 | `theme` | Theme object (e.g. `CloudLight`, `CloudDark`) |
 | `themes` | Multiple themes for switching via `useTheme` |
 | `pages` | Array of page configs with `id`, `path`, and `element` |
-| `routes` | Legacy: array of route configs with `path` and `element` (converted to pages) |
 | `apiUrl` | Optional API base URL |
 | `devMode` | Enables theme editor when `true` |
 

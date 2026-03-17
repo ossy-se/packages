@@ -2,9 +2,9 @@
 
 Server-side rendering runtime for Ossy apps.
 
-## Page-centric setup (recommended)
+## Setup
 
-Create `src/pages.jsx` — no App.jsx required:
+Create `src/pages.jsx`:
 
 ```jsx
 import React from 'react'
@@ -25,10 +25,6 @@ export default {
 ```
 
 Run `npx @ossy/app dev` or `npx @ossy/app build`.
-
-## App-centric setup (optional)
-
-For full control, create `src/App.jsx` and use the `App` component from `@ossy/connected-components` directly. The build will use your App when it exists.
 
 ## Port configuration
 
