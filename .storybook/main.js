@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const config = {
   stories: [
     "../connected-components/docs/**/*.mdx",
+    "../types/docs/**/*.mdx",
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../pages/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../connected-components/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
@@ -14,6 +15,13 @@ const config = {
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-themes",
+    {
+      name: '@ts2doc/storybook-addon',
+      options: {
+        patternDocType: 'types/src/**/*.ts',
+        compilerOptions: {},
+      },
+    },
   ],
   framework: {
     name: "@storybook/react-vite",

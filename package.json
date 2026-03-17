@@ -27,6 +27,7 @@
     "@storybook/addon-docs": "^10.2.19",
     "@storybook/addon-themes": "^10.2.19",
     "@storybook/react-vite": "^10.2.19",
+    "@ts2doc/storybook-addon": "^0.4.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "autoprefixer": "^10.4.21",
