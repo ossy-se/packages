@@ -1,6 +1,8 @@
 # `@ossy/app`
 
-Server-side rendering runtime for Ossy apps.
+Server-side rendering runtime for Ossy apps. Use this when you want a convention-based setup with minimal configuration.
+
+For custom setups (Next.js, Vite, etc.), use `@ossy/connected-components` directly — see the [root README](../README.md#when-to-use-what).
 
 ## Setup
 
@@ -25,6 +27,31 @@ export default {
 ```
 
 Run `npx @ossy/app dev` or `npx @ossy/app build`.
+
+## API routes
+
+Create `src/api.js` to define custom API endpoints. Each route must have `id`, `path`, and a `handle(req, res)` function:
+
+```js
+export default [
+  {
+    id: 'health',
+    path: '/api/health',
+    handle(req, res) {
+      res.json({ status: 'ok' })
+    },
+  },
+  {
+    id: 'users',
+    path: '/api/users',
+    handle(req, res) {
+      res.json({ users: [] })
+    },
+  },
+]
+```
+
+API routes are matched before the app is rendered. The router supports dynamic segments (e.g. `path: '/api/users/:id'`); extract params from `req.originalUrl` if needed. Use paths that don't conflict with `/@ossy/*` (reserved for the internal proxy).
 
 ## Port configuration
 

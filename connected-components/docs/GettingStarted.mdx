@@ -6,6 +6,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK integration.
 
+## @ossy/app vs @ossy/connected-components
+
+- **@ossy/app** — Use when you want the fastest path: run `npx @ossy/app dev` with `src/pages.jsx` and `src/config.js`. It bundles your app, runs the dev server, and handles SSR.
+- **@ossy/connected-components** — Use when you have a custom setup (Next.js, Vite, Remix, etc.). Import the `App` component and wire it with your own bundler and server.
+
 ## Installation
 
 ```bash
