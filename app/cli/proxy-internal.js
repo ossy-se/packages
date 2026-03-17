@@ -37,7 +37,7 @@ export function ProxyInternal() {
         }
     
         if (req.originalUrl.startsWith('/@ossy/users/me/app-settings') && req.method === 'GET') {
-            LogService.Info({ message: `[UsersService][HandleUserAppSettings] METHOD ${req.method}` })
+            console.log(`[@ossy/app][proxy] GET /@ossy/users/me/app-settings`)
             const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
             res.status(200)
             res.json(userSettings)

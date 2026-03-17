@@ -108,6 +108,7 @@ app.all('*all', (req, res) => {
   if (apiRoute) {
     console.log(`[@ossy/app][server] Handling API route: ${pathname}`)
     apiRoute.handle(req, res)
+    return
   }
 
   const userAppSettings = req.userAppSettings || {}
