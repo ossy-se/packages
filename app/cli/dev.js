@@ -1,6 +1,7 @@
 import path from 'path';
 import url from 'url';
 import fs from 'fs';
+import { printBuildOverview } from './build.js';
 import { watch } from 'rollup';
 import babel from '@rollup/plugin-babel';
 import { nodeResolve as resolveDependencies } from '@rollup/plugin-node-resolve'
@@ -59,6 +60,8 @@ export const dev = async (cliArgs) => {
     if (!resolvedAppSourcePath) {
         throw new Error(`[@ossy/app][dev] No entry found. Create either src/App.jsx or src/pages.jsx`);
     }
+
+    printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')

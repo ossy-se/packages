@@ -16,6 +16,93 @@ import remove from 'rollup-plugin-delete';
 import arg from 'arg'
 // import inject from '@rollup/plugin-inject'
 
+export function parsePagesFromSource(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8')
+    const items = []
+    // Match { id: 'x', path: '/y' } or { id: "x", path: "/y" }
+    const idPathPattern = /\{\s*id\s*:\s*['"]([^'"]*)['"]\s*,\s*path\s*:\s*['"]([^'"]*)['"]/g
+    // Match { path: '/y', element: ... } (path-first)
+    const pathElementPattern = /\{\s*path\s*:\s*['"]([^'"]*)['"]\s*,\s*element\s*:/g
+    // Match { path: { en: '/x', sv: '/y' }, ... }
+    const pathObjPattern = /\{\s*path\s*:\s*\{\s*([^}]+)\}/g
+    let m
+    while ((m = idPathPattern.exec(content)) !== null) {
+      items.push({ id: m[1], path: m[2] })
+    }
+    if (items.length === 0) {
+      while ((m = pathElementPattern.exec(content)) !== null) {
+        const p = m[1]
+        const id = p === '/' ? 'home' : p.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-') || 'page'
+        items.push({ id, path: p })
+      }
+    }
+    if (items.length === 0) {
+      while ((m = pathObjPattern.exec(content)) !== null) {
+        const pathStr = m[1].replace(/\s/g, '').replace(/:/g, ': ')
+        items.push({ id: 'page', path: pathStr })
+      }
+    }
+    return items
+  } catch {
+    return []
+  }
+}
+
+export function printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath }) {
+  const rel = (p) => path.relative(process.cwd(), p)
+  console.log('\n  \x1b[1mBuild overview\x1b[0m')
+  console.log('  ' + '─'.repeat(50))
+  if (useAppMode) {
+    console.log(`  \x1b[36mEntry:\x1b[0m  App (${rel(appSourcePath)})`)
+  } else {
+    console.log(`  \x1b[36mEntry:\x1b[0m  Pages (${rel(pagesSourcePath)})`)
+  }
+  if (fs.existsSync(configPath)) {
+    console.log(`  \x1b[36mConfig:\x1b[0m ${rel(configPath)}`)
+  }
+  console.log('  ' + '─'.repeat(50))
+
+  if (useAppMode) {
+    const routes = parsePagesFromSource(appSourcePath)
+    if (routes.length > 0) {
+      console.log('  \x1b[36mRoutes:\x1b[0m')
+      const maxId = Math.max(6, ...routes.map((p) => String(p.id).length))
+      const maxPath = Math.max(6, ...routes.map((p) => String(p.path).length))
+      routes.forEach((p) => {
+        const id = String(p.id).padEnd(maxId)
+        const pathStr = String(p.path).padEnd(maxPath)
+        console.log(`    ${id}  ${pathStr}`)
+      })
+    }
+  } else if (usePagesMode) {
+    const pages = parsePagesFromSource(pagesSourcePath)
+    if (pages.length > 0) {
+      console.log('  \x1b[36mPages:\x1b[0m')
+      const maxId = Math.max(6, ...pages.map((p) => String(p.id).length))
+      const maxPath = Math.max(6, ...pages.map((p) => String(p.path).length))
+      pages.forEach((p) => {
+        const id = String(p.id).padEnd(maxId)
+        const pathStr = String(p.path).padEnd(maxPath)
+        console.log(`    ${id}  ${pathStr}`)
+      })
+    } else {
+      console.log('  \x1b[33mPages:\x1b[0m (could not parse or empty)')
+    }
+  }
+
+  if (fs.existsSync(apiSourcePath)) {
+    const apiRoutes = parsePagesFromSource(apiSourcePath)
+    if (apiRoutes.length > 0) {
+      console.log('  \x1b[36mAPI routes:\x1b[0m')
+      apiRoutes.forEach((r) => {
+        console.log(`    ${r.id}  ${r.path}`)
+      })
+    }
+  }
+  console.log('  ' + '─'.repeat(50) + '\n')
+}
+
 export const build = async (cliArgs) => {
     console.log('[@ossy/app][build] Starting...')
 
@@ -61,6 +148,8 @@ export const build = async (cliArgs) => {
     if (!resolvedAppSourcePath) {
         throw new Error(`[@ossy/app][build] No entry found. Create either src/App.jsx or src/pages.jsx`);
     }
+
+    printBuildOverview({ usePagesMode, useAppMode, pagesSourcePath, appSourcePath, resolvedAppSourcePath, apiSourcePath, configPath });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')
