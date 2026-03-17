@@ -14,7 +14,7 @@ const preview = {
     },
     options: {
       storySort: {
-        order: [['App', ['Getting Started']], 'Pages', 'Types', ['Design System', ['Layout', 'Feedback', 'Navigation', 'Actions', 'Display', 'Other', 'Inputs', 'Base']], '*'],
+        order: [['Overview'], ['App', ['Getting Started']], 'Pages', 'Types', ['Design System', ['Layout', 'Feedback', 'Navigation', 'Actions', 'Display', 'Other', 'Inputs', 'Base']], '*'],
       },
     },
   },

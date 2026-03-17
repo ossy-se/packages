@@ -1,11 +1,13 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import remarkGfm from 'remark-gfm'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: [
+    "../docs/**/*.mdx",
     "../connected-components/docs/**/*.mdx",
     "../types/docs/**/*.mdx",
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
@@ -13,7 +15,16 @@ const config = {
     "../connected-components/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
-    "@storybook/addon-docs",
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
     "@storybook/addon-themes",
     {
       name: '@ts2doc/storybook-addon',
