@@ -2,7 +2,7 @@ import React from 'react'
 import { useInputValue } from './useInputValue.js'
 
 export default {
-  title: 'Base/useInputValue',
+  title: 'Design System/Base/useInputValue',
   component: useInputValue
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from './View.jsx'
 
 export default {
-  title: 'Base/View',
+  title: 'Design System/Base/View',
   component: View,
   tags: ['autodocs']
 }

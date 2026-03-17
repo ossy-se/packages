@@ -4,7 +4,7 @@ import { View } from '../view/View.jsx'
 import { Text } from '../text/Text.jsx'
 
 export default {
-  title: 'Display/Icon',
+  title: 'Design System/Display/Icon',
   component: Icon,
 }
 

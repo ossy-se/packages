@@ -2,7 +2,7 @@ import React from 'react'
 import { SimpleFooter } from './SimpleFooter.jsx'
 
 export default {
-  title: 'Other/Footer/Simple',
+  title: 'Design System/Other/Footer/Simple',
   component: SimpleFooter,
   parameters: {
    layout: 'fullscreen',

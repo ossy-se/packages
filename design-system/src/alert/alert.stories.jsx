@@ -2,7 +2,7 @@ import React from 'react'
 import { Alert } from './Alert.jsx'
 
 export default {
-  title: 'Feedback/Alert',
+  title: 'Design System/Feedback/Alert',
   component: Alert,
 };
 

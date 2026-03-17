@@ -2,7 +2,7 @@ import React from 'react'
 import { ContextMenu } from './ContextMenu.jsx'
 
 export default {
-  title: 'Actions/ContextMenu',
+  title: 'Design System/Actions/ContextMenu',
   component: ContextMenu,
 }
 

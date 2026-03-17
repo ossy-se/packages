@@ -5,7 +5,7 @@ import { Title } from '../title/Title.jsx'
 import fontHeight from '../icons/icons2/font-height.jsx'
 
 export default {
-  title: 'Layout',
+  title: 'Design System/Layout',
   component: View,
   tags: ['autodocs']
 }

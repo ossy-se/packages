@@ -2,7 +2,7 @@ import React from 'react'
 import { Hero } from './Hero.jsx'
 
 export default {
-  title: 'Other/Hero/Hero',
+  title: 'Design System/Other/Hero/Hero',
   component: Hero,
 }
 

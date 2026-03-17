@@ -3,7 +3,7 @@ import { Carousel } from './Carousel.jsx'
 import { View } from '../view/index.js'
 
 export default {
-  title: 'Display/Carousel',
+  title: 'Design System/Display/Carousel',
   component: Carousel,
 }
 

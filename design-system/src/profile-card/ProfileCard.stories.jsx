@@ -2,7 +2,7 @@ import React from 'react'
 import { ProfileCard } from './ProfileCard.jsx'
 
 export default {
-  title: 'Display/ProfileCard',
+  title: 'Design System/Display/ProfileCard',
   component: ProfileCard,
   parameters: {
    layout: 'fullscreen',

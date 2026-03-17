@@ -2,7 +2,7 @@ import React from 'react'
 import { Tags } from './Tags.jsx'
 
 export default {
-  title: 'Display/Tags',
+  title: 'Design System/Display/Tags',
   component: Tags,
   render: (args) => <Tags {...args} />,
   args: {

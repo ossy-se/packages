@@ -2,7 +2,7 @@ import React from 'react'
 import { Separator } from './Separator.jsx'
 
 export default {
-  title: 'Display/Separator',
+  title: 'Design System/Display/Separator',
   component: Separator,
 }
 

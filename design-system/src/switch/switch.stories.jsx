@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Switch } from './Switch'
 
 export default {
-  title: 'Base/Switch',
+  title: 'Design System/Base/Switch',
   component: Switch,
 }
 

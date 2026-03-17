@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { DropZone } from './DropZone.jsx'
 
 export default {
-  title: 'Action/DropZone',
+  title: 'Design System/Actions/DropZone',
   component: DropZone,
 };
 

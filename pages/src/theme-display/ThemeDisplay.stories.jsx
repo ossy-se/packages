@@ -5,9 +5,12 @@ import { CloudLight } from '@ossy/themes'
 export default {
   title: 'Pages/Theme Display',
   component: ThemeDisplay,
+  tags: ['!autodocs'],
   parameters: {
-   layout: 'fullscreen',
- },
+    layout: 'fullscreen',
+    viewMode: 'canvas',
+    previewTabs: { 'storybook/docs/panel': { hidden: true } },
+  },
 }
 
 const Story = props => (

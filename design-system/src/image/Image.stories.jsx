@@ -2,7 +2,7 @@ import React from 'react'
 import { Image } from './Image.jsx'
 
 export default {
-  title: 'Display/Image',
+  title: 'Design System/Display/Image',
   component: Image,
 };
 

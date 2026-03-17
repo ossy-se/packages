@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack } from './Stack'
 
 export default {
-  title: 'Layout/Stack',
+  title: 'Design System/Layout/Stack',
   component: Stack,
 }
 

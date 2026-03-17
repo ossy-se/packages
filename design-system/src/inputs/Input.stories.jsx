@@ -3,7 +3,7 @@ import { Input, InputTitle, Input2, Textarea, Select, Upload } from './Input.jsx
 import { View } from '../view'
 
 export default {
-  title: 'Inputs/Input',
+  title: 'Design System/Inputs/Input',
   component: Input,
 }
 

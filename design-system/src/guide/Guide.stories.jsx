@@ -2,7 +2,7 @@ import React from 'react'
 import { Guide } from './Guide.jsx'
 
 export default {
-  title: 'Feedback/Guide',
+  title: 'Design System/Feedback/Guide',
   component: Guide,
 }
 

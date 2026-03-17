@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tabs } from './Tabs.jsx'
 
 export default {
-  title: 'Display/Tabs',
+  title: 'Design System/Display/Tabs',
   component: Tabs,
   args: {
     activeTabId: 'English',

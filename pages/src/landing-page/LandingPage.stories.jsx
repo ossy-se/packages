@@ -4,9 +4,12 @@ import { LandingPage2020 } from './LandingPage.jsx'
 
 export default {
   title: 'Pages/Landing Page',
+  tags: ['!autodocs'],
   parameters: {
-   layout: 'fullscreen',
- },
+    layout: 'fullscreen',
+    viewMode: 'canvas',
+    previewTabs: { 'storybook/docs/panel': { hidden: true } },
+  },
 }
 
 const Story = props => <Page {...props}/>

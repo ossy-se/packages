@@ -1,6 +1,7 @@
 import React from 'react';
+import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { Theme } from '@ossy/design-system';
-import { CloudLight } from '@ossy/themes';
+import { CloudLight, CloudDark } from '@ossy/themes';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -13,16 +14,19 @@ const preview = {
     },
     options: {
       storySort: {
-        order: ['App', 'Layout', '*', 'Base'],
+        order: [['App', ['Getting Started']], 'Pages', ['Design System', ['Layout', 'Feedback', 'Navigation', 'Actions', 'Display', 'Other', 'Inputs', 'Base']], '*'],
       },
     },
   },
   decorators: [
-    (Story) => (
-      <Theme theme={CloudLight}>
-        <Story />
-      </Theme>
-    ),
+    withThemeFromJSXProvider({
+      themes: {
+        light: CloudLight,
+        dark: CloudDark,
+      },
+      defaultTheme: 'light',
+      Provider: Theme,
+    }),
   ],
   tags: ['autodocs'],
 };

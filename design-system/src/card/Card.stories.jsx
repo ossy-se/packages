@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from './Card.jsx'
 
 export default {
-  title: 'Display/Card',
+  title: 'Design System/Display/Card',
   component: Card,
 }
 

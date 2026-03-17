@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from './Table.jsx'
 
 export default {
-  title: 'Display/Table',
+  title: 'Design System/Display/Table',
   component: Table,
   args: {
     activeTabId: 'English',

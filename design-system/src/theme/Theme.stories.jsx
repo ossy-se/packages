@@ -2,7 +2,7 @@ import React from 'react'
 import { Theme, useTheme } from './Theme'
 
 export default {
-  title: 'Base/Theme',
+  title: 'Design System/Base/Theme',
   component: Theme,
 }
 

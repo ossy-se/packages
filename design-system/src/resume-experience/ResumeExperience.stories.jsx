@@ -2,7 +2,7 @@ import React from 'react'
 import { ResumeExperience } from './ResumeExperience.jsx'
 
 export default {
-  title: 'Display/ResumeExperience',
+  title: 'Design System/Display/ResumeExperience',
   component: ResumeExperience,
 }
 

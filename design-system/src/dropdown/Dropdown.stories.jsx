@@ -3,7 +3,7 @@ import { Dropdown } from './Dropdown.jsx'
 import { ContextMenu } from '../context-menu/index.js'
 
 export default {
-  title: 'Other/Dropdown',
+  title: 'Design System/Other/Dropdown',
   component: Dropdown,
 }
 

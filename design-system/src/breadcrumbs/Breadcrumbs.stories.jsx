@@ -3,7 +3,7 @@ import { Breadcrumbs } from './Breadcrumbs.jsx'
 import { Button } from '../button/Button.jsx'
 
 export default {
-  title: 'Navigation/Breadcrumbs',
+  title: 'Design System/Navigation/Breadcrumbs',
   component: Breadcrumbs,
 }
 

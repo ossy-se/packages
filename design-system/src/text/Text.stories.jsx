@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Text } from './Text.jsx'
 
 export default {
-  title: 'Display/Text',
+  title: 'Design System/Display/Text',
   component: Text,
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Overlay } from './Overlay.jsx'
 
 export default {
-  title: 'Base/Overlay',
+  title: 'Design System/Base/Overlay',
   component: Overlay
 }
 

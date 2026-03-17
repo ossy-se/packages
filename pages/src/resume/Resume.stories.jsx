@@ -4,9 +4,12 @@ import { Resume } from './Resume.jsx'
 export default {
   title: 'Pages/Resume',
   component: Resume,
+  tags: ['!autodocs'],
   parameters: {
-   layout: 'fullscreen',
- },
+    layout: 'fullscreen',
+    viewMode: 'canvas',
+    previewTabs: { 'storybook/docs/panel': { hidden: true } },
+  },
 }
 
 const Story = props => {

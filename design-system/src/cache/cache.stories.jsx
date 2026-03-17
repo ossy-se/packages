@@ -2,7 +2,7 @@ import React from 'react'
 import { createCache } from './Cache.jsx'
 
 export default {
-  title: 'Base/Cache',
+  title: 'Design System/Base/Cache',
 }
 
 const Story = props => {

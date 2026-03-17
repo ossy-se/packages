@@ -4,7 +4,7 @@ import { Text } from '../text/Text.jsx'
 import { Icons, Icon2 } from './Icon2.jsx'
 
 export default {
-  title: 'Display/Icon2',
+  title: 'Design System/Display/Icon2',
   component: Icon2,
   parameters: {
     layout: 'centered',

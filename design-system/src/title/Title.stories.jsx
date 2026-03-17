@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Title } from './Title.jsx'
 
 export default {
-  title: 'Display/Title',
+  title: 'Design System/Display/Title',
   component: Title,
   args: {
     children: 'This is a title'

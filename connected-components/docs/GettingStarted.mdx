@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="App/Getting Started" />
+
+# Getting Started
+
+The App component is the main entry point for applications in the **Ossy Ecosystem**. It provides routing, theming, workspace context, and SDK integration out of the box.
+
+## Installation
+
+```bash
+npm install @ossy/connected-components @ossy/design-system @ossy/themes @ossy/router-react @ossy/sdk @ossy/sdk-react
+```
+
+## Basic Setup
+
+```jsx
+import { App } from '@ossy/connected-components';
+import { CloudLight } from '@ossy/themes';
+
+export default () => (
+  <App
+    workspaceId="your-workspace-id"
+    theme={CloudLight}
+    routes={[
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
+      },
+    ]}
+  />
+);
+```
+
+## Configuration
+
+| Prop | Description |
+|------|-------------|
+| `workspaceId` | Your workspace identifier |
+| `theme` | Theme object (e.g. `CloudLight`, `CloudDark`) |
+| `themes` | Multiple themes for switching via `useTheme` |
+| `routes` | Array of route configs with `path` and `element` |
+| `apiUrl` | Optional API base URL |
+| `devMode` | Enables theme editor when `true` |
+
+## Theming
+
+Use themes from `@ossy/themes` or pass custom theme objects. For multiple themes with runtime switching, pass both `theme` (default) and `themes`:
+
+```jsx
+<App
+  theme="light"
+  themes={{
+    light: CloudLight,
+    dark: CloudDark,
+  }}
+  routes={routes}
+/>
+```
