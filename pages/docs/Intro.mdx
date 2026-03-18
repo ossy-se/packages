@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Pages/Introduction" />
+
+# @ossy/pages
+
+SaaS page templates and layouts for the Ossy Ecosystem. Pre-built screens you can drop into your app.
+
+## What's included
+
+| Category | Components |
+|----------|------------|
+| **Auth** | Login, SignUp, ForgotPassword, VerifyEmail, ResetPassword, TwoFactorSetup, DeleteAccount |
+| **Pricing** | Pricing tables and plans |
+| **Settings** | User and app settings |
+| **Dashboard** | Dashboard layouts |
+| **Billing** | Billing and subscription management |
+| **Onboarding** | Onboarding flows |
+| **Team** | Team management |
+| **Integrations** | API keys and third-party integrations |
+| **Support** | Help and support |
+| **Other** | Landing page, Resume, 404, Unauthorized, Maintenance, EmptyState |
+
+## Usage
+
+Import and use pages in your app:
+
+```jsx
+import { Login, SignUp, ForgotPassword } from '@ossy/pages'
+import { Theme } from '@ossy/design-system'
+import { CloudLight } from '@ossy/themes'
+
+<Theme theme={CloudLight}>
+  <Login onSubmit={handleLogin} />
+</Theme>
+```
+
+## Installation
+
+```bash
+npm install @ossy/pages @ossy/design-system @ossy/themes
+```
+
+## Peer dependencies
+
+- `react` >=19.0.0
+- `react-dom` >=19.0.0
+- `@ossy/design-system` >=0.0.1
+- `@ossy/themes` for theme support
+
+Use the sidebar to browse all page templates and their variants.

@@ -10,6 +10,7 @@ const config = {
     "../docs/**/*.mdx",
     "../design-system/docs/**/*.mdx",
     "../connected-components/docs/**/*.mdx",
+    "../pages/docs/**/*.mdx",
     "../types/docs/**/*.mdx",
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../pages/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",

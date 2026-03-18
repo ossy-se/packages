@@ -1,18 +1,37 @@
 # @ossy/types
 
-Shared TypeScript types for all packages in the monorepo.
+Shared TypeScript types for the Ossy ecosystem. Defines interfaces for themes, SDK configuration, resources, workspaces, and more.
 
 ## Installation
 
-This package is part of the monorepo and can be used by other packages via:
-
-```typescript
-import { SomeType } from '@ossy/types';
+```bash
+npm install @ossy/types
 ```
 
 ## Usage
 
-Add shared types to this package that need to be used across multiple packages in the monorepo.
+```typescript
+import type { Theme, Resource, SDKConfig, Workspace } from '@ossy/types'
+```
+
+## Key types
+
+| Category | Types |
+|----------|-------|
+| **Theme & Design** | `Theme`, `SurfaceVariant`, `SpaceScale`, `MaxWidthScale`, `ColorPalette`, `SurfaceDefinitions`, `SurfacesMap` |
+| **SDK** | `SDKConfig`, `Action` |
+| **Resources** | `Resource`, `ResourceTemplate`, `Field`, `Workspace` |
+| **Jobs** | `Job` |
+
+## Documentation
+
+Full type documentation is available in Storybook. Run from the monorepo root:
+
+```bash
+npm start
+```
+
+Browse **Types** in the sidebar for generated interface tables.
 
 ## Development
 
@@ -21,3 +40,7 @@ Build the package:
 ```bash
 npm run build
 ```
+
+## License
+
+MIT

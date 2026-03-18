@@ -66,7 +66,7 @@ export function generatePagesModule(pageFiles, cwd, srcDir = 'src') {
     'export default [',
     ...pageFiles.map((f, i) => {
       const { id, path: defaultPath } = filePathToRoute(f, resolvedSrc)
-      const pathStr = typeof defaultPath === 'string' ? defaultPath : JSON.stringify(defaultPath)
+      const pathStr = JSON.stringify(defaultPath)
       return `  toPage(_page${i}, { id: '${id}', path: ${pathStr} }),`
     }),
     ']',
