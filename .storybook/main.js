@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const config = {
   stories: [
     "../docs/**/*.mdx",
+    "../design-system/docs/**/*.mdx",
     "../connected-components/docs/**/*.mdx",
     "../types/docs/**/*.mdx",
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
@@ -46,6 +47,9 @@ const config = {
       '@ossy/themes': path.resolve(__dirname, '../themes/src/index.js'),
       '@ossy/sdk': path.resolve(__dirname, '../sdk/src/public.index.ts'),
       '@ossy/sdk-react': path.resolve(__dirname, '../sdk-react/src/public.index.ts'),
+    }
+    if (process.env.STORYBOOK_BASE_PATH) {
+      config.base = process.env.STORYBOOK_BASE_PATH
     }
     return config
   },

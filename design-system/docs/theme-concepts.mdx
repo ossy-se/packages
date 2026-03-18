@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Theme Concepts" />
+
+# Theme Concepts
+
+This document describes the core concepts of the design system theme architecture.
+
+---
+
+## Patterns
+
+**Patterns** are scales that ensure consistency across the design system. They define a set of named tokens that components reference rather than hardcoding values.
+
+Common pattern scales include:
+
+- **Space** — `none`, `xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl` — used for gaps, margins, padding
+- **Inset** — padding presets like `none`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, or compound values like `l m`
+- **Roundness** — `none`, `xs`, `s`, `m`, `l`, `rounded` — border radius tokens
+- **Max-width** — responsive container widths
+
+Components use patterns via data attributes (e.g. `data-inset="m"`, `data-roundness="s"`) and reference CSS variables (e.g. `var(--space-m)`). This keeps spacing and sizing consistent and makes theming straightforward.
+
+---
+
+## Surface
+
+**Surface** defines the color treatment of a region: background, foreground (text/icons), and separator. It is the visual "skin" applied to containers and interactive elements.
+
+### Properties
+
+| Property | Description |
+|----------|-------------|
+| `background` | Main fill color |
+| `foreground` | Text and icon color |
+| `separator` | Border/divider color |
+| `background-hover` | Hover state background |
+| `background-active` | Active/pressed state background |
+| `foreground-hover` | Hover state foreground |
+| `foreground-active` | Active state foreground |
+
+### Smart defaults
+
+If only **background** and/or **foreground** are provided, the system should derive the remaining values (separator, hover, active states). This reduces boilerplate when defining surfaces.
+
+**All values are overridable.** Any property can be set explicitly to override the calculated default. Explicit values always win over derived ones.
+
+---
+
+## Variants
+
+**Variants** are named definitions that combine **patterns** and **surface**. A variant is a preset configuration—e.g. a card variant might specify surface, inset, roundness, and shadow in one place.
+
+Examples:
+
+- Button variants: `default`, `cta`, `link`, `command`, `command-danger`
+- Card variants: `default`, `elevated`, `outlined`
+- Text variants: `default`, `primary`, `secondary`, `tertiary`
+
+When a component uses `variant="cta"`, it receives the full set of patterns and surface defined for that variant.
+
+---
+
+## Precedence
+
+When a component accepts both a **variant** prop and individual **pattern** or **surface** props, the latter take precedence.
+
+```
+variant (baseline) < pattern/surface props (override)
+```
+
+**Example:** A `View` with `variant="card"` and `surface="accent"` should use the `accent` surface, not the surface from the card variant. Similarly, `inset="xl"` overrides any inset defined by the variant.
+
+This allows variants to provide sensible defaults while still supporting one-off overrides at the call site.
