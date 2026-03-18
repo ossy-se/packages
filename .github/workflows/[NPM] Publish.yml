@@ -36,6 +36,7 @@ jobs:
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
           git config --global user.name "$(git log -1 --pretty=format:'%an')"
           npm ci
+          npm install
           npm run build
           npx lerna publish --yes --loglevel verbose
         env:

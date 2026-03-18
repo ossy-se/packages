@@ -32,6 +32,9 @@
   ],
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "license": "MIT",
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "*"
+  },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
     "@rollup/plugin-babel": "^6.1.0",
