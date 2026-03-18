@@ -8,7 +8,7 @@ The **Ossy Ecosystem** provides routing, theming, workspace context, and SDK int
 
 ## @ossy/cli vs @ossy/connected-components
 
-- **@ossy/cli** — Use when you want the fastest path: run `npx @ossy/cli dev` with `src/pages.jsx` and `src/config.js`. It bundles your app, runs the dev server, and handles SSR.
+- **@ossy/cli** — Use when you want the fastest path: run `npx @ossy/cli dev` with `src/pages/*.page.jsx` (or `src/pages.jsx`) and `src/config.js`. It bundles your app, runs the dev server, and handles SSR.
 - **@ossy/connected-components** — Use when you have a custom setup (Next.js, Vite, Remix, etc.). Import the `App` component and wire it with your own bundler and server.
 
 ## Installation
@@ -19,18 +19,15 @@ npm install @ossy/connected-components @ossy/design-system @ossy/themes @ossy/ro
 
 ## Setup with @ossy/cli
 
-Create `src/pages.jsx`:
+Create `*.page.jsx` files in `src/`:
 
 ```jsx
+// src/home.page.jsx
 import React from 'react'
-
-export default [
-  { id: 'home', path: '/', element: <HomePage /> },
-  { id: 'about', path: '/about', element: <AboutPage /> },
-]
+export default () => <h1>Welcome</h1>
 ```
 
-Add `src/config.js` for `workspaceId`, `theme`, etc. Run `npx @ossy/cli dev` or `npx @ossy/cli build`.
+Each file becomes a route: `home.page.jsx` → `/`, `about.page.jsx` → `/about`. Optionally export `metadata` for multi-language: `export const metadata = { path: { en: '/about', sv: '/om' } }`. Add `src/config.js` for `workspaceId`, `theme`, etc. Run `npx @ossy/cli dev` or `npx @ossy/cli build`.
 
 ## App component
 

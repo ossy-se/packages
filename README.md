@@ -58,19 +58,21 @@ npm install @ossy/cli @ossy/app @ossy/connected-components @ossy/design-system @
 
 ### 3. Add pages
 
-Create `src/pages.jsx`:
+Create `*.page.jsx` files in `src/`:
 
 ```jsx
+// src/home.page.jsx
 import React from 'react'
-
-const HomePage = () => <h1>Welcome</h1>
-const AboutPage = () => <h1>About</h1>
-
-export default [
-  { id: 'home', path: '/', element: <HomePage /> },
-  { id: 'about', path: '/about', element: <AboutPage /> },
-]
+export default () => <h1>Welcome</h1>
 ```
+
+```jsx
+// src/about.page.jsx
+import React from 'react'
+export default () => <h1>About</h1>
+```
+
+Each file becomes a route: `home.page.jsx` → `/`, `about.page.jsx` → `/about`. Optionally export `metadata` for custom id/path or multi-language: `export const metadata = { path: { en: '/about', sv: '/om' } }`
 
 ### 4. Add config
 

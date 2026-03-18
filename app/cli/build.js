@@ -16,6 +16,64 @@ import remove from 'rollup-plugin-delete';
 import arg from 'arg'
 // import inject from '@rollup/plugin-inject'
 
+const PAGE_FILE_PATTERN = /\.page\.(jsx?|tsx?)$/
+
+export function discoverPageFiles(srcDir) {
+  const dir = path.resolve(srcDir)
+  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
+    return []
+  }
+  const files = []
+  const walk = (d) => {
+    const entries = fs.readdirSync(d, { withFileTypes: true })
+    for (const e of entries) {
+      const full = path.join(d, e.name)
+      if (e.isDirectory()) walk(full)
+      else if (PAGE_FILE_PATTERN.test(e.name)) files.push(full)
+    }
+  }
+  walk(dir)
+  return files.sort()
+}
+
+export function filePathToRoute(filePath, srcDir) {
+  const rel = path.relative(srcDir, filePath).replace(/\\/g, '/')
+  let pathPart = rel.replace(PAGE_FILE_PATTERN, '').replace(/\/index$/, '').replace(/\/home$/, '') || 'home'
+  if (pathPart === 'index' || pathPart === 'home') pathPart = 'home'
+  const id = pathPart === 'home' ? 'home' : pathPart.replace(/\//g, '-')
+  const routePath = pathPart === 'home' ? '/' : '/' + pathPart
+  return { id, path: routePath }
+}
+
+export function generatePagesModule(pageFiles, cwd, srcDir = 'src') {
+  const resolvedSrc = path.resolve(cwd, srcDir)
+  const lines = [
+    "import React from 'react'",
+    ...pageFiles.map((f, i) => {
+      const rel = path.relative(cwd, f).replace(/\\/g, '/')
+      return `import * as _page${i} from './${rel}'`
+    }),
+    '',
+    'function toPage(mod, derived) {',
+    '  const meta = mod?.metadata || {}',
+    "  const def = mod?.default",
+    "  if (typeof def === 'function') {",
+    "    return { ...derived, ...meta, element: React.createElement(def) }",
+    '  }',
+    "  return { ...derived, ...meta, ...(def || {}) }",
+    '}',
+    '',
+    'export default [',
+    ...pageFiles.map((f, i) => {
+      const { id, path: defaultPath } = filePathToRoute(f, resolvedSrc)
+      const pathStr = typeof defaultPath === 'string' ? defaultPath : JSON.stringify(defaultPath)
+      return `  toPage(_page${i}, { id: '${id}', path: ${pathStr} }),`
+    }),
+    ']',
+  ]
+  return lines.join('\n')
+}
+
 export function parsePagesFromSource(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8')
@@ -49,8 +107,10 @@ export function parsePagesFromSource(filePath) {
   }
 }
 
-export function printBuildOverview({ pagesSourcePath, apiSourcePath, configPath }) {
+export function printBuildOverview({ pagesSourcePath, apiSourcePath, configPath, isPageFiles, pageFiles }) {
   const rel = (p) => path.relative(process.cwd(), p)
+  const cwd = process.cwd()
+  const srcDir = path.resolve(cwd, 'src')
   console.log('\n  \x1b[1mBuild overview\x1b[0m')
   console.log('  ' + '─'.repeat(50))
   console.log(`  \x1b[36mPages:\x1b[0m ${rel(pagesSourcePath)}`)
@@ -59,7 +119,9 @@ export function printBuildOverview({ pagesSourcePath, apiSourcePath, configPath 
   }
   console.log('  ' + '─'.repeat(50))
 
-  const pages = parsePagesFromSource(pagesSourcePath)
+  const pages = isPageFiles && pageFiles?.length
+    ? pageFiles.map((f) => filePathToRoute(f, srcDir))
+    : parsePagesFromSource(pagesSourcePath)
   if (pages.length > 0) {
     console.log('  \x1b[36mRoutes:\x1b[0m')
     const maxId = Math.max(6, ...pages.map((p) => String(p.id).length))
@@ -101,7 +163,26 @@ export const build = async (cliArgs) => {
 
 
     const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
-    const pagesSourcePath = path.resolve(options['--pages'] || 'src/pages.jsx');
+    const cwd = process.cwd()
+    const pagesOpt = options['--pages'] || 'src'
+    const srcDir = path.resolve(pagesOpt)
+    const pageFiles = discoverPageFiles(srcDir)
+    const pagesJsxPath = path.resolve('src/pages.jsx')
+    const hasPagesJsx = fs.existsSync(pagesJsxPath)
+
+    let effectivePagesSource
+    let isPageFiles = false
+    if (pageFiles.length > 0) {
+      const generatedPath = path.join(cwd, '.ossy-pages.generated.jsx')
+      fs.writeFileSync(generatedPath, generatePagesModule(pageFiles, cwd, pagesOpt))
+      effectivePagesSource = generatedPath
+      isPageFiles = true
+    } else if (hasPagesJsx) {
+      effectivePagesSource = pagesJsxPath
+    } else {
+      throw new Error(`[@ossy/app][build] No pages found. Create *.page.jsx files in src/, or src/pages.jsx`);
+    }
+
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
@@ -113,12 +194,8 @@ export const build = async (cliArgs) => {
 
     const inputFiles = [inputClient, inputServer]
 
-    if (!fs.existsSync(pagesSourcePath)) {
-        throw new Error(`[@ossy/app][build] Pages file not found. Create src/pages.jsx`);
-    }
-
     const appEntryPath = path.resolve(scriptDir, 'default-app.jsx')
-    printBuildOverview({ pagesSourcePath, apiSourcePath, configPath });
+    printBuildOverview({ pagesSourcePath: effectivePagesSource, apiSourcePath, configPath, isPageFiles, pageFiles: isPageFiles ? pageFiles : [] });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')
@@ -145,7 +222,7 @@ export const build = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/pages/source-file': pagesSourcePath,
+            '@ossy/pages/source-file': effectivePagesSource,
           }),
           replace({
             preventAssignment: true,

@@ -26,8 +26,16 @@ npm run dev
 
 ```
 src/
-  pages.jsx   # Route definitions
-  config.js   # workspaceId, theme, apiUrl
+  home.page.jsx    # → /
+  about.page.jsx   # → /about
+  config.js        # workspaceId, theme, apiUrl
+```
+
+Add a new page by creating `contact.page.jsx` — it becomes `/contact` automatically. Optionally export `metadata` for custom id/path or multi-language:
+
+```js
+export const metadata = { path: { en: '/about', sv: '/om' } }
+export default () => <h1>About</h1>
 ```
 
 ## Commands

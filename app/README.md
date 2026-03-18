@@ -6,16 +6,22 @@ For custom setups (Next.js, Vite, etc.), use `@ossy/connected-components` direct
 
 ## Setup
 
-Create `src/pages.jsx`:
+Create `*.page.jsx` files in `src/`:
 
 ```jsx
+// src/home.page.jsx
 import React from 'react'
-
-export default [
-  { id: 'home', path: '/', element: <HomePage /> },
-  { id: 'about', path: '/about', element: <AboutPage /> },
-]
+export default () => <h1>Welcome</h1>
 ```
+
+Each file becomes a route: `home.page.jsx` → `/`, `about.page.jsx` → `/about`. Optionally export `metadata` for custom id/path or multi-language:
+
+```js
+export const metadata = { path: { en: '/about', sv: '/om' } }
+export default () => <h1>About</h1>
+```
+
+For a single-file setup, use `src/pages.jsx` (legacy).
 
 Add `src/config.js` for workspace and theme:
 

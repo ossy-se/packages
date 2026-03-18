@@ -21,15 +21,15 @@ describe('init', () => {
     }
   })
 
-  it('creates src/pages.jsx and src/config.js', () => {
+  it('creates src/home.page.jsx and src/config.js', () => {
     init([testDir])
 
-    expect(fs.existsSync(path.join(testDir, 'src', 'pages.jsx'))).toBe(true)
+    expect(fs.existsSync(path.join(testDir, 'src', 'home.page.jsx'))).toBe(true)
     expect(fs.existsSync(path.join(testDir, 'src', 'config.js'))).toBe(true)
 
-    const pagesContent = fs.readFileSync(path.join(testDir, 'src', 'pages.jsx'), 'utf8')
-    expect(pagesContent).toContain('HomePage')
-    expect(pagesContent).toContain("path: '/'")
+    const pagesContent = fs.readFileSync(path.join(testDir, 'src', 'home.page.jsx'), 'utf8')
+    expect(pagesContent).toContain('Welcome')
+    expect(pagesContent).toContain('*.page.jsx')
 
     const configContent = fs.readFileSync(path.join(testDir, 'src', 'config.js'), 'utf8')
     expect(configContent).toContain('workspaceId')

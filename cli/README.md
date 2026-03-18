@@ -7,7 +7,7 @@ Unified CLI for the Ossy platform: app dev/build and CMS workflows.
 | Command | Description |
 |---------|-------------|
 | `init [dir]` | Scaffold a new Ossy app (default: current directory) |
-| `dev` | Start dev server with watch (uses `src/pages.jsx`, `src/config.js`) |
+| `dev` | Start dev server with watch (uses `src/*.page.jsx` or `src/pages.jsx`, `src/config.js`) |
 | `build` | Production build |
 | `cms upload` | Upload resource templates to your workspace |
 | `cms validate` | Validate ossy config and resource templates |

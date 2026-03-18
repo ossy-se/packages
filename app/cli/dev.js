@@ -1,7 +1,7 @@
 import path from 'path';
 import url from 'url';
 import fs from 'fs';
-import { printBuildOverview } from './build.js';
+import { printBuildOverview, discoverPageFiles, generatePagesModule } from './build.js';
 import { watch } from 'rollup';
 import babel from '@rollup/plugin-babel';
 import { nodeResolve as resolveDependencies } from '@rollup/plugin-node-resolve'
@@ -34,7 +34,26 @@ export const dev = async (cliArgs) => {
 
 
     const scriptDir = path.dirname(url.fileURLToPath(import.meta.url))
-    const pagesSourcePath = path.resolve(options['--pages'] || 'src/pages.jsx');
+    const cwd = process.cwd()
+    const pagesOpt = options['--pages'] || 'src'
+    const srcDir = path.resolve(pagesOpt)
+    const pageFiles = discoverPageFiles(srcDir)
+    const pagesJsxPath = path.resolve('src/pages.jsx')
+    const hasPagesJsx = fs.existsSync(pagesJsxPath)
+
+    let effectivePagesSource
+    let isPageFiles = false
+    if (pageFiles.length > 0) {
+      const generatedPath = path.join(cwd, '.ossy-pages.generated.jsx')
+      fs.writeFileSync(generatedPath, generatePagesModule(pageFiles, cwd, pagesOpt))
+      effectivePagesSource = generatedPath
+      isPageFiles = true
+    } else if (hasPagesJsx) {
+      effectivePagesSource = pagesJsxPath
+    } else {
+      throw new Error(`[@ossy/app][dev] No pages found. Create *.page.jsx files in src/, or src/pages.jsx`);
+    }
+
     let apiSourcePath = path.resolve(options['--api-source'] || 'src/api.js');
     let middlewareSourcePath = path.resolve(options['--middleware-source'] || 'src/middleware.js');
     const configPath = path.resolve(options['--config'] || 'src/config.js');
@@ -46,11 +65,7 @@ export const dev = async (cliArgs) => {
 
     const inputFiles = [inputClient, inputServer]
 
-    if (!fs.existsSync(pagesSourcePath)) {
-        throw new Error(`[@ossy/app][dev] Pages file not found. Create src/pages.jsx`);
-    }
-
-    printBuildOverview({ pagesSourcePath, apiSourcePath, configPath });
+    printBuildOverview({ pagesSourcePath: effectivePagesSource, apiSourcePath, configPath, isPageFiles, pageFiles: isPageFiles ? pageFiles : [] });
 
     if (!fs.existsSync(apiSourcePath)) {
       apiSourcePath = path.resolve(scriptDir, 'api.js')
@@ -77,7 +92,7 @@ export const dev = async (cliArgs) => {
           replace({
             preventAssignment: true,
             delimiters: ['%%', '%%'],
-            '@ossy/pages/source-file': pagesSourcePath,
+            '@ossy/pages/source-file': effectivePagesSource,
           }),
           replace({
             preventAssignment: true,
@@ -186,4 +201,16 @@ export const dev = async (cliArgs) => {
         restartServer()
       }
     })
+
+    if (isPageFiles) {
+      fs.watch(srcDir, { recursive: true }, (eventType, filename) => {
+        if (filename && /\.page\.(jsx?|tsx?)$/.test(filename)) {
+          const files = discoverPageFiles(srcDir)
+          if (files.length > 0) {
+            const generatedPath = path.join(cwd, '.ossy-pages.generated.jsx')
+            fs.writeFileSync(generatedPath, generatePagesModule(files, cwd, pagesOpt))
+          }
+        }
+      })
+    }
 };
