@@ -10,14 +10,14 @@
     "start": "node build/server.js"
   },
   "dependencies": {
-    "@ossy/cli": "workspace:*",
-    "@ossy/app": "workspace:*",
-    "@ossy/connected-components": "workspace:*",
-    "@ossy/design-system": "workspace:*",
-    "@ossy/themes": "workspace:*",
-    "@ossy/router-react": "workspace:*",
-    "@ossy/sdk": "workspace:*",
-    "@ossy/sdk-react": "workspace:*",
+    "@ossy/cli": ">=0.9.1 <1.0.0",
+    "@ossy/app": ">=0.9.1 <1.0.0",
+    "@ossy/connected-components": ">=0.9.1 <1.0.0",
+    "@ossy/design-system": ">=0.9.1 <1.0.0",
+    "@ossy/themes": ">=0.9.1 <1.0.0",
+    "@ossy/router-react": ">=0.9.1 <1.0.0",
+    "@ossy/sdk": ">=0.9.1 <1.0.0",
+    "@ossy/sdk-react": ">=0.9.1 <1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
