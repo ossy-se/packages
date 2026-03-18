@@ -28,7 +28,7 @@ export default [
     ]
   },
   {
-    input: "build/types/index.d.ts",
+    input: "src/index.ts",
     output: [{ file: "build/index.d.ts", format: "es" }],
     plugins: [
       dts()

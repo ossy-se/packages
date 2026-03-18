@@ -9,7 +9,7 @@ export type CssValue = string;
  * Values are either CSS strings or nested groups.
  */
 export type CssStyleGroup = {
-  [key: string]: CssValue | CssStyleGroup;
+  [key: string]: CssValue | CssStyleGroup | undefined;
 };
 
 /**
