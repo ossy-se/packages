@@ -1,6 +1,6 @@
 # `@ossy/app`
 
-Server-side rendering runtime for Ossy apps. Use this when you want a convention-based setup with minimal configuration.
+Server-side rendering runtime and build tooling for Ossy apps. Use with `@ossy/cli` for the convention-based setup (`npx @ossy/cli dev`).
 
 For custom setups (Next.js, Vite, etc.), use `@ossy/connected-components` directly — see the [root README](../README.md#when-to-use-what).
 
@@ -26,7 +26,7 @@ export default {
 }
 ```
 
-Run `npx @ossy/app dev` or `npx @ossy/app build`.
+Run `npx @ossy/cli dev` or `npx @ossy/cli build`.
 
 ## API routes
 

@@ -1,11 +1,29 @@
 #!/usr/bin/env node
-/* eslint-disable global-require, no-unused-vars */
-import * as ResourceTemplates from './resource-templates/cli.js'
+import { build, dev } from '@ossy/app'
+import * as Cms from './cms/cli.js'
 
-const [_, __, handlerName, ...restArgs] = process.argv
+const [,, command, ...restArgs] = process.argv
 
-const handler = {
-  'resource-templates': () => ResourceTemplates.handler
-}[handlerName]
+if (!command) {
+  console.error('[@ossy/cli] No command provided. Usage: ossy dev | build | cms <subcommand>')
+  process.exit(1)
+}
 
-handler(restArgs)
+const run = async () => {
+  if (command === 'cms') {
+    Cms.handler(restArgs)
+    return
+  }
+  if (command === 'dev') {
+    await dev(restArgs)
+    return
+  }
+  if (command === 'build') {
+    await build(restArgs)
+    return
+  }
+  console.error(`[@ossy/cli] Unknown command: ${command}`)
+  process.exit(1)
+}
+
+run()

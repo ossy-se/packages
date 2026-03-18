@@ -4,7 +4,6 @@
   "description": "",
   "source": "./src/index.js",
   "main": "./src/index.js",
-  "bin": "./cli/index.js",
   "type": "module",
   "scripts": {
     "build": "echo Building not required",
@@ -60,6 +59,7 @@
   },
   "files": [
     "/cli",
+    "/src",
     "README.md"
   ]
 }

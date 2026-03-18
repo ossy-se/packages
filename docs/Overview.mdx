@@ -20,7 +20,7 @@ The Ossy Ecosystem provides:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  Application layer                                               │
-│  @ossy/app (CLI + SSR)  │  @ossy/connected-components (App)      │
+│  @ossy/cli  │  @ossy/app (SSR)  │  @ossy/connected-components (App)  │
 │  @ossy/pages (layouts)                                           │
 ├─────────────────────────────────────────────────────────────────┤
 │  UI & design                                                     │
@@ -33,7 +33,7 @@ The Ossy Ecosystem provides:
 │  @ossy/router  │  @ossy/router-react                             │
 ├─────────────────────────────────────────────────────────────────┤
 │  Foundation                                                      │
-│  @ossy/types  │  @ossy/cli  │  @ossy/resource-templates          │
+│  @ossy/types  │  @ossy/resource-templates                       │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -49,7 +49,7 @@ npm init -y
 ### 2. Install dependencies
 
 ```bash
-npm install @ossy/app @ossy/connected-components @ossy/design-system @ossy/themes @ossy/router-react @ossy/sdk @ossy/sdk-react react react-dom
+npm install @ossy/cli @ossy/app @ossy/connected-components @ossy/design-system @ossy/themes @ossy/router-react @ossy/sdk @ossy/sdk-react react react-dom
 ```
 
 ### 3. Add pages
@@ -82,7 +82,7 @@ export default {
 ### 5. Run
 
 ```bash
-npx @ossy/app dev
+npx @ossy/cli dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -91,12 +91,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Use case | Package |
 |----------|---------|
-| **Quick start, convention-based** | `@ossy/app` — Run `npx @ossy/app dev` with `src/pages.jsx` and `src/config.js` |
+| **Quick start, convention-based** | `@ossy/cli` — Run `npx @ossy/cli dev` with `src/pages.jsx` and `src/config.js` |
 | **Custom setup** (Next.js, Vite, etc.) | `@ossy/connected-components` — Use the `App` component directly with your own bundler and server |
 | **Design components only** | `@ossy/design-system` + `@ossy/themes` |
 | **CMS data fetching only** | `@ossy/sdk` + `@ossy/sdk-react` |
 
-See **App — Getting Started** in the sidebar for using `App` without `@ossy/app`.
+See **App — Getting Started** in the sidebar for using `App` without `@ossy/cli`.
 
 ## Scripts
 
@@ -119,7 +119,7 @@ Use the sidebar to explore:
 
 | Package | Description |
 |---------|-------------|
-| `@ossy/app` | Build and dev server. Convention: `src/pages.jsx`, `src/config.js` |
+| `@ossy/app` | SSR runtime and build tooling (used by `@ossy/cli`) |
 | `@ossy/connected-components` | `App` component: routing, theming, SDK, workspace |
 | `@ossy/design-system` | React UI components |
 | `@ossy/themes` | Theme definitions (CloudLight, CloudDark, etc.) |
@@ -128,7 +128,7 @@ Use the sidebar to explore:
 | `@ossy/sdk-react` | `useResource`, `useResources` hooks |
 | `@ossy/router` | Base router (multi-language, localized paths) |
 | `@ossy/router-react` | React router bindings |
-| `@ossy/cli` | CLI for CMS workflows (e.g. import resource templates) |
+| `@ossy/cli` | Unified CLI: `dev`, `build`, and CMS workflows (`cms upload`) |
 | `@ossy/types` | Shared TypeScript types |
 | `@ossy/resource-templates` | Resource template definitions |
 
