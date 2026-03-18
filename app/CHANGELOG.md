@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.10.0 (2026-03-18)
+
+
+### Features
+
+* add optional dependency for Rollup on Linux ([425294f](https://github.com/ossy-se/packages/commit/425294f64f8a5d15716b459851a407a61528461b))
+
+
+
+
+
 ## 0.9.1 (2026-03-15)
 
 **Note:** Version bump only for package @ossy/app
