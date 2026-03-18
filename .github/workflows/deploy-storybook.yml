@@ -31,7 +31,7 @@ jobs:
         env:
           STORYBOOK_BASE_PATH: "/packages/"
 
-      - uses: actions/upload-pages-artifact@3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: storybook-static
 
@@ -43,4 +43,4 @@ jobs:
     needs: build
     steps:
       - id: deployment
-        uses: actions/deploy-pages@4
+        uses: actions/deploy-pages@v4
