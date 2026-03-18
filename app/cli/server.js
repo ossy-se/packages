@@ -11,6 +11,9 @@ import cookieParser from 'cookie-parser'
 import App from '%%@ossy/app/source-file%%'
 import ApiRoutes from '%%@ossy/api/source-file%%'
 import Middleware from '%%@ossy/middleware/source-file%%'
+import configModule from '%%@ossy/config/source-file%%'
+
+const buildTimeConfig = configModule?.default ?? configModule ?? {}
 
 const app = express();
 
@@ -114,9 +117,12 @@ app.all('*all', (req, res) => {
   const userAppSettings = req.userAppSettings || {}
 
   const appConfig = {
+    ...buildTimeConfig,
     url: req.url,
-    theme: userAppSettings.theme || 'light',
+    theme: userAppSettings.theme || buildTimeConfig.theme || 'light',
     isAuthenticated: req.isAuthenticated || false,
+    workspaceId: userAppSettings.workspaceId || buildTimeConfig.workspaceId,
+    apiUrl: buildTimeConfig.apiUrl,
   }
 
   renderToString(App, appConfig)

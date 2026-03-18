@@ -20,11 +20,16 @@ export default [
 Add `src/config.js` for workspace and theme:
 
 ```js
+import { CloudLight } from '@ossy/themes'
+
 export default {
   workspaceId: 'your-workspace-id',
-  theme: 'light', // or import CloudLight from '@ossy/themes'
+  theme: CloudLight, // or 'light' | 'dark' | CloudDark
+  apiUrl: 'https://api.ossy.se/api/v0', // optional
 }
 ```
+
+Config is loaded at build time and merged with request-time settings (e.g. user theme preference from cookies). The server passes `workspaceId`, `apiUrl`, and `theme` to the App component.
 
 Run `npx @ossy/cli dev` or `npx @ossy/cli build`.
 

@@ -10,7 +10,7 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "node --experimental-vm-modules ../node_modules/jest/bin/jest.js --verbose",
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0"
   },
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",

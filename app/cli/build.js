@@ -128,9 +128,9 @@ export const build = async (cliArgs) => {
       middlewareSourcePath = path.resolve(scriptDir, 'middleware.js')
     }
 
-    if (fs.existsSync(configPath)) {
-        inputFiles.push(configPath)
-    }
+    const configSourcePath = fs.existsSync(configPath)
+      ? configPath
+      : path.resolve(scriptDir, 'default-config.js')
 
     const inputOptions = {
         input: inputFiles,
@@ -156,6 +156,11 @@ export const build = async (cliArgs) => {
             preventAssignment: true,
             delimiters: ['%%', '%%'],
             '@ossy/middleware/source-file': middlewareSourcePath,
+          }),
+          replace({
+            preventAssignment: true,
+            delimiters: ['%%', '%%'],
+            '@ossy/config/source-file': configSourcePath,
           }),
           replace({
             preventAssignment: true,

@@ -15,7 +15,20 @@
   },
   "workspaces": [
     "!**/.github",
-    "*"
+    "app",
+    "cli",
+    "connected-components",
+    "design-system",
+    "eslint-config-ossy",
+    "pages",
+    "resource-templates",
+    "router",
+    "router-react",
+    "sdk",
+    "sdk-react",
+    "themes",
+    "types",
+    "examples/*"
   ],
   "author": "Ossy <yourfriends@ossy.se> (https://ossy.se)",
   "license": "MIT",

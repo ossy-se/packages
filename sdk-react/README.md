@@ -20,7 +20,7 @@ import { WorkspaceProvider } from '@ossy/sdk-react'
 import { SDK } from '@ossy/sdk'
 import { MyComponent } from './MyComponent.jsx'
 
-const sdk = new SDK({ baseUrl: 'https://your-api.example.com' })
+const sdk = SDK.of({ workspaceId: 'your-workspace-id', apiUrl: 'https://api.ossy.se/api/v0' })
 
 export const App = () => (
   <WorkspaceProvider sdk={sdk}>

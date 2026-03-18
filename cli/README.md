@@ -6,9 +6,11 @@ Unified CLI for the Ossy platform: app dev/build and CMS workflows.
 
 | Command | Description |
 |---------|-------------|
+| `init [dir]` | Scaffold a new Ossy app (default: current directory) |
 | `dev` | Start dev server with watch (uses `src/pages.jsx`, `src/config.js`) |
 | `build` | Production build |
 | `cms upload` | Upload resource templates to your workspace |
+| `cms validate` | Validate ossy config and resource templates |
 
 ## App: dev & build
 
@@ -56,9 +58,30 @@ jobs:
             --ossy-file ossy.json
 ```
 
+### cms validate
+
+Validate an ossy config file before uploading:
+
+```bash
+npx @ossy/cli cms validate --ossy-file ossy.json
+```
+
+Defaults to `ossy.json` in the current directory when `--ossy-file` is omitted.
+
 ### Arguments
 
 | Argument | Description | Required |
 |----------|-------------|----------|
-| --authentication, -a | Your CMS API token | Yes |
-| --ossy-file | Path to file with `workspaceId` and `resourceTemplates` | Yes |
+| --authentication, -a | Your CMS API token | Yes (upload only) |
+| --ossy-file | Path to file with `workspaceId` and `resourceTemplates` | Yes (upload), optional (validate) |
+
+## init
+
+Scaffold a new Ossy app:
+
+```bash
+npx @ossy/cli init
+npx @ossy/cli init my-app
+```
+
+Creates `src/pages.jsx`, `src/config.js`, and `package.json` (if missing).

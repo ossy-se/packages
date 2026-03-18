@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { readFileSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import arg from 'arg'
 import { logInfo, logError } from '../log.js'
 
@@ -76,18 +76,69 @@ const upload = (options) => {
     })
 }
 
+const validate = (options) => {
+  const parsedArgs = arg({
+    '--ossy-file': String,
+  }, { argv: options })
+
+  const ossyFilePath = parsedArgs['--ossy-file']
+  const filePath = ossyFilePath ? resolve(ossyFilePath) : resolve('ossy.json')
+
+  if (!existsSync(filePath)) {
+    logError({ message: `[@ossy/cli] File not found: ${filePath}. Use --ossy-file` })
+    process.exit(1)
+  }
+
+  logInfo({ message: '[@ossy/cli] Validating...' })
+
+  resolveConfigImport(filePath)
+    .then((module) => {
+      const config = module?.default ?? module
+      const workspaceId = config?.workspaceId
+      const resourceTemplates = config?.resourceTemplates
+
+      const errors = []
+      if (!workspaceId) errors.push('Missing workspaceId')
+      if (!resourceTemplates) {
+        errors.push('Missing resourceTemplates')
+      } else if (!Array.isArray(resourceTemplates)) {
+        errors.push('resourceTemplates must be an array')
+      } else {
+        resourceTemplates.forEach((t, i) => {
+          if (!t.id) errors.push(`Template ${i}: missing id`)
+          if (!t.name) errors.push(`Template ${i}: missing name`)
+          if (!t.fields || !Array.isArray(t.fields)) {
+            errors.push(`Template ${i}: fields must be an array`)
+          }
+        })
+      }
+
+      if (errors.length > 0) {
+        console.error('[@ossy/cli] Validation failed:')
+        errors.forEach((e) => console.error('  -', e))
+        process.exit(1)
+      }
+      logInfo({ message: '[@ossy/cli] Valid' })
+    })
+    .catch((error) => {
+      logError({ message: '[@ossy/cli] Error', error })
+      process.exit(1)
+    })
+}
+
 const subcommands = {
-  upload: upload,
+  upload,
+  validate,
 }
 
 export const handler = ([subcommand, ...options]) => {
   if (!subcommand) {
-    logError({ message: '[@ossy/cli] cms: no subcommand. Use: ossy cms upload' })
+    logError({ message: '[@ossy/cli] cms: no subcommand. Use: ossy cms upload | validate' })
     process.exit(1)
   }
   const fn = subcommands[subcommand]
   if (!fn) {
-    logError({ message: `[@ossy/cli] cms: unknown subcommand "${subcommand}". Use: ossy cms upload` })
+    logError({ message: `[@ossy/cli] cms: unknown subcommand "${subcommand}". Use: ossy cms upload | validate` })
     process.exit(1)
   }
   fn(options)

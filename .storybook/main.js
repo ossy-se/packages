@@ -44,6 +44,8 @@ const config = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@ossy/themes': path.resolve(__dirname, '../themes/src/index.js'),
+      '@ossy/sdk': path.resolve(__dirname, '../sdk/src/public.index.ts'),
+      '@ossy/sdk-react': path.resolve(__dirname, '../sdk-react/src/public.index.ts'),
     }
     return config
   },

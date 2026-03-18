@@ -1,0 +1,24 @@
+{
+  "name": "starter-app",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Example Ossy app — run with npx @ossy/cli dev from this directory",
+  "scripts": {
+    "dev": "npx @ossy/cli dev",
+    "build": "npx @ossy/cli build",
+    "start": "node build/server.js"
+  },
+  "dependencies": {
+    "@ossy/cli": "workspace:*",
+    "@ossy/app": "workspace:*",
+    "@ossy/connected-components": "workspace:*",
+    "@ossy/design-system": "workspace:*",
+    "@ossy/themes": "workspace:*",
+    "@ossy/router-react": "workspace:*",
+    "@ossy/sdk": "workspace:*",
+    "@ossy/sdk-react": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

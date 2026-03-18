@@ -33,6 +33,14 @@ The Ossy Ecosystem provides:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+## Example app
+
+See [examples/starter-app](./examples/starter-app) for a minimal working app. From the repo root:
+
+```bash
+npm run build && cd examples/starter-app && npm run dev
+```
+
 ## Create your first app
 
 ### 1. Create a new project
