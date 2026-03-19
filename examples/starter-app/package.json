@@ -10,7 +10,6 @@
     "start": "node build/server.js"
   },
   "dependencies": {
-    "@ossy/cli": ">=0.9.1 <1.0.0",
     "@ossy/app": ">=0.9.1 <1.0.0",
     "@ossy/connected-components": ">=0.9.1 <1.0.0",
     "@ossy/design-system": ">=0.9.1 <1.0.0",
@@ -20,5 +19,8 @@
     "@ossy/sdk-react": ">=0.9.1 <1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@ossy/cli": ">=0.9.1 <1.0.0"
   }
 }
