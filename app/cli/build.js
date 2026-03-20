@@ -14,6 +14,7 @@ import copy from 'rollup-plugin-copy';
 import replace from '@rollup/plugin-replace';
 import remove from 'rollup-plugin-delete';
 import arg from 'arg'
+import { ensureBuildStubs } from '../scripts/ensure-build-stubs.mjs'
 // import inject from '@rollup/plugin-inject'
 
 const PAGE_FILE_PATTERN = /\.page\.(jsx?|tsx?)$/
@@ -292,6 +293,8 @@ export const build = async (cliArgs) => {
     for (const options of outputOptions) {
         await bundle.write(options);
     }
+
+    ensureBuildStubs(buildPath)
 
     console.log('[@ossy/app][build] Finished');
 };
