@@ -112,6 +112,10 @@ npm run test         # Run tests in all packages
 npm start            # Start Storybook (docs)
 ```
 
+## Published documentation
+
+Storybook is deployed to [GitHub Pages](https://ossy-se.github.io/packages/) on push to `main`. The workflow is defined in [.github/workflows/deploy-storybook.yml](.github/workflows/deploy-storybook.yml).
+
 ## Packages
 
 | Package | Description |
