@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.12.0 (2026-03-21)
+
+
+### Features
+
+* introduce fields component and related utilities for form handling ([4870c4d](https://github.com/ossy-se/packages/commit/4870c4d226cef745b825f4322de31c54b73b15ca))
+
+
+
+
+
 ## 0.11.2 (2026-03-21)
 
 **Note:** Version bump only for package @ossy/design-system
