@@ -19,6 +19,8 @@ env:
   REGISTRY: 'https://registry.npmjs.org'
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # Lerna 9 delegates to Nx; the Nx daemon can keep Node alive after publish and never exit the step.
+  NX_DAEMON: 'false'
 
 jobs:
 
