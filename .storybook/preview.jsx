@@ -103,7 +103,7 @@ const preview = {
     },
     options: {
       storySort: {
-        order: [['Overview'], ['App', ['Getting Started']], ['Pages', ['Introduction']], 'Types', ['Design System', ['Layout', 'Feedback', 'Navigation', 'Actions', 'Display', 'Other', 'Inputs', 'Base']], '*'],
+        order: [['Overview'], ['App', ['Getting Started']], ['Pages', ['Introduction']], 'Types', ['Design System', ['Getting Started', 'Principles', 'Theme Concepts', 'Patterns', 'Variants', 'Layout', 'Feedback', 'Navigation', 'Actions', 'Display', 'Other', 'Inputs', 'Base']], '*'],
       },
     },
     docs: {

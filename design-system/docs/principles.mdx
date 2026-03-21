@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Principles" />
+
+# Principles
+
+These principles describe how we think about UI in the **Ossy design system**. They are the “why” behind tokens, components, and documentation. New to the package? Start with **Design System → Getting Started**. For mechanics (tokens, surfaces, variants), see **Theme Concepts**, **Patterns**, and **Variants** in the same sidebar section.
+
+---
+
+## Theme-native first
+
+Interfaces are built **on top of themes**, not hardcoded palettes. A theme defines CSS custom properties (`@ossy/themes`); the `Theme` provider injects them so components read values like `var(--surface-primary)` and `var(--space-m)` instead of one-off hex or pixel choices.
+
+**Why:** One source of truth for light/dark and future themes, fewer visual regressions, and a clear contract between design and implementation.
+
+---
+
+## Patterns over arbitrary values
+
+Spacing, radius, and similar decisions use **named scales** (space, inset, roundness, and related tokens). Layout primitives apply those scales through consistent props and data attributes so gaps and radii stay aligned across the product.
+
+**Why:** Cohesion at scale. When everything draws from the same ladder, screens feel related without copying values by hand.
+
+---
+
+## Surfaces communicate structure
+
+**Surface** is how we describe the role of a region: background, foreground, separators, and interaction states. Surfaces stack and nest to show hierarchy (base page, panels, controls) without every team inventing a new gray.
+
+**Why:** Users learn the product faster when elevation and grouping follow a small, repeatable vocabulary.
+
+---
+
+## Variants capture product intent; props refine it
+
+A **variant** bundles patterns and surface into a named preset (for example button or card variants). Variants express “what kind of thing is this?” Call sites can still override individual pattern or surface props when a screen needs an exception.
+
+**Why:** Defaults stay opinionated and fast to use; edge cases stay possible without forking components. Precedence is always: **variant sets the baseline; explicit pattern/surface props win.**
+
+---
+
+## Composition before new components
+
+We prefer **small, combinable pieces** (layout, typography, surfaces) that teams assemble into flows. New components earn their place when the same structure repeats everywhere or when behavior must be centralized.
+
+**Why:** Less API surface to learn, fewer parallel implementations of the same layout, and clearer ownership of shared behavior.
+
+---
+
+## One implementation, many environments
+
+Components are built for **server rendering**, **client hydration**, and **React 19**, with styles attached in a way that plays nicely with streaming and deduplication (for example scoped `<style>` hooks with stable `href` keys where appropriate).
+
+**Why:** Ossy apps ship as real sites, not demo bundles. The design system should not be the reason a page cannot SSR or theme-switch cleanly.
+
+---
+
+## Clear, inclusive interaction
+
+Controls expose **visible focus**, sensible disabled treatment, and semantics that match their role (labels, landmarks, appropriate elements). We avoid purely decorative motion for essential feedback.
+
+**Why:** Products should be usable with keyboard and assistive tech, and understandable in bright, dim, or high-contrast conditions—within what the active theme provides.
+
+---
+
+## Related documentation
+
+| Topic | Doc |
+|-------|-----|
+| Tokens, surfaces, variants, override rules | **Design System → Theme Concepts** |
+| Pattern scales (space, inset, roundness, …) | **Design System → Patterns** |
+| Variants as grouped patterns | **Design System → Variants** |
+| Install and `Theme` setup | **Design System → Getting Started** |
+
+---
+
+## Summary
+
+1. **Themes** supply variables; components consume them.  
+2. **Patterns** keep spacing and shape on shared scales.  
+3. **Surfaces** describe layers and hierarchy.  
+4. **Variants** encode defaults; **props** override when needed.  
+5. **Compose** primitives; add components when repetition demands it.  
+6. **Ship** the same markup on server and client.  
+7. **Interact** in a way that is obvious, kind, and accessible.
+
+These principles should make future contributions easier to review: if a change respects theme tokens, patterns, surfaces, and composition, it probably belongs. If it introduces a new one-off color or spacing value, pause and ask whether the theme or pattern scale should grow instead.

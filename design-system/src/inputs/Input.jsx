@@ -3,46 +3,48 @@ import { View } from '../view'
 import { Text } from '../text'
 import { Button } from '../button'
 
+const inputStyles = `
+  [data-component="input"] {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    padding: var(--space-s, 8px) var(--space-m, 16px);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--separator-primary);
+    border-radius: var(--roundess-rounded, 99999px);
+    font-size: var(--text-default-font-size, 16px);
+    font-family: var(--text-default-font-family, sans-serif);
+    font-weight: var(--text-default-font-weight, 400);
+    line-height: 1;
+    color: var(--text-default-color, CanvasText);
+    background-color: var(--surface-primary);
+    box-shadow: none;
+  }
+
+  [data-component="input"]::placeholder {
+    color: color-mix(in srgb, var(--text-default-color) 42%, transparent);
+  }
+
+  [data-component="input"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent);
+  }
+
+  [data-component="input"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    color: color-mix(in srgb, var(--text-default-color) 65%, transparent);
+    background-color: color-mix(in srgb, var(--surface-primary) 80%, transparent);
+    border-color: var(--separator-primary);
+  }
+`
+
 export const Input = props => (
   <>
     <style href="@ossy/design-system/input" precedence='high'>
-    {`
-      [data-component="input"] {
-        box-sizing: border-box;
-        max-width: 100%;
-        min-width: 0;
-        padding: var(--space-s, 8px) var(--space-m, 16px);
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--separator-primary);
-        border-radius: var(--space-xs, 5px);
-        font-size: var(--text-default-font-size, 16px);
-        font-family: var(--text-default-font-family, sans-serif);
-        font-weight: var(--text-default-font-weight, 400);
-        line-height: var(--text-default-line-height, 1.5);
-        color: var(--text-default-color, CanvasText);
-        background-color: var(--surface-primary);
-        box-shadow: none;
-      }
-
-      [data-component="input"]::placeholder {
-        color: color-mix(in srgb, var(--text-default-color) 42%, transparent);
-      }
-
-      [data-component="input"]:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 1px var(--color-accent);
-      }
-
-      [data-component="input"][disabled] {
-        cursor: not-allowed;
-        opacity: 0.55;
-        color: color-mix(in srgb, var(--text-default-color) 65%, transparent);
-        background-color: color-mix(in srgb, var(--surface-primary) 80%, transparent);
-        border-color: var(--separator-primary);
-      }
-    `}
+    {inputStyles}
     </style>
     <input data-component="input" {...props}/>
   </>
@@ -76,49 +78,6 @@ export const InputTitle = props => (
     `}
     </style>
     <input data-component="input-title" {...props}/>
-  </>
-)
-
-export const Input2 = props => (
-  <>
-    <style href="@ossy/design-system/input2" precedence='high'>
-    {`
-      [data-component="input2"] {
-        box-sizing: border-box;
-        max-width: 100%;
-        min-width: 0;
-        padding: var(--space-s, 8px) var(--space-m, 16px);
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--separator-primary);
-        border-radius: var(--roundess-rounded, 99999px);
-        font-size: var(--text-default-font-size, 16px);
-        font-family: var(--text-default-font-family, sans-serif);
-        font-weight: var(--text-default-font-weight, 400);
-        line-height: 1;
-        color: var(--text-default-color, CanvasText);
-        background-color: var(--surface-primary);
-      }
-
-      [data-component="input2"]::placeholder {
-        color: color-mix(in srgb, var(--text-default-color) 42%, transparent);
-      }
-
-      [data-component="input2"]:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 1px var(--color-accent);
-      }
-
-      [data-component="input2"]:disabled {
-        cursor: not-allowed;
-        opacity: 0.55;
-        color: color-mix(in srgb, var(--text-default-color) 65%, transparent);
-        background-color: color-mix(in srgb, var(--surface-primary) 80%, transparent);
-      }
-    `}
-    </style>
-    <input data-component="input2" {...props}/>
   </>
 )
 
@@ -169,40 +128,10 @@ export const Textarea = props => (
 
 export const Select = props => (
   <>
-  <style href="@ossy/design-system/input2" precedence='high'>
-    {`
-      [data-component="input2"] {
-        box-sizing: border-box;
-        max-width: 100%;
-        min-width: 0;
-        padding: var(--space-s, 8px) var(--space-m, 16px);
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--separator-primary);
-        border-radius: var(--roundess-rounded, 99999px);
-        font-size: var(--text-default-font-size, 16px);
-        font-family: var(--text-default-font-family, sans-serif);
-        font-weight: var(--text-default-font-weight, 400);
-        line-height: 1;
-        color: var(--text-default-color, CanvasText);
-        background-color: var(--surface-primary);
-      }
-
-      [data-component="input2"]:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 1px var(--color-accent);
-      }
-
-      [data-component="input2"]:disabled {
-        cursor: not-allowed;
-        opacity: 0.55;
-        color: color-mix(in srgb, var(--text-default-color) 65%, transparent);
-        background-color: color-mix(in srgb, var(--surface-primary) 80%, transparent);
-      }
-    `}
+  <style href="@ossy/design-system/input" precedence='high'>
+    {inputStyles}
     </style>
-    <select data-component="input2" {...props}/>
+    <select data-component="input" {...props}/>
   </>
 )
 

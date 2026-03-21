@@ -54,7 +54,7 @@ Run Storybook from the monorepo root for full component documentation:
 npm start
 ```
 
-Browse **Design System** in the sidebar for Layout, Feedback, Navigation, Actions, Display, Inputs, and more.
+In Storybook, open **Design System → Getting Started** for install and `Theme` setup, then **Principles**, **Theme Concepts**, **Patterns**, and **Variants**. Browse Layout, Feedback, Navigation, Actions, Display, Inputs, Base, and more in the same section.
 
 ## Peer dependencies
 
