@@ -2,6 +2,8 @@
 
 Monorepo for the **Ossy Ecosystem** — a collection of packages for building content-driven applications with our CMS and design system.
 
+**Documentation:** [Published Docs](https://ossy-se.github.io/packages/) — updated on each push to `main` ([deploy workflow](.github/workflows/deploy-storybook.yml)). Run `npm start` at the repo root for local Storybook.
+
 ## Overview
 
 The Ossy Ecosystem provides:
@@ -111,10 +113,6 @@ npm run build        # Build all packages
 npm run test         # Run tests in all packages
 npm start            # Start Storybook (docs)
 ```
-
-## Published documentation
-
-Storybook is deployed to [GitHub Pages](https://ossy-se.github.io/packages/) on push to `main`. The workflow is defined in [.github/workflows/deploy-storybook.yml](.github/workflows/deploy-storybook.yml).
 
 ## Packages
 
