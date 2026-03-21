@@ -1,4 +1,5 @@
 export * from './App.jsx'
+export { AppDocumentShell } from './AppDocumentShell.jsx'
 // export * from './useAnalytics.jsx'
 export * from './AppSettings.jsx'
 export { useApp } from './AppContext.js'

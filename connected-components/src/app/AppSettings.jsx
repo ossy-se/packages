@@ -13,6 +13,17 @@ export function defaultAppSettings() {
       router: 'browser',
       gaId: undefined,
       apiUrl: undefined,
-      devMode: false
+      devMode: false,
+      /** When true (default), `App` renders `<html>` / `<head>` / `<body>` for SSR + hydrateRoot(document). Set false if the app entry already provides the document. */
+      includeDocumentShell: true,
+      /** Page `<title>`; `title` is accepted as an alias. */
+      documentTitle: undefined,
+      title: undefined,
+      metaDescription: undefined,
+      themeColor: undefined,
+      /** `<html lang>`; falls back to `defaultLanguage` then `en`. */
+      htmlLang: undefined,
+      /** Favicon URL; default `/favicon.ico`. Use `null` or `false` to omit. */
+      faviconHref: undefined,
     }
   }

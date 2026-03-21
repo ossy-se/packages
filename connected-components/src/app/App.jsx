@@ -6,6 +6,7 @@ import { ThemeEditor } from '../theme-editor/ThemeEditor.jsx'
 import { defaultAppSettings } from './AppSettings.jsx'
 import { Router } from '@ossy/router-react'
 import { AppContext } from './AppContext.js'
+import { AppDocumentShell } from './AppDocumentShell.jsx'
 
 function routesToPages(routes) {
   if (!routes?.length) return []
@@ -32,14 +33,20 @@ export const App = (_appSettings) => {
     workspaceId: appSettings.workspaceId
   })
 
-  return (
+  const tree = (
     <AppContext.Provider value={appSettings}>
       <Theme theme={appSettings.theme} themes={appSettings.themes}>
         <WorkspaceProvider sdk={sdk}>
           <Router {...appSettings} pages={pages} />
-          { appSettings.devMode && <ThemeEditor />}
+          {appSettings.devMode && <ThemeEditor />}
         </WorkspaceProvider>
       </Theme>
     </AppContext.Provider>
   )
+
+  if (appSettings.includeDocumentShell === false) {
+    return tree
+  }
+
+  return <AppDocumentShell appSettings={appSettings}>{tree}</AppDocumentShell>
 }

@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Fields, applyFieldChange, FIELD_TYPES } from './index.js'
+import { ComponentsProvider } from '../component-slots'
+import { Input } from '../inputs'
+import {
+  Fields,
+  applyFieldChange,
+  FIELD_TYPES,
+  DEFAULT_FORM_FIELD_SLOTS,
+} from './index.js'
 
 export default {
   title: 'Design System/Forms/Fields',
@@ -149,3 +156,60 @@ export const Date = () =>
     ),
     { Due: '2026-06-01' },
   )
+
+const TomatoTextField = ({ label, value, onChange, style = {}, ...rest }) => (
+  <Input
+    {...rest}
+    id={label}
+    type="text"
+    value={value ?? ''}
+    onChange={onChange}
+    style={{
+      minWidth: '50%',
+      ...style,
+      borderColor: 'tomato',
+      borderWidth: 2,
+      borderStyle: 'solid',
+    }}
+  />
+)
+
+/** `form.field.text` overridden while other types come from {@link DEFAULT_FORM_FIELD_SLOTS}. */
+export const SlotOverrideFormFieldText = () => {
+  const Shell = () => {
+    const [data, setData] = useState({ Title: 'Custom slot' })
+    return (
+      <div style={{ maxWidth: 480, fontFamily: 'system-ui, sans-serif' }}>
+        <p style={{ fontSize: 14, color: '#555', marginBottom: 12 }}>
+          <code>form.field.text</code> uses a custom component; remaining types use{' '}
+          <code>DEFAULT_FORM_FIELD_SLOTS</code>.
+        </p>
+        <ComponentsProvider
+          slots={{
+            ...DEFAULT_FORM_FIELD_SLOTS,
+            'form.field.text': TomatoTextField,
+          }}
+        >
+          <Fields
+            data={data}
+            onChange={e => setData(prev => applyFieldChange(prev, e))}
+            fields={[{ name: 'Title', type: 'text', required: true }]}
+          />
+        </ComponentsProvider>
+        <pre
+          style={{
+            marginTop: 20,
+            padding: 12,
+            background: '#f4f4f5',
+            borderRadius: 8,
+            fontSize: 12,
+            overflow: 'auto',
+          }}
+        >
+          {JSON.stringify(data, null, 2)}
+        </pre>
+      </div>
+    )
+  }
+  return <Shell />
+}

@@ -4,6 +4,8 @@ import { Text } from '../text'
 import { Input, Textarea, Select } from '../inputs'
 import { Button } from '../button'
 import { Tags } from '../tags'
+import { useSlot } from '../component-slots'
+import { FORM_FIELD_SLOT_PREFIX, formFieldSlotKey } from './formFieldSlotKeys.js'
 
 const fieldInputStyle = { minWidth: '50%' }
 const textareaStyle = {
@@ -304,9 +306,54 @@ const FIELD_COMPONENTS = {
 }
 
 /**
+ * Default {@link ComponentsProvider} `slots` map for {@link Fields}.
+ * Keys are `form.field.<type>` (see {@link formFieldSlotKey}).
+ *
+ * @type {Record<string, import('react').ComponentType<any>>}
+ */
+export const DEFAULT_FORM_FIELD_SLOTS = Object.fromEntries(
+  Object.entries(FIELD_COMPONENTS).map(([type, Comp]) => [
+    `${FORM_FIELD_SLOT_PREFIX}.${type}`,
+    Comp,
+  ]),
+)
+
+function FormFieldRow({ field, data, onChange }) {
+  const { name, type, options, required, ...fieldRest } = field
+  const typeKey = typeof type === 'string' ? type.trim() : type || 'text'
+  const slotKey = formFieldSlotKey(typeKey)
+  const Slotted = useSlot(slotKey)
+  const Fallback = FIELD_COMPONENTS[typeKey] || TextField
+  const Field = Slotted === undefined ? Fallback : Slotted
+
+  const fieldProps = {
+    ...fieldRest,
+    label: name,
+    options,
+    required,
+    value: data[name],
+    onChange,
+  }
+
+  return (
+    <View gap="xs">
+      <Text as="span" style={{ fontWeight: 'bold' }}>
+        {name}
+        {required ? ' *' : ''}
+      </Text>
+      {Field === null ? null : <Field {...fieldProps} />}
+    </View>
+  )
+}
+
+/**
  * Renders labeled inputs for each entry in a template `fields` array.
  * Use {@link applyFieldChange} to derive the next `data` object from native
  * `onChange` events (and from multiselect tag commits).
+ *
+ * Resolves controls via {@link useSlot}(`form.field.<type>`) first, then built-ins
+ * in {@link DEFAULT_FORM_FIELD_SLOTS}. Pass {@link DEFAULT_FORM_FIELD_SLOTS} into
+ * {@link ComponentsProvider} when you want slots to resolve without per-type fallbacks.
  *
  * @param {{
  *   data: Record<string, unknown>,
@@ -320,30 +367,9 @@ export function Fields({ data, onChange, fields: fieldsProp, templateFields, ...
 
   return (
     <View gap="s" {...props}>
-      {list.map(field => {
-        const { name, type, options, required, ...fieldRest } = field
-        const typeKey = typeof type === 'string' ? type.trim() : type
-        const Field = FIELD_COMPONENTS[typeKey] || TextField
-
-        const fieldProps = {
-          ...fieldRest,
-          label: name,
-          options,
-          required,
-          value: data[name],
-          onChange,
-        }
-
-        return (
-          <View gap="xs" key={name}>
-            <Text as="span" style={{ fontWeight: 'bold' }}>
-              {name}
-              {required ? ' *' : ''}
-            </Text>
-            <Field {...fieldProps} />
-          </View>
-        )
-      })}
+      {list.map(field => (
+        <FormFieldRow key={field.name} field={field} data={data} onChange={onChange} />
+      ))}
     </View>
   )
 }
