@@ -1,6 +1,6 @@
 {
   "name": "@ossy/cli",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ossy-se/packages.git"
@@ -17,7 +17,7 @@
   "license": "MIT",
   "bin": "./src/index.js",
   "dependencies": {
-    "@ossy/app": "^0.10.2",
+    "@ossy/app": "^0.11.0",
     "arg": "^5.0.2"
   },
   "publishConfig": {

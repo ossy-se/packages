@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.11.0 (2026-03-21)
+
+
+### Features
+
+* enhance Storybook theming and design system components ([7add1ab](https://github.com/ossy-se/packages/commit/7add1ab65adefc29494c86e7176390803b314d97))
+
+
+
+
+
 ## 0.10.2 (2026-03-21)
 
 **Note:** Version bump only for package @ossy/connected-components

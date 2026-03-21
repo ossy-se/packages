@@ -5,7 +5,7 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "description": "SaaS page templates and layouts: auth (login, signup, forgot password, verify email), pricing, settings, dashboard, 404, landing page, resume",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "source": "src/index.js",
   "type": "module",
   "module": "build/index.js",
@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "@ossy/themes": "^0.10.2",
+    "@ossy/themes": "^0.11.0",
     "moment": "^2.29.4"
   },
   "peerDependencies": {
