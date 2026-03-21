@@ -253,16 +253,16 @@ export const CloudDark = {
 
     tag: {
       'padding': 'var(--space-s) var(--space-m)',
-      'background': 'hsla(199, 22%, 16%, .95)',
-      'color': 'hsl(199, 18%, 82%)',
+      'background': 'transparent',
+      'color': 'hsl(199, 14%, 68%)',
       'border-width': '1px',
       'border-style': 'solid',
-      'border-color': 'hsl(199, 18%, 24%)',
+      'border-color': 'var(--separator-primary)',
       'border-radius': 'var(--space-m)',
       'font-size': '.8rem',
       'font-weight': '300',
 
-      'background-hover': 'hsla(199, 22%, 22%, .95)',
+      'background-hover': 'hsla(199, 18%, 22%, 0.55)',
     },
 
     'tag-active': {
