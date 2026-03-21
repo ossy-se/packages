@@ -38,7 +38,7 @@ const SelectableStory = ({ surface, ...args }) => (
 )
 
 export const Selectable = SelectableStory.bind({})
-Selectable.args = { layout: 'row', surface: "secondary", selectable: true }
+Selectable.args = { layout: 'row', surface: 'primary', selectable: true }
 
 export const Surfaces = Story.bind({})
 Surfaces.args = { layout: 'page' }

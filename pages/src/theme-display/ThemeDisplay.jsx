@@ -74,8 +74,9 @@ export const ThemeDisplay = ({
                   width: '200px',
                   height: 'var(--space-xl)',
                   backgroundColor: `var(--color-${name})`,
-                  boxShadow: '2px 2px 10px 0 hsla(0, 0%, 90%, .8)',
-                  borderRadius: 'var(--space-xs)'
+                  border: '1px solid var(--separator-primary)',
+                  borderRadius: 'var(--space-xs)',
+                  boxSizing: 'border-box',
                 }}>
                 </div>
                 <Text>

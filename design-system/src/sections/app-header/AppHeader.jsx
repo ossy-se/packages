@@ -42,7 +42,7 @@ export const AppHeader = ({
    }
 
    const altPrimaryStyles = {
-     borderBottom: '1px solid var(--surface-alt-primary)',
+     borderBottom: '1px solid var(--separator-primary)',
    }
 
    return true

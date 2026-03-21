@@ -1,201 +1,226 @@
 import { base } from './base.js'
 import { topography } from './patterns/index.js'
 
-/** Standard dark theme */
+const accent = 'hsl(167, 89%, 43%)'
+const accentHover = 'hsl(167, 89%, 38%)'
+
+/**
+ * Dark analogue of CloudLight’s base: warm center (hue 15) → cyan edge (199).
+ * Extra stops keep a smooth, visible blend like the light theme’s peach→sky wash.
+ */
+const basePageGradient =
+  'radial-gradient(circle at center center, hsla(15, 58%, 22%, 1) 0%, hsla(20, 42%, 13%, 1) 38%, hsl(199, 34%, 10%) 72%, hsl(199, 30%, 7%) 100%)'
+
+/** Same story as light’s linear-gradient: top-left cool → bottom-right hint of warmth. */
+const baseLinearGradient =
+  'linear-gradient(162deg, hsl(199, 32%, 10%) 0%, hsl(199, 28%, 8%) 42%, hsla(15, 45%, 12%, 0.9) 100%)'
+
+/** `surfaces.base`: radial depth + diagonal wash (top layer first in CSS). */
+const baseSurfaceGradient = `${basePageGradient}, ${baseLinearGradient}`
+
+/** Raised-panel rim on dark UI (replaces light gray / glowy shadows). */
+const surfaceOutline = 'hsla(199, 16%, 42%, .55)'
+const surfaceOutlineMuted = 'hsla(199, 14%, 36%, .4)'
+const ctaOutline = 'hsl(167, 55%, 24%)'
+
+/** Standard dark theme — aligned with CloudLight (hue, typography, radii); same accent as light. */
 export const CloudDark = {
-  space: base.space,
-  'max-width': base['max-width'],
+  ...base,
 
   color: {
+    ...base.color,
+    base: 'hsl(199, 28%, 10%)',
+    primary: 'hsl(199, 25%, 14%)',
+    secondary: 'hsl(199, 22%, 18%)',
+    accent,
     foreground: {
-      primary: 'hsl(207, 70%, 95%)',
-      secondary: 'hsl(207, 20%, 80%)'
+      primary: 'hsl(199, 32%, 96%)',
+      secondary: 'hsl(199, 14%, 68%)',
     },
-    accent: 'hsl(23, 100%, 53%)'
   },
 
+  /** Flat tokens for docs / tooling; matches `surfaces` keys (base, primary, accent). */
   surface: {
-    'primary': 'hsl(207, 95%, 8%)',
-    'secondary': 'hsl(207, 95%, 10%)',
-    'radial-gradient': 'radial-gradient(hsl(199deg 98% 85%) 0%, hsl(0deg 0% 100%) 80%)',
-    'linear-gradient': 'linear-gradient(162deg, hsl(0deg 0% 100%) 0%, hsl(199deg 98% 97%) 100%)',
-
-    'decorated': `
-      linear-gradient(180deg, var(--surface-primary) 0%, transparent 100%),
-      ${topography('hsla(354, 80%, 38%, .3)')},
-      linear-gradient(180deg, var(--surface-primary) 0%, transparent 100%),
-      linear-gradient(-135deg, var(--surface-primary) 20%, hsl(354, 50%, 38%) 100%)
-    `,
+    base: baseSurfaceGradient,
+    primary: 'hsla(199, 28%, 14%, 0.5)',
+    accent,
   },
 
   surfaces: {
     ...base.surfaces,
 
     base: {
-      background: 'hsl(207, 95%, 10%)',
-      foreground: 'hsl(207, 70%, 95%)',
-      separator: 'hsl(203, 50%, 15%)',
+      background: baseSurfaceGradient,
+      'background-hover': baseSurfaceGradient,
+      'background-active': baseSurfaceGradient,
+      foreground: 'hsl(199, 32%, 96%)',
+      separator: 'hsla(199, 18%, 22%, 0.9)',
     },
 
     primary: {
-      foreground: 'hsl(207, 70%, 95%)',
-      'foreground-hover': 'hsl(207, 70%, 96%)',
-      background: 'hsla(207, 95%, 8%, .6)',
-      'background-hover': 'hsla(207, 95%, 8%, .7)',
-      backdropFilter: 'saturate(180%) blur(10px)',
-      separator: 'hsl(203, 50%, 15%)',
+      foreground: 'hsl(182, 23%, 88%)',
+      'foreground-hover': 'hsl(182, 25%, 95%)',
+      background: 'hsla(199, 28%, 14%, 0.45)',
+      'background-hover': 'hsla(199, 28%, 18%, 0.58)',
+      backdropFilter: 'saturate(180%) blur(12px)',
+      separator: surfaceOutlineMuted,
     },
 
-    secondary: {
-      background: 'hsl(207, 95%, 10%)',
-      foreground: 'hsl(207, 70%, 95%)',
-      separator: 'hsl(203, 50%, 15%)',
+    accent: {
+      ...base.surfaces.accent,
+      foreground: 'hsl(0, 0%, 98%)',
+      separator: surfaceOutlineMuted,
     },
-
-    decorated: {
-      background: `
-      linear-gradient(180deg, var(--surface-primary) 0%, transparent 100%),
-      ${topography('hsla(354, 80%, 38%, .3)')},
-      linear-gradient(180deg, var(--surface-primary) 0%, transparent 100%),
-      linear-gradient(-135deg, var(--surface-primary) 20%, hsl(354, 50%, 38%) 100%)
-    `,
-    'background-hover': 'var(--surface-primary)',
-    'background-active': 'var(--surface-primary)',
-      foreground: 'hsl(182, 23%, 95%)',
-    },
-
-
   },
 
+  separator: {
+    ...base.separator,
+    primary: 'hsl(199, 18%, 22%)',
+    accent,
+  },
 
   title: {
+    ...base.title,
 
     default: {
-      'font-family': 'Work Sans, sans-serif',
-      'color': 'var(--color-foreground-primary)',
-      'letter-spacing': '1px'
+      'font-family': 'Roboto, sans-serif',
+      'font-weight': '900',
+      'color': 'hsl(199, 40%, 92%)',
+      'letter-spacing': '1px',
     },
 
     display: {
-      'font-weight': '900',
-      'line-height': '1.2',
-      'font-size': 'min(54px, max(3.35vw, 32px))',
-      'color': 'hsl(207, 70%, 95%)',
-      'letter-spacing': '1.5px'
+      'line-height': '1.1',
+      'font-size': 'min(80px, max(2.9vw, 32px))',
+      'font-family': 'Roboto, sans-serif',
+      'font-weight': '700',
+      'color': 'hsl(199, 35%, 96%)',
     },
 
     primary: {
       'font-size': '2rem',
-      'font-weight': '900',
       'line-height': '1.2',
-      'letter-spacing': '1.2px'
+      'letter-spacing': '1px',
+      'font-weight': '900',
     },
 
     secondary: {
       'font-size': '1.5rem',
-      'font-weight': '600',
       'line-height': '1.3',
-      'letter-spacing': '1px'
+      'letter-spacing': '1px',
+      'font-weight': '900',
     },
 
     tertiary: {
       'font-size': '1.25rem',
-      'font-weight': '600',
       'line-height': '1.4',
-      'letter-spacing': '0.25px'
+      'letter-spacing': '0.25px',
+      'font-weight': '500',
     },
 
     lead: {
-      'color': 'var(--color-accent)',
+      'color': accent,
       'font-size': '1.2rem',
-      'font-weight': '600',
       'line-height': '1.5',
-      'letter-spacing': '0.15px'
+      'letter-spacing': '0.15px',
     },
 
     logo: {
-      'font-weight': '400',
-      'line-height': '1.2',
-      'font-size': 'min(42px, max(3vw, 48px))',
-      'font-family': 'Fasthand, sans-serif',
-      'color': 'hsl(207, 70%, 95%)'
+      'font-family': 'Roboto, sans-serif',
+      'line-height': '1',
+      'font-size': 'min(30px, max(3vw, 32px))',
+      'color': 'hsl(199, 35%, 96%)',
     },
-
   },
 
   text: {
+    ...base.text,
 
     default: {
-      'font-family': 'Work Sans, sans-serif',
-      'font-weight': '100',
+      'font-family': 'Roboto, sans-serif',
+      'font-weight': '500',
       'font-size': '1rem',
       'line-height': '1.6',
-      'letter-spacing': '1px',
-      'color': 'var(--color-foreground-secondary)'
+      'color': 'hsl(182, 12%, 72%)',
     },
-
-    small: {
-      'font-size': '.8rem',
-      'line-height': '1.2',
-    }
-
   },
 
   button: {
+    ...base.button,
 
     default: {
       'background': 'transparent',
-      'color': 'var(--color-foreground-secondary)',
+      'color': 'hsl(199, 12%, 70%)',
       'border-width': '2px',
       'border-style': 'solid',
       'border-color': 'transparent',
-      'border-radius': '16px',
-      'padding': '8px 24px',
-      'font-family': 'Work Sans, sans-serif',
-      'font-size': '1rem',
-      'font-weight': '400',
+      'border-radius': '999px',
+      'padding': '8px 16px',
+      'font-family': 'Roboto, sans-serif',
+      'font-size': '14px',
+      'font-weight': '500',
+      'letter-spacing': '.7px',
 
-      'background-hover': 'hsl(0, 0%, 90%)',
-      'color-hover': 'hsl(0, 0%, 20%)',
+      'background-hover': 'hsla(199, 22%, 20%, .85)',
+      'color-hover': 'hsl(199, 35%, 96%)',
 
-      'background-disabled': 'hsl(0, 0%, 94%)',
-      'color-disabled': 'hsl(0, 0%, 50%)'
+      'background-disabled': 'hsla(199, 15%, 14%, .5)',
+      'color-disabled': 'hsl(199, 10%, 42%)',
+    },
+
+    header: {
+      'color': 'hsl(199, 12%, 58%)',
+      'background': 'transparent',
+      'border-width': '.5px',
+    },
+
+    secondary: {
+      'background': 'hsla(199, 22%, 18%, .85)',
+      'color': 'hsl(199, 30%, 92%)',
+      'border-width': '1px',
+      'border-style': 'solid',
+      'border-color': surfaceOutlineMuted,
+
+      'background-hover': 'hsla(199, 22%, 24%, .92)',
+      'color-hover': 'hsl(199, 35%, 98%)',
     },
 
     cta: {
-      'background': 'var(--color-accent)',
-      'color': 'var(--color-foreground-primary)',
+      'background': accent,
+      'color': 'hsl(0, 0%, 98%)',
+      'border-width': '1px',
+      'border-style': 'solid',
+      'border-color': ctaOutline,
+      'box-shadow': 'none',
 
-      'background-hover': 'hsl(23, 100%, 43%)',
-      'color-hover': 'hsl(0, 0%, 98%)'
+      'background-hover': accentHover,
+      'color-hover': 'hsl(0, 0%, 98%)',
     },
 
     link: {
-      'font-weight': '100',
-      'font-size': '1rem',
-      'background': 'transparent',
-      'border-color': 'transparent',
+      'button-link-background': 'transparent',
+      'button-link-border-color': 'transparent',
 
-      'background-hover': 'transparent',
-      'color-hover': 'hsl(23, 100%, 80%)'
+      'button-link-background-hover': 'transparent',
+      'button-link-color-hover': accent,
     },
 
     command: {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'transparent',
-      'background-hover': 'hsl(0, 0%, 95%)',
-      'color-hover': 'hsl(199deg 89% 43%)'
+      'background': 'hsla(199, 22%, 14%, .9)',
+      'background-hover': 'hsla(199, 22%, 18%, .95)',
+      'color-hover': 'hsl(199deg 89% 43%)',
     },
 
     'command-danger': {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'transparent',
-      'background-hover': 'hsl(0, 0%, 95%)',
-      'color-hover': 'hsl(0, 89%, 43%)'
+      'background': 'hsla(199, 22%, 14%, .9)',
+      'background-hover': 'hsla(199, 22%, 18%, .95)',
+      'color-hover': 'hsl(0 89% 43%)',
     },
 
     tab: {
@@ -205,63 +230,67 @@ export const CloudDark = {
       'border-radius': '0',
       'padding': '16px 24px',
 
-      'color-hover': 'hsl(23, 100%, 53%)',
+      'color-hover': accent,
       'background-hover': 'transparent',
-      'border-color-hover': 'transparent transparent hsl(23, 100%, 53%) transparent',
+      'border-color-hover': `transparent transparent ${accent} transparent`,
 
-      'border-color-focus': 'transparent transparent hsl(23, 100%, 53%) transparent'
+      'border-color-focus': `transparent transparent ${accent} transparent`,
     },
 
     'tab-active': {
-      'color': 'hsl(23, 100%, 53%)',
+      'color': accent,
       'border-style': 'solid',
-      'border-color': 'transparent transparent hsl(23, 100%, 53%) transparent',
+      'border-color': `transparent transparent ${accent} transparent`,
       'border-width': '4px 0 4px 0',
       'border-radius': '0',
       'padding': '16px 24px',
 
       'background-hover': 'transparent',
-      'color-hover': 'hsl(23, 100%, 53%)',
+      'color-hover': accent,
 
-      'border-color-focus': 'transparent transparent hsl(23, 100%, 53%) transparent'
+      'border-color-focus': `transparent transparent ${accent} transparent`,
     },
 
     tag: {
-      'padding': '8px',
-      'background': 'hsl(0, 0%, 95%)',
-      'color': 'hsl(0, 0%, 30%)',
+      'padding': 'var(--space-s) var(--space-m)',
+      'background': 'hsla(199, 22%, 16%, .95)',
+      'color': 'hsl(199, 18%, 82%)',
       'border-width': '1px',
       'border-style': 'solid',
-      'border-color': 'hsl(0, 0%, 90%)',
-      'border-radius': '4px',
-      'font-size': '12px',
+      'border-color': 'hsl(199, 18%, 24%)',
+      'border-radius': 'var(--space-m)',
+      'font-size': '.8rem',
+      'font-weight': '300',
 
-      'background-hover': 'hsl(0, 0%, 90%)'
+      'background-hover': 'hsla(199, 22%, 22%, .95)',
     },
 
     'tag-active': {
-      'padding': '8px',
-      'background': 'hsla(199, 98%, 43%, .2)',
-      'color': 'hsl(0, 0%, 20%)',
+      'padding': 'var(--space-s) var(--space-m)',
+      'background': 'hsla(167, 89%, 43%, .22)',
+      'color': 'hsl(167, 70%, 88%)',
       'border-width': '1px',
       'border-style': 'solid',
-      'border-color': 'hsl(199, 98%, 43%)',
-      'border-radius': '4px',
-      'font-size': '12px'
+      'border-color': accent,
+      'border-radius': 'var(--space-m)',
+      'font-size': '.8rem',
+      'font-weight': '300',
+      'background-hover': 'hsla(167, 89%, 43%, .32)',
+      'color-hover': 'hsl(0, 0%, 98%)',
     },
-
   },
 
   card: {
+    ...base.card,
 
     default: {
-      'background': 'hsl(0, 0%, 100%)',
-      'border-color': 'var(--separator-primary)',
+      'background': 'hsl(199, 26%, 12%)',
+      'border-color': surfaceOutline,
       'border-style': 'solid',
       'border-width': '1px',
-      'box-shadow': '3px 0 10px hsla(0, 0%, 85%, .75)',
+      'box-shadow': 'none',
       'padding': '32px',
-      'border-radius': '8px'
+      'border-radius': '24px',
     },
 
     cover: {
@@ -269,33 +298,33 @@ export const CloudDark = {
     },
 
     resume: {
-      'background': 'hsl(0, 0%, 100%)',
-      'border-color': 'var(--separator-primary)',
+      'background': 'hsl(199, 26%, 12%)',
+      'border-color': surfaceOutline,
       'border-style': 'solid',
       'border-width': '0 1px 0 0',
       'box-shadow': 'none',
       'padding': '24px 32px',
-      'border-radius': '0'
+      'border-radius': '0',
     },
 
     hero: {
       'background': `
-        ${topography()},
-        linear-gradient(321deg, hsl(200, 80%, 85%) 0%, hsl(200, 100%, 97%) 20%, hsl(15, 100%, 95%) 80%, hsl(15, 100%, 85%) 100%)
+        ${topography('hsla(199, 40%, 28%, .35)')},
+        linear-gradient(321deg, hsl(200, 40%, 16%) 0%, hsl(200, 32%, 11%) 20%, hsl(15, 35%, 14%) 80%, hsl(15, 40%, 11%) 100%)
       `,
-      'border-color': 'transparent',
+      'border-color': surfaceOutline,
       'border-style': 'solid',
       'border-width': '1px',
-      'box-shadow': '3px 0 10px hsla(0, 0%, 85%, .75)',
+      'box-shadow': 'none',
       'padding': 'var(--space-xl) var(--space-m)',
-      'border-radius': '25px'
-    }
-
+      'border-radius': '25px',
+    },
   },
 
   resume: {
+    ...base.resume,
     'header-border-bottom': '1px solid var(--separator-primary)',
     'header-padding': '0 24px',
-    'background': 'var(--surface-linear-gradient)'
-  }
+    'background': baseLinearGradient,
+  },
 }

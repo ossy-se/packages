@@ -40,7 +40,7 @@ export const DeleteAccount = ({
 
           [data-component="@ossy/pages/delete-account"] .warning {
             padding: var(--space-m);
-            background: var(--surface-secondary, rgba(0,0,0,0.05));
+            background: var(--surface-primary, rgba(0,0,0,0.05));
             border-radius: var(--space-s);
             margin: var(--space-xl) 0;
             border: 1px solid var(--color-error, #c00);

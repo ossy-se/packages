@@ -23,7 +23,7 @@ const defaultComponents = {
 
     if (inline) {
       return (
-        <View inset="xs" surface="secondary" roundness="s" style={{ display: 'inline-block' }} {...props} >
+        <View inset="xs" surface="primary" roundness="s" style={{ display: 'inline-block' }} {...props} >
           <SyntaxHighlighter
             style={{
               display: 'inline',
@@ -41,7 +41,7 @@ const defaultComponents = {
     }
 
     return (
-      <View inset="m" surface="secondary" roundness="m" data-component="MarkdownViewer">
+      <View inset="m" surface="primary" roundness="m" data-component="MarkdownViewer">
       <style href="@ossy/design-system/markdown-viewer/MarkdownViewer" precedence="high">
       {`
         [data-component="MarkdownViewer"] {

@@ -11,7 +11,7 @@ const Story = () => (
   <Carousel childWidth="80%" childMaxWidth='400px'>
 
     <View
-      surface="secondary"
+      surface="primary"
       style={{
         padding: 'var(--space-m)',
         height: '200px',
@@ -20,7 +20,7 @@ const Story = () => (
       }}>1</View>
 
     <View
-      surface="secondary"
+      surface="primary"
       style={{
         margin: 'var(--spacing-m)',
         padding: 'var(--space-m)',
@@ -30,7 +30,7 @@ const Story = () => (
       }}>2</View>
 
     <View
-      surface="secondary"
+      surface="primary"
       style={{
         padding: 'var(--space-m)',
         height: '200px',

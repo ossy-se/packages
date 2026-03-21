@@ -80,35 +80,23 @@ export interface ColorPalette {
 }
 
 /**
- * Surface definitions - base surface colors and gradients.
+ * Surface definitions — flat preview strings (docs / tooling).
+ * Aligns with `surfaces` keys: base, primary, accent.
  */
 export interface SurfaceDefinitions {
-  primary?: CssValue;
-  secondary?: CssValue;
   base?: CssValue;
+  primary?: CssValue;
   accent?: CssValue;
-  'radial-gradient'?: CssValue;
-  'linear-gradient'?: CssValue;
-  decorated?: CssValue;
   [key: string]: CssValue | undefined;
 }
 
 /**
- * Surfaces - named surface variants for components.
- * Keys map to data-surface attribute values.
+ * Surfaces — named variants for `[data-surface="…"]`.
+ * Canonical set: base, primary, accent.
  */
 export interface SurfacesMap {
   base?: SurfaceVariant;
   primary?: SurfaceVariant;
-  secondary?: SurfaceVariant;
-  decorated?: SurfaceVariant;
-  'alt-primary'?: SurfaceVariant;
-  'alt-secondary'?: SurfaceVariant;
-  'radial-gradient'?: SurfaceVariant;
-  'linear-gradient'?: SurfaceVariant;
-  'alt-glass'?: SurfaceVariant;
-  info?: SurfaceVariant;
-  danger?: SurfaceVariant;
   accent?: SurfaceVariant;
   [key: string]: SurfaceVariant | undefined;
 }

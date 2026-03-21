@@ -47,21 +47,6 @@ export const base = {
       foreground: 'hsl(199, 90%, 10%)',
       separator: 'hsl(0, 0%, 95%)',
     },
-    secondary: {
-      background: 'hsl(0, 0%, 95%)',
-      foreground: 'hsl(199, 90%, 10%)',
-      separator: 'hsl(0, 0%, 95%)',
-    },
-    info: {
-      background: 'hsl(199, 89%, 43%)',
-      foreground: 'hsl(199, 89%, 10%)',
-      separator: 'hsl(0, 0%, 95%)',
-    },
-    danger: {
-      background: 'hsl(0, 89%, 43%)',
-      foreground: 'hsl(0, 89%, 10%)',
-      separator: 'hsl(0, 0%, 95%)',
-    },
     accent: {
       background: 'hsl(167, 89%, 43%)',
       foreground: 'hsl(0, 0%, 100%)',

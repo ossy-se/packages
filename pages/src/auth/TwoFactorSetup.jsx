@@ -33,7 +33,7 @@ export const TwoFactorSetup = ({
 
             [data-component="@ossy/pages/two-factor"] .success {
               padding: var(--space-m);
-              background: var(--surface-secondary, rgba(0,0,0,0.05));
+              background: var(--surface-primary, rgba(0,0,0,0.05));
               border-radius: var(--space-s);
               margin: var(--space-xl) 0;
               color: var(--color-accent);
@@ -109,7 +109,7 @@ export const TwoFactorSetup = ({
             text-align: left;
             margin: var(--space-xl) 0;
             padding: var(--space-m);
-            background: var(--surface-secondary, rgba(0,0,0,0.05));
+            background: var(--surface-primary, rgba(0,0,0,0.05));
             border-radius: var(--space-s);
           }
 

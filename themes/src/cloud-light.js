@@ -1,32 +1,37 @@
 import { base } from './base.js'
 import { topography } from './patterns/index.js'
 
+/** Diagonal cool → sky (underlay). */
+const baseLinearGradient =
+  'linear-gradient(162deg, hsl(0deg 0% 100%) 0%, hsl(199deg 98% 97%) 100%)'
+
+/** Warm center wash (painted above the linear layer). */
+const baseRadialGradient =
+  'radial-gradient(circle at center center, hsla(15, 100%, 94%, 1) 0%, hsl(199, 90%, 98%) 52%)'
+
+/** `surfaces.base`: full-page gradient stack. */
+const baseSurfaceGradient = `${baseRadialGradient}, ${baseLinearGradient}`
+
+const resumeBackgroundGradient = baseLinearGradient
+
 /** Standard light theme */
 export const CloudLight = {
   ...base,
 
+  /** Flat tokens for docs / tooling; matches `surfaces` keys (base, primary, accent). */
   surface: {
-    ...base.surface,
-    primary: 'hsl(0, 100%, 100%)',
-    secondary: 'hsl(199deg 98% 97%)',
-    'radial-gradient': 'radial-gradient(hsl(199deg 98% 85%) 0%, hsl(0deg 0% 100%) 80%)',
-    'linear-gradient': 'linear-gradient(162deg, hsl(0deg 0% 100%) 0%, hsl(199deg 98% 97%) 100%)',
-    decorated: `
-      linear-gradient(0deg, var(--surface-primary) 0%, transparent 100%),
-      ${topography()},
-      linear-gradient(321deg, hsl(200, 80%, 85%) 0%, hsl(200, 100%, 97%) 20%, hsl(15, 100%, 95%) 80%, hsl(15, 100%, 85%) 100%)
-    `,
+    base: baseSurfaceGradient,
+    primary: 'hsla(0, 0%, 100%, 0.52)',
+    accent: 'hsl(167, 89%, 43%)',
   },
 
   surfaces: {
     ...base.surfaces,
 
     base: {
-      background: `
-       radial-gradient(circle at center center, hsla(15, 100%, 94%, 1) 0%, hsl(199, 90%, 98%) 50%)
-      `,
-      'background-hover': 'hsl(199, 90%, 98%)',
-      'background-active': 'hsl(199, 90%, 98%)',
+      background: baseSurfaceGradient,
+      'background-hover': baseSurfaceGradient,
+      'background-active': baseSurfaceGradient,
       foreground: 'hsl(199, 90%, 10%)',
       separator: 'hsl(0, 0%, 95%)',
     },
@@ -34,12 +39,14 @@ export const CloudLight = {
     primary: {
       foreground: 'hsl(182, 23%, 30%)',
       'foreground-hover': 'hsl(182, 23%, 25%)',
-      background: 'hsla(0, 0%, 100%, .6)',
-      'background-hover': 'hsla(0, 0%, 90%, .7)',
-      backdropFilter: 'saturate(180%) blur(10px)',
+      background: 'hsla(0, 0%, 100%, 0.48)',
+      'background-hover': 'hsla(0, 0%, 100%, 0.62)',
+      backdropFilter: 'saturate(180%) blur(12px)',
     },
 
-
+    accent: {
+      ...base.surfaces.accent,
+    },
   },
 
   separator: {
@@ -262,6 +269,6 @@ export const CloudLight = {
     ...base.resume,
     'header-border-bottom': '1px solid var(--separator-primary)',
     'header-padding': '0 24px',
-    'background': 'var(--surface-linear-gradient)'
-  }
+    'background': resumeBackgroundGradient,
+  },
 }
