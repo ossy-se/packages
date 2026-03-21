@@ -41,3 +41,14 @@ export function useComponentSlot(name) {
   }
   return ctx.slots[name]
 }
+
+/** @type {typeof ComponentSlotsProvider} */
+export const ComponentsProvider = ComponentSlotsProvider
+
+/**
+ * @param {string} slotKey
+ * @returns {import('react').ComponentType<any> | null | undefined}
+ */
+export function useSlot(slotKey) {
+  return useComponentSlot(slotKey)
+}

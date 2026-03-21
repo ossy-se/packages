@@ -1,1 +1,6 @@
-export { ComponentSlotsProvider, useComponentSlot } from './ComponentSlots.jsx'
+export {
+  ComponentSlotsProvider,
+  ComponentsProvider,
+  useComponentSlot,
+  useSlot,
+} from './ComponentSlots.jsx'
