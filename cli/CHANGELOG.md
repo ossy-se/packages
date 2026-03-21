@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.13.0 (2026-03-21)
+
+
+### Features
+
+* add AppDocumentShell component for improved SSR support ([e27b152](https://github.com/ossy-se/packages/commit/e27b1523bfa8771f50aa3f2caf6f15a7aced11b2))
+
+
+
+
+
 # 0.12.0 (2026-03-21)
 
 
