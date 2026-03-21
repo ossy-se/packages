@@ -1,0 +1,51 @@
+---
+description: Component slots (ComponentSlotsProvider + useComponentSlot) in @ossy/design-system
+globs: "**/design-system/src/component-slots/**/*"
+alwaysApply: false
+---
+
+# Component slots
+
+String-keyed map of React components, supplied through context. Implemented in `packages/design-system/src/component-slots/`.
+
+## API
+
+Import from `@ossy/design-system`:
+
+- **`ComponentSlotsProvider`** — `slots` is `Record<string, React.ComponentType | null | undefined>`. Optional; defaults to `{}`.
+- **`useComponentSlot(name)`** — returns the component for `name`, or `undefined` if there is no provider, the key is missing, or the value is `undefined`. If the map sets a key to **`null`**, the hook returns `null` (empty slot on purpose).
+
+## Nested providers
+
+Providers **shallow-merge** maps: `{ ...parent.slots, ...local }`. Inner keys override outer keys; other keys stay available from the parent.
+
+## Example
+
+```jsx
+import { ComponentSlotsProvider, useComponentSlot } from '@ossy/design-system'
+
+const slots = {
+  'marketing.banner': PromoBanner,
+  'help.widget': HelpBubble
+}
+
+function App() {
+  return (
+    <ComponentSlotsProvider slots={slots}>
+      <Shell />
+    </ComponentSlotsProvider>
+  )
+}
+
+function Shell() {
+  const Banner = useComponentSlot('marketing.banner')
+  if (Banner == null) return null
+  return <Banner campaignId="spring" />
+}
+```
+
+## Files
+
+- `packages/design-system/src/component-slots/ComponentSlots.jsx` — provider + hook
+- `packages/design-system/src/component-slots/index.js` — public exports
+- Re-exported from `packages/design-system/src/index.js`

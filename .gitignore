@@ -1,3 +1,4 @@
 node_modules
 storybook-static
 .ossy-pages.generated.jsx
+types/docs/ts2doc-doc.json

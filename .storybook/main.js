@@ -28,13 +28,6 @@ const config = {
       },
     },
     "@storybook/addon-themes",
-    {
-      name: '@ts2doc/storybook-addon',
-      options: {
-        patternDocType: 'types/src/**/*.ts',
-        compilerOptions: {},
-      },
-    },
   ],
   framework: {
     name: "@storybook/react-vite",

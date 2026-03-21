@@ -22,9 +22,10 @@ export const useAuthentication = () => {
   } = useCache(statusCacheKey)
 
   const signUp = useCallback(
-    (email: string) => {
+    (payload: { email: string; firstName: string; lastName: string }) => {
       setStatus(() => AuthenticationStatus.Verifying)
-      return sdk.auth.signUp({ email })
+      return sdk.auth
+        .signUp(payload)
         .then(() => setStatus(AuthenticationStatus.VerifySignIn))
         .catch((error: any) => {
           setStatus(AuthenticationStatus.AuthenticationError)

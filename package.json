@@ -8,7 +8,10 @@
     "url": "git+https://github.com/ossy-se/packages.git"
   },
   "scripts": {
+    "generate:ts2doc": "node scripts/generate-ts2doc.mjs",
+    "prestart": "node scripts/generate-ts2doc.mjs",
     "start": "storybook dev -p 6006",
+    "prebuild:storybook": "node scripts/generate-ts2doc.mjs",
     "build:storybook": "storybook build",
     "build": "rm -rf **/build && lerna run build --skip-nx-cache",
     "test": "lerna run test --skip-nx-cache"
@@ -44,7 +47,7 @@
     "@storybook/addon-docs": "^10.2.19",
     "@storybook/addon-themes": "^10.2.19",
     "@storybook/react-vite": "^10.2.19",
-    "@ts2doc/storybook-addon": "^0.4.0",
+    "@ts2doc/json": "^0.4.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "autoprefixer": "^10.4.21",

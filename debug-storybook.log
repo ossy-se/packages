@@ -1,28 +1,29 @@
-[19:06:09.792] [INFO] storybook v10.2.16
-[19:06:10.046] [DEBUG] Getting package.json info for /Users/oskarssylwan/Projects/packages/package.json...
-[19:06:10.054] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
-[19:06:10.057] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
-[19:06:10.251] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
-[19:06:10.252] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
-[19:06:10.645] [INFO] Starting...
-[19:06:10.678] [WARN] No story files found for the specified pattern: [34mconnected-components/src/**/*.mdx[39m
-[19:06:10.679] [WARN] No story files found for the specified pattern: [34mdesign-system-extras/src/**/*.mdx[39m
-[19:06:10.683] [WARN] No story files found for the specified pattern: [34mdesign-system/src/**/*.mdx[39m
-[19:06:10.912] [ERROR] [38;2;241;97;97mError: Build failed with 2 errors:
-.storybook/manager.js:1:23: ERROR: Could not resolve "@storybook/manager-api"
-.storybook/manager.js:2:23: ERROR: Could not resolve "@storybook/theming/create"[39m
-    at failureErrorWithLog (./node_modules/esbuild/lib/main.js:1467:15)
-    at ./node_modules/esbuild/lib/main.js:926:25
-    at runOnEndCallbacks (./node_modules/esbuild/lib/main.js:1307:45)
-    at buildResponseToResult (./node_modules/esbuild/lib/main.js:924:7)
-    at ./node_modules/esbuild/lib/main.js:951:16
-    at responseCallbacks.<computed> (./node_modules/esbuild/lib/main.js:603:9)
-    at handleIncomingPacket (./node_modules/esbuild/lib/main.js:658:12)
-    at Socket.readFromStdout (./node_modules/esbuild/lib/main.js:581:7)
-    at Socket.emit (node:events:524:28)
-    at addChunk (node:internal/streams/readable:561:12)
-[19:06:10.914] [WARN] Broken build, fix the error above.
+[15:54:38.442] [INFO] storybook v10.3.1
+[15:54:38.714] [DEBUG] Getting package.json info for /Users/oskarssylwan/Projects/packages/package.json...
+[15:54:38.715] [WARN] You are currently using Storybook [1m10.3.1[22m but you have packages which are incompatible with it:
+
+- @ts2doc/storybook-addon@0.4.0 which depends on ^8.0.0
+ Repo: https://github.com/jpiazzal/ts2doc#readme
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more details on compatibility guidance, see:
+https://github.com/storybookjs/storybook/issues/32836
+[15:54:39.396] [INFO] Starting...
+[15:54:39.970] [ERROR] [38;2;241;97;97mTypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'NodeObject'
+    |     property 'parent' -> object with constructor 'SourceFileObject'
+    |     property 'statements' -> object with constructor 'Array'
+    --- index 0 closes the circle[39m
+    at JSON.stringify (<anonymous>)
+    at stringify (./node_modules/jsonfile/utils.js:3:20)
+    at Object.writeFileSync (./node_modules/jsonfile/index.js:76:15)
+    at Object.managerEntries (./node_modules/@ts2doc/storybook-addon/lib/preset.js:15:12)
+    at file://./node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:10114:36
+    at async Promise.all (index 0)
+    at async getConfig (file://./node_modules/storybook/dist/_node-chunks/builder-manager-45GNGM35.js:1412:43)
+    at async Promise.all (index 1)
+    at async getData (file://./node_modules/storybook/dist/_node-chunks/builder-manager-45GNGM35.js:1327:444)
+    at async starter (file://./node_modules/storybook/dist/_node-chunks/builder-manager-45GNGM35.js:1506:7)
+[15:54:39.971] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.
-[19:06:10.916] [WARN] Could not resolve addon "@storybook/addon-essentials", skipping. Is it installed?
-[19:06:10.916] [WARN] Could not resolve addon "@storybook/addon-interactions", skipping. Is it installed?
-[19:06:18.203] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":false}

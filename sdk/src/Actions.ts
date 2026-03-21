@@ -195,7 +195,11 @@ export const ResourcesRename: Action<{ id: string, name: string }> = {
 }
 
 // AuthClient actions
-export const AuthSignUp: Action<{ email: string }> = {
+export const AuthSignUp: Action<{
+  email: string
+  firstName: string
+  lastName: string
+}> = {
     id: 'auth.sign-up',
     endpoint: '/users/sign-up',
     method: 'POST'
