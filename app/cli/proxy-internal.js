@@ -1,3 +1,10 @@
+/** Node/Express can join duplicate workspace headers as `id, id` — API expects a single id. */
+function normalizeWorkspaceIdHeader (value) {
+    if (!value || value === 'undefined') return undefined
+    const first = String(value).split(',')[0]?.trim()
+    return first || undefined
+}
+
 export function ProxyInternal() {
     return (req, res, next) => {
 
@@ -49,9 +56,9 @@ export function ProxyInternal() {
         const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
         const url = `${domain}${req.originalUrl?.replace('/@ossy', '/api/v0')}`
         const forwardedHeaders = JSON.parse(JSON.stringify(req.headers))
-        const workspaceId = req.get('workspaceId')
+        const workspaceId = normalizeWorkspaceIdHeader(req.get('workspaceId'))
 
-        if (workspaceId && workspaceId !== 'undefined') {
+        if (workspaceId) {
             forwardedHeaders['workspaceid'] = workspaceId
         }
 
@@ -82,6 +89,12 @@ export function ProxyInternal() {
                         } catch (e) {
                             console.log(`[@ossy/app][proxy][error]`, e)
                             res.removeHeader('content-length')
+                            const st = response.status
+                            if (st === 401 || st === 403 || st === 404) {
+                                res.status(st)
+                                res.json(null)
+                                return
+                            }
                             res.status(502)
                             res.json({ message: 'Upstream returned invalid JSON' })
                             return

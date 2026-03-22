@@ -84,8 +84,11 @@ const middleware = [
     const userSettings = JSON.parse(req.signedCookies?.['x-ossy-user-settings'] || '{}')
     req.userAppSettings = userSettings
 
-    if (userSettings.workspaceId && !req.headers.workspaceId) {
-      req.headers.workspaceId = userSettings.workspaceId
+    // Incoming headers live on lowercase keys (`workspaceid`). Do not use
+    // `req.headers.workspaceId` — it misses the client header and duplicates
+    // the id (Node then surfaces `id, id` from req.get('workspaceId')).
+    if (userSettings.workspaceId && !req.get('workspaceId')) {
+      req.headers['workspaceid'] = userSettings.workspaceId
     }
 
     // Check for auth cookie
