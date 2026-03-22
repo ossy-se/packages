@@ -15,6 +15,7 @@ const config = {
     "../design-system/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../pages/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../connected-components/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../resource-templates/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     {
@@ -56,6 +57,10 @@ const config = {
         '../router-react/src/router-react.tsx',
       ),
       '@ossy/types': path.resolve(__dirname, '../types/src/index.ts'),
+      '@ossy/resource-templates': path.resolve(
+        __dirname,
+        '../resource-templates/src/index.js',
+      ),
     }
     if (process.env.STORYBOOK_BASE_PATH) {
       config.base = process.env.STORYBOOK_BASE_PATH
