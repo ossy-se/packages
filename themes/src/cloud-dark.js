@@ -206,20 +206,20 @@ export const CloudDark = {
     },
 
     command: {
-      'border-radius': '4px',
+      'border-radius': '6px',
       'padding': '4px',
 
-      'background': 'hsla(199, 22%, 14%, .15)',
-      'background-hover': 'hsla(199, 22%, 22%, .45)',
+      'background': 'transparent',
+      'background-hover': 'hsla(199, 22%, 22%, .3)',
       'color-hover': 'hsl(199deg 89% 43%)',
     },
 
     'command-danger': {
-      'border-radius': '4px',
+      'border-radius': '6px',
       'padding': '4px',
 
-      'background': 'hsla(199, 22%, 14%, .15)',
-      'background-hover': 'hsla(199, 22%, 22%, .45)',
+      'background': 'transparent',
+      'background-hover': 'hsla(199, 22%, 22%, .3)',
       'color-hover': 'hsl(0 89% 43%)',
     },
 

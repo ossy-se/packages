@@ -174,21 +174,21 @@ export const CloudLight = {
     },
 
     command: {
-      'border-radius': '4px',
+      'border-radius': '6px',
       'padding': '4px',
 
-      'background': 'hsla(199, 18%, 45%, 0.07)',
-      'background-hover': 'hsla(199, 16%, 42%, 0.14)',
+      'background': 'transparent',
+      'background-hover': 'hsla(199, 16%, 42%, 0.09)',
       'color-hover': 'hsl(199deg 89% 43%)'
       // 'color-hover': 'hsl(167, 89%, 43%)'
     },
 
     'command-danger': {
-      'border-radius': '4px',
+      'border-radius': '6px',
       'padding': '4px',
 
-      'background': 'hsla(199, 18%, 45%, 0.07)',
-      'background-hover': 'hsla(199, 16%, 42%, 0.14)',
+      'background': 'transparent',
+      'background-hover': 'hsla(199, 16%, 42%, 0.09)',
       'color-hover': 'hsl(0 89% 43%)'
     },
 
