@@ -16,7 +16,7 @@ export function defaultAppSettings() {
       devMode: false,
       /** When true (default), `App` renders `<html>` / `<head>` / `<body>` for SSR + hydrateRoot(document). Set false if the app entry already provides the document. */
       includeDocumentShell: true,
-      /** Page `<title>`; `title` is accepted as an alias. */
+      /** Site / app label (e.g. chrome); not wired to `<title>` — pages own document title. */
       documentTitle: undefined,
       title: undefined,
       metaDescription: undefined,
