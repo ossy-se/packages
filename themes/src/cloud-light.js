@@ -177,8 +177,8 @@ export const CloudLight = {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'hsl(0, 0%, 99%)',
-      'background-hover': 'hsl(0, 0%, 95%)',
+      'background': 'hsla(199, 18%, 45%, 0.07)',
+      'background-hover': 'hsla(199, 16%, 42%, 0.14)',
       'color-hover': 'hsl(199deg 89% 43%)'
       // 'color-hover': 'hsl(167, 89%, 43%)'
     },
@@ -187,8 +187,8 @@ export const CloudLight = {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'hsl(0, 0%, 99%)',
-      'background-hover': 'hsl(0, 0%, 95%)',
+      'background': 'hsla(199, 18%, 45%, 0.07)',
+      'background-hover': 'hsla(199, 16%, 42%, 0.14)',
       'color-hover': 'hsl(0 89% 43%)'
     },
 

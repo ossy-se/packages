@@ -209,8 +209,8 @@ export const CloudDark = {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'hsla(199, 22%, 14%, .9)',
-      'background-hover': 'hsla(199, 22%, 18%, .95)',
+      'background': 'hsla(199, 22%, 14%, .15)',
+      'background-hover': 'hsla(199, 22%, 22%, .45)',
       'color-hover': 'hsl(199deg 89% 43%)',
     },
 
@@ -218,8 +218,8 @@ export const CloudDark = {
       'border-radius': '4px',
       'padding': '4px',
 
-      'background': 'hsla(199, 22%, 14%, .9)',
-      'background-hover': 'hsla(199, 22%, 18%, .95)',
+      'background': 'hsla(199, 22%, 14%, .15)',
+      'background-hover': 'hsla(199, 22%, 22%, .45)',
       'color-hover': 'hsl(0 89% 43%)',
     },
 
