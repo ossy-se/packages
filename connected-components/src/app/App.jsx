@@ -7,6 +7,7 @@ import { defaultAppSettings } from './AppSettings.jsx'
 import { Router } from '@ossy/router-react'
 import { AppContext } from './AppContext.js'
 import { AppDocumentShell } from './AppDocumentShell.jsx'
+import { mergeWithDefaultSystemPages } from './mergeWithDefaultSystemPages.js'
 
 function routesToPages(routes) {
   if (!routes?.length) return []
@@ -24,9 +25,10 @@ function routesToPages(routes) {
 
 export const App = (_appSettings) => {
   const appSettings = { ...defaultAppSettings(), ..._appSettings }
-  const pages = appSettings.pages?.length
+  let pages = appSettings.pages?.length
     ? appSettings.pages
     : routesToPages(appSettings.routes)
+  pages = mergeWithDefaultSystemPages(pages, appSettings)
 
   const sdk = SDK.of({
     apiUrl: appSettings.apiUrl,

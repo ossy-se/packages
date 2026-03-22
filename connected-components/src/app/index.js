@@ -1,4 +1,5 @@
 export * from './App.jsx'
+export { NOT_FOUND_PAGE_ID } from './defaultSystemPages.jsx'
 export { AppDocumentShell } from './AppDocumentShell.jsx'
 // export * from './useAnalytics.jsx'
 export * from './AppSettings.jsx'

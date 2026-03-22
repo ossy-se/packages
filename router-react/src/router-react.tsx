@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useCallback } from 'react'
-import { MultiLanguagePage, Router as BaseRouter, RouterOptions, SingleLanguagePage, Page as _Page } from '@ossy/router'
+import { MultiLanguagePage, Router as BaseRouter, RouterOptions, SingleLanguagePage, Page as _Page, isCatchAllRoutePath } from '@ossy/router'
 
 export const RouterContext = createContext({
   pages: [] as RouterPage[],
@@ -64,8 +64,12 @@ export const Router = <T extends RouterPage>({
     }
 
     activePage = isMultiLanguage
-      ? pages.find(page => padWithSlash((page.path as Record<string, string>)[(language as string)]) === '*') as T
-      : pages.find(page => padWithSlash(page.path as string) === '*') as T
+      ? pages.find(page => {
+          const paths = page.path as Record<string, string>
+          const seg = paths?.[(language as string)] ?? paths?.[(defaultLanguage as string)]
+          return isCatchAllRoutePath(seg)
+        }) as T
+      : pages.find(page => isCatchAllRoutePath(page.path as string)) as T
   }
 
   if (!activePage) {

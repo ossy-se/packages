@@ -48,18 +48,18 @@ export function ProxyInternal() {
 
         const domain = process.env.OSSY_API_URL || 'https://api.ossy.se'
         const url = `${domain}${req.originalUrl?.replace('/@ossy', '/api/v0')}`
-        const headers = { ...(req.headers || {}) } // Clone headers
-        const workspaceId = headers.workspaceId
-    
-        if (workspaceId) {
-            headers['workspaceid'] = workspaceId
+        const forwardedHeaders = JSON.parse(JSON.stringify(req.headers))
+        const workspaceId = req.get('workspaceId')
+
+        if (workspaceId && workspaceId !== 'undefined') {
+            forwardedHeaders['workspaceid'] = workspaceId
         }
 
         console.log(`[@ossy/app][proxy] workspaceId ${workspaceId}`)
-    
+
         const request = {
             method: req.method,
-            headers: JSON.parse(JSON.stringify(req.headers))
+            headers: forwardedHeaders
         }
     
         if (!['GET', 'HEAD'].includes(req.method)) {
@@ -74,11 +74,22 @@ export function ProxyInternal() {
                 });
 
                 if (response.headers.get('content-type')?.includes('application/json')) {
-                    return response.json()
-                        .then(data => {
-                            res.status(response.status);
-                            res.json(data);
-                        });
+                    return response.text().then((text) => {
+                        const trimmed = text?.trim() ?? ''
+                        let data
+                        try {
+                            data = trimmed === '' ? null : JSON.parse(trimmed)
+                        } catch (e) {
+                            console.log(`[@ossy/app][proxy][error]`, e)
+                            res.removeHeader('content-length')
+                            res.status(502)
+                            res.json({ message: 'Upstream returned invalid JSON' })
+                            return
+                        }
+                        res.removeHeader('content-length')
+                        res.status(response.status)
+                        res.json(data)
+                    })
                 }
 
                 res.clearCookie('auth')
