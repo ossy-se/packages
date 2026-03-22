@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dropdown } from './Dropdown.jsx'
 import { ContextMenu } from '../context-menu/index.js'
+import { Button } from '../button/index.js'
 
 export default {
   title: 'Design System/Other/Dropdown',
@@ -8,7 +9,7 @@ export default {
 }
 
 const Story = () => (
-  <Dropdown trigger={<div>Click Me</div>}>
+  <Dropdown trigger={<Button variant="neutral">Click me</Button>}>
     <ContextMenu>
       <ContextMenu.Item>foo</ContextMenu.Item>
       <ContextMenu.Separator />

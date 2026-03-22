@@ -22,8 +22,8 @@ export const ContextMenu = ({
     {`
       [data-context-menu] {
         border-radius: var(--space-s);
-        box-shadow: 1px 1px 10px hsla(0, 0%, 30%, .2);
-        border: 1px solid hsl(0, 0%, 90%);
+        box-shadow: 0 4px 18px hsla(0, 0%, 0%, 0.14);
+        border: 1px solid var(--separator, hsl(0, 0%, 90%));
         padding: var(--space-s) var(--space-xs);
         list-style: none;
         min-width: 150px;
@@ -31,7 +31,7 @@ export const ContextMenu = ({
     
       [data-context-menu] .context-menu__separator {
         height: 1px;
-        background-color: hsl(0, 0%, 95%);
+        background-color: var(--separator, hsl(0, 0%, 95%));
       }
     `}
     </style>
