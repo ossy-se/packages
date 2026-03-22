@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.14.0 (2026-03-22)
+
+
+### Features
+
+* enhance CloudDark and CloudLight themes with hero backgrounds ([b546aee](https://github.com/ossy-se/packages/commit/b546aee3dd8ba45ffbb2869dc70edfb0a16ac405))
+
+
+
+
+
 ## 1.13.4 (2026-03-22)
 
 **Note:** Version bump only for package @ossy/eslint-config-ossy
