@@ -123,6 +123,8 @@ app.all('*all', (req, res) => {
     isAuthenticated: req.isAuthenticated || false,
     workspaceId: userAppSettings.workspaceId || buildTimeConfig.workspaceId,
     apiUrl: buildTimeConfig.apiUrl,
+    /** Primary app shell sidebar: icon rail when true (persisted in `x-ossy-user-settings`). */
+    sidebarPrimaryCollapsed: userAppSettings.sidebarPrimaryCollapsed === true,
   }
 
   renderToString(App, appConfig)

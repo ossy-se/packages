@@ -25,5 +25,7 @@ export function defaultAppSettings() {
       htmlLang: undefined,
       /** Favicon URL; default `/favicon.ico`. Use `null` or `false` to omit. */
       faviconHref: undefined,
+      /** When true, main app sidebar is collapsed to icons (from server cookie / app-settings). */
+      sidebarPrimaryCollapsed: false,
     }
   }
