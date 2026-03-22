@@ -238,52 +238,5 @@ export const CloudLight = {
 
   },
 
-  card: {
-    ...base.card,
 
-    default: {
-      'background': 'hsl(0, 0%, 100%)',
-      'border-color': 'var(--separator-primary)',
-      'border-style': 'solid',
-      'border-width': '0',
-      'box-shadow': 'none',
-      'padding': '32px',
-      'border-radius': '24px'
-    },
-
-    cover: {
-      'padding': '0',
-    },
-
-    resume: {
-      'background': 'hsl(0, 0%, 100%)',
-      'border-color': 'var(--separator-primary)',
-      'border-style': 'solid',
-      'border-width': '0 1px 0 0',
-      'box-shadow': 'none',
-      'padding': '24px 32px',
-      'border-radius': '0'
-    },
-
-    hero: {
-      'background': `
-        ${topography()},
-        linear-gradient(321deg, hsl(200, 80%, 85%) 0%, hsl(200, 100%, 97%) 20%, hsl(15, 100%, 95%) 80%, hsl(15, 100%, 85%) 100%)
-      `,
-      'border-color': 'transparent',
-      'border-style': 'solid',
-      'border-width': '1px',
-      'box-shadow': '3px 0 10px hsla(0, 0%, 85%, .75)',
-      'padding': 'var(--space-xl) var(--space-m)',
-      'border-radius': '25px'
-    }
-
-  },
-
-  resume: {
-    ...base.resume,
-    'header-border-bottom': '1px solid var(--separator-primary)',
-    'header-padding': '0 24px',
-    'background': resumeBackgroundGradient,
-  },
 }

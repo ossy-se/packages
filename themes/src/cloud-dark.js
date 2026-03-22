@@ -295,51 +295,5 @@ export const CloudDark = {
     },
   },
 
-  card: {
-    ...base.card,
 
-    default: {
-      'background': 'hsl(199, 26%, 12%)',
-      'border-color': surfaceOutline,
-      'border-style': 'solid',
-      'border-width': '1px',
-      'box-shadow': 'none',
-      'padding': '32px',
-      'border-radius': '24px',
-    },
-
-    cover: {
-      'padding': '0',
-    },
-
-    resume: {
-      'background': 'hsl(199, 26%, 12%)',
-      'border-color': surfaceOutline,
-      'border-style': 'solid',
-      'border-width': '0 1px 0 0',
-      'box-shadow': 'none',
-      'padding': '24px 32px',
-      'border-radius': '0',
-    },
-
-    hero: {
-      'background': `
-        ${topography('hsla(199, 40%, 28%, .35)')},
-        linear-gradient(321deg, hsl(200, 40%, 16%) 0%, hsl(200, 32%, 11%) 20%, hsl(15, 35%, 14%) 80%, hsl(15, 40%, 11%) 100%)
-      `,
-      'border-color': surfaceOutline,
-      'border-style': 'solid',
-      'border-width': '1px',
-      'box-shadow': 'none',
-      'padding': 'var(--space-xl) var(--space-m)',
-      'border-radius': '25px',
-    },
-  },
-
-  resume: {
-    ...base.resume,
-    'header-border-bottom': '1px solid var(--separator-primary)',
-    'header-padding': '0 24px',
-    'background': baseLinearGradient,
-  },
 }
