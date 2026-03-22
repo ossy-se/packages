@@ -1,5 +1,5 @@
 import { base } from './base.js'
-import { topography } from './patterns/index.js'
+import { topography, texture } from './patterns/index.js'
 
 /** Diagonal cool → sky (underlay). */
 const baseLinearGradient =
@@ -12,6 +12,9 @@ const baseRadialGradient =
 /** `surfaces.base`: full-page gradient stack. */
 const baseSurfaceGradient = `${baseRadialGradient}, ${baseLinearGradient}`
 
+/** Start-page hero: pastel sky → peach wash, white topo + subtle grain (legacy ossy marketing covers). */
+const heroSurfaceBackground = `${texture}, ${topography('hsla(0, 0%, 100%, 0.38)')} 0 0 / min(92vw, 720px) min(92vw, 720px) repeat, linear-gradient(118deg, hsl(199, 56%, 86%) 0%, hsl(199, 42%, 91%) 34%, hsl(22, 58%, 92%) 70%, hsl(15, 62%, 90%) 100%)`
+
 const resumeBackgroundGradient = baseLinearGradient
 
 /** Standard light theme */
@@ -23,6 +26,7 @@ export const CloudLight = {
     base: baseSurfaceGradient,
     primary: 'hsla(0, 0%, 100%, 0.52)',
     accent: 'hsl(167, 89%, 43%)',
+    hero: heroSurfaceBackground,
   },
 
   surfaces: {
@@ -46,6 +50,17 @@ export const CloudLight = {
 
     accent: {
       ...base.surfaces.accent,
+    },
+
+    hero: {
+      foreground: 'hsl(178, 22%, 24%)',
+      'foreground-hover': 'hsl(178, 24%, 20%)',
+      'foreground-active': 'hsl(178, 26%, 16%)',
+      background: heroSurfaceBackground,
+      'background-hover': heroSurfaceBackground,
+      'background-active': heroSurfaceBackground,
+      backdropFilter: 'none',
+      separator: 'hsla(199, 35%, 78%, 0.45)',
     },
   },
 

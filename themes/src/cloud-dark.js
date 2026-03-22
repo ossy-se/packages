@@ -18,6 +18,9 @@ const baseLinearGradient =
 /** `surfaces.base`: radial depth + diagonal wash (top layer first in CSS). */
 const baseSurfaceGradient = `${basePageGradient}, ${baseLinearGradient}`
 
+/** Start-page hero: deep navy, magenta low glow, warm topo ink (legacy ossy marketing covers). */
+const heroSurfaceBackground = `${topography('hsla(14, 68%, 58%, 0.13)')} 0 0 / min(88vw, 680px) min(88vw, 680px) repeat, radial-gradient(ellipse 100% 88% at 0% 100%, hsla(328, 55%, 44%, 0.58), transparent 56%), radial-gradient(ellipse 72% 58% at 100% 0%, hsl(199, 30%, 12%), transparent 52%), linear-gradient(168deg, hsl(215, 28%, 9%) 0%, hsl(199, 30%, 7.5%) 50%, hsl(205, 26%, 6%) 100%)`
+
 /** Raised-panel rim on dark UI (replaces light gray / glowy shadows). */
 const surfaceOutline = 'hsla(199, 16%, 42%, .55)'
 const surfaceOutlineMuted = 'hsla(199, 14%, 36%, .4)'
@@ -44,6 +47,7 @@ export const CloudDark = {
     base: baseSurfaceGradient,
     primary: 'hsla(199, 28%, 14%, 0.5)',
     accent,
+    hero: heroSurfaceBackground,
   },
 
   surfaces: {
@@ -70,6 +74,17 @@ export const CloudDark = {
       ...base.surfaces.accent,
       foreground: 'hsl(0, 0%, 98%)',
       separator: surfaceOutlineMuted,
+    },
+
+    hero: {
+      foreground: 'hsl(0, 0%, 100%)',
+      'foreground-hover': 'hsl(0, 0%, 100%)',
+      'foreground-active': 'hsl(0, 0%, 100%)',
+      background: heroSurfaceBackground,
+      'background-hover': heroSurfaceBackground,
+      'background-active': heroSurfaceBackground,
+      backdropFilter: 'none',
+      separator: 'hsla(199, 18%, 28%, 0.55)',
     },
   },
 
