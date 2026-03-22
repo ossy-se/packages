@@ -12,7 +12,7 @@ export const Page = ({
   ...props
 }) => {
   return (
-    <View layout={layout} surface={surface} style={style}>
+    <View layout={layout} surface={surface} style={style} {...props}>
       { sections.map(({
         render = () => {},
         maxWidth,
