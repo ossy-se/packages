@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.15.0 (2026-03-26)
+
+
+### Features
+
+* release @ossy/cli version 0.15.0 with publish command ([a9d8103](https://github.com/ossy-se/packages/commit/a9d8103cb25b679425c404496dabe338eaffc307))
+
+
+
+
+
 ## 0.14.1 (2026-03-22)
 
 **Note:** Version bump only for package @ossy/sdk
