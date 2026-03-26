@@ -105,9 +105,10 @@ export function ProxyInternal() {
                     })
                 }
 
-                res.clearCookie('auth')
-                res.status(response.status);
-                res.json("");
+                return response.arrayBuffer().then((buffer) => {
+                    res.status(response.status)
+                    res.send(Buffer.from(buffer))
+                })
             })
             .catch((error) => {
                 console.log(`[@ossy/app][proxy][error]`, error)
