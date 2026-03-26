@@ -1,7 +1,7 @@
 {
   "name": "@ossy/design-system",
   "description": "Ossy's design system React component library",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "type": "module",
   "source": "src/index.js",
   "module": "build/index.js",
@@ -28,7 +28,7 @@
     ]
   },
   "devDependencies": {
-    "@ossy/themes": "^0.15.0",
+    "@ossy/themes": "^0.15.1",
     "react-markdown": "^10.1.0",
     "react-syntax-highlighter": "^16.1.0"
   },

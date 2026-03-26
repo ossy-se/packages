@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.1 (2026-03-26)
+
+
+### Bug Fixes
+
+* update response handling in ProxyInternal to send buffer data ([448e292](https://github.com/ossy-se/packages/commit/448e2922a5a4e91e7dc8b9a8f8fb4ab6a520f7ad))
+
+
+
+
+
 # 0.8.0 (2026-03-26)
 
 
