@@ -3,13 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 0.14.1 (2026-03-22)
+# 0.15.0 (2026-03-24)
 
-**Note:** Version bump only for package @ossy/cli
+### Features
 
-
-
-
+* **`publish`** — Runs `@ossy/deployment-tools` `deployment deploy` (or `deploy-all` with `--all`). Resolves `--domain` / `--platform` from `src/config.js` in the current directory when omitted (or use `--config`). Infers `platform` from `--deployments-path` when the domain is unique.
 
 # 0.14.0 (2026-03-22)
 

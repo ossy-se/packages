@@ -9,6 +9,7 @@ Unified CLI for the Ossy platform: app dev/build and CMS workflows.
 | `init [dir]` | Scaffold a new Ossy app (default: current directory) |
 | `dev` | Start dev server with watch (uses `src/*.page.jsx` or `src/pages.jsx`, `src/config.js`) |
 | `build` | Production build |
+| `publish` | Queue a container deployment via `@ossy/deployment-tools` (see below) |
 | `cms upload` | Upload resource templates to your workspace |
 | `cms validate` | Validate ossy config and resource templates |
 
@@ -20,6 +21,26 @@ npx @ossy/cli build
 ```
 
 Options: `--pages`, `--config`, `--destination`. See `@ossy/app` for details.
+
+## Publish (container / website)
+
+Publishes a site by sending a deployment request to your platform queue (same as `npx @ossy/deployment-tools deployment deploy`). Run from the **website package** directory (where `src/config.js` lives) so domain/platform can be read automatically.
+
+```bash
+cd packages/my-website
+npx @ossy/cli publish \
+  --username <github-username> \
+  --authentication <token> \
+  --platforms-path ../infrastructure/platforms.json \
+  --deployments-path ../infrastructure/deployments.json
+```
+
+- **`--domain` / `--platform`** — Optional if `src/config.js` contains string literals `domain: '…'` and `platform: '…'` (or `targetDeploymentPlatform`).
+- **`--config`** — Path to another `config.js` if not `./src/config.js`.
+- If `platform` is omitted but `domain` is set (from flags or config), it is inferred from `deployments.json` when that domain appears under exactly one `targetDeploymentPlatform`.
+- **`--all`** — Runs `deployment deploy-all` for the platform; requires `--platform` or `platform` in config.
+
+Requires network access so `npx` can run `@ossy/deployment-tools`.
 
 ## CMS: upload
 

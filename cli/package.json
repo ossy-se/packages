@@ -1,6 +1,6 @@
 {
   "name": "@ossy/cli",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ossy-se/packages.git"
@@ -19,6 +19,7 @@
   "dependencies": {
     "@ossy/app": "^0.14.1",
     "arg": "^5.0.2"
+    "glob": "^10.3.10"
   },
   "publishConfig": {
     "access": "public",
